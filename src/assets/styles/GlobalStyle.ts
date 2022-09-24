@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle<IStyle>`
 body {
   font-size: 16px;
   font-family: 'Mukta Mahee', sans-serif;
+  background: #fff;
 }
 `;
 
