@@ -4,9 +4,10 @@ import { IStyle } from "../ts-types/styleTypes";
 const GlobalStyle = createGlobalStyle<IStyle>`
 
 *, *:before, *:after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
 }
 
 body {
