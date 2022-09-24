@@ -9,7 +9,7 @@ export const ProductHeaderStyle = styled.section<IStyle>`
     align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 1.7rem 0 0;
+    margin: 1.7rem auto 0;
 
     h1 {
       font-size: 1.2rem;
