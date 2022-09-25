@@ -13,3 +13,7 @@ export interface IFormHeader {
   title: string;
   Icon: FC;
 }
+
+export interface ISelectField {
+  type: string;
+}

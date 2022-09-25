@@ -26,12 +26,14 @@ export const CreateProductStyle = styled.section<IStyle>`
 
   @media (min-width: 576px) {
     > div {
+      padding: 0 1rem;
       width: 80%;
     }
   }
 
   @media (min-width: 768px) {
     > div {
+      padding: 0 1.8125rem 0 1.375rem;
       width: 75%;
     }
   }
@@ -39,11 +41,6 @@ export const CreateProductStyle = styled.section<IStyle>`
   @media (min-width: 900px) {
     > div {
       width: 67.5%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    > div {
     }
   }
 `;

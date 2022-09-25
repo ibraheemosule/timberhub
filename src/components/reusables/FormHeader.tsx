@@ -19,9 +19,14 @@ const FormHeader: React.FC<IFormHeader> = ({ title, Icon }) => {
         ) : (
           ""
         )}
-        <div>
-          <SelectField />
-        </div>
+        <article>
+          <div>
+            <SelectField type={"thickness"} />
+          </div>
+          <div>
+            <SelectField type={"thickness"} />
+          </div>
+        </article>
       </div>
     </FormHeaderStyle>
   );

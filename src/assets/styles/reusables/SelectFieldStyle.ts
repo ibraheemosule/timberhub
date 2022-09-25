@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { IStyle } from "../../ts-types/styleTypes";
 
 export const SelectFieldStyle = styled.section<IStyle>`
-  margin-top: 1rem;
-
   h6 {
     font-size: 0.9375rem;
     font-weight: 700;
@@ -86,5 +84,18 @@ export const SelectFieldStyle = styled.section<IStyle>`
         display: block;
       }
     }
+  }
+
+  input {
+    border: 1px solid ${({ theme }) => theme.color.border};
+    border-radius: 5px;
+    box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.05);
+    margin: 0.5rem 0 0;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  input:focus {
+    outline: 1px solid ${({ theme }) => theme.color.sec2};
   }
 `;

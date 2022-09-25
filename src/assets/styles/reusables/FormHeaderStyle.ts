@@ -38,10 +38,27 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
         margin-right: 0.6rem;
         width: 1.06rem;
       }
+
+      span.placeholder {
+        color: ${({ theme }) => theme.color.gray_dark};
+      }
+
+      span.option {
+        color: ${({ theme }) => theme.color.pry};
+      }
     }
 
-    div {
+    article {
+      display: flex;
       flex-basis: 100%;
+      flex-wrap: wrap;
+      gap: 1.81rem;
+      margin-top: 1rem;
+
+      > div {
+        flex-grow: 1;
+        flex-basis: 100%;
+      }
     }
   }
 
@@ -60,8 +77,15 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
 
   @media (min-width: 768px) {
     padding: 2.3125rem 0 2.3125 0.5rem;
+
     > div {
       margin-left: 0.75rem;
+
+      article {
+        > div {
+          flex-basis: auto;
+        }
+      }
     }
   }
 
