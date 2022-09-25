@@ -5,6 +5,7 @@ const defaultTheme = {
     sec2: "#67D59E",
     gray: "#707786",
     gray_light: "#F4F4F6",
+    gray_dark: "#939393",
     border: "#D5D5D5",
     border2: "#EDEDED",
   },

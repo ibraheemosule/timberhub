@@ -3,21 +3,22 @@ import styled from "styled-components";
 import { IFormHeaderStyle } from "../../ts-types/styleTypes";
 
 export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid
     ${({ border, theme }) => (border ? theme.color.border2 : "transparent")};
   display: flex;
-  flex-wrap: wrap;
-  padding: 0.9375rem 0;
+  padding: 2.3125rem 0;
 
-  svg {
+  > svg {
     height: auto;
+    margin-top: 0.25rem;
     width: 1rem;
   }
 
   > div {
     display: flex;
     flex-grow: 1;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-left: 0.5rem;
 
@@ -38,6 +39,10 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
         width: 1.06rem;
       }
     }
+
+    div {
+      flex-basis: 100%;
+    }
   }
 
   @media (min-width: 576px) {
@@ -54,7 +59,7 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
   }
 
   @media (min-width: 768px) {
-    padding: 0.9375rem 0 0.9375rem 0.5rem;
+    padding: 2.3125rem 0 2.3125 0.5rem;
     > div {
       margin-left: 0.75rem;
     }
