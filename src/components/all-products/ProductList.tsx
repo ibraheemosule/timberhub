@@ -1,5 +1,6 @@
 import { ProductListStyle } from "../../assets/styles/all-products/ProductListStyle";
 import { ContainerStyle } from "../../assets/styles/ContainerStyle";
+import ProductItem from "../reusables/ProductItem";
 
 const ProductList: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const ProductList: React.FC = () => {
             Dimensions <small>(ThicknessxWidth)</small>
           </h6>
         </div>
+        <ProductItem />
       </ProductListStyle>
     </ContainerStyle>
   );
