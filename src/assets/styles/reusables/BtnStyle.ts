@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { IBtnStyle } from "../../ts-types/styleTypes";
 
 export const BtnStyle = styled.button<IBtnStyle>`
-  background: ${({ bg }) => bg ?? "transparent"};
+  background: ${({ bg, theme }) => (bg ? theme.color.sec2 : "transparent")};
   border: 0.125rem solid ${({ theme }) => theme.color.sec1};
   font-size: 0.675rem;
   font-weight: 700;
   padding: 0.5rem;
+  text-transform: uppercase;
 
   @media (min-width: 576px) {
     padding: 0.5rem 1rem;

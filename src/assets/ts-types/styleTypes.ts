@@ -3,7 +3,7 @@ export interface IStyle {
   theme: ThemeType;
 }
 export interface IBtnStyle extends IStyle {
-  bg?: string;
+  bg?: boolean;
 }
 
 export interface IFormHeaderStyle extends IStyle {
