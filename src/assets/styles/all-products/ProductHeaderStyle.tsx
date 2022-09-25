@@ -10,17 +10,5 @@ export const ProductHeaderStyle = styled.section<IStyle>`
     display: flex;
     justify-content: space-between;
     margin: 1.7rem auto 0;
-
-    h1 {
-      font-size: 1.2rem;
-    }
-  }
-
-  @media (min-width: 576px) {
-    & > div {
-      h1 {
-        font-size: 2.0625rem;
-      }
-    }
   }
 `;

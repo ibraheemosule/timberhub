@@ -14,6 +14,16 @@ body {
   font-family: 'Mukta Mahee', sans-serif;
   background: #fff;
 }
+
+h1 {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 2.0625rem;
+  }
+}
 `;
 
 export default GlobalStyle;
