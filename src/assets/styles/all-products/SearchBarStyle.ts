@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-import { IStyle } from "../ts-types/styleTypes";
+import { IStyle } from "../../ts-types/styleTypes";
 
 export const SearchBarStyle = styled.form<IStyle>`
+  margin: 2rem 0 0;
   padding: 0 0.9375rem;
-  margin: 2rem 0;
   position: relative;
 
   input {

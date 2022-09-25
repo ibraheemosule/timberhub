@@ -1,4 +1,4 @@
-import { SearchBarStyle } from "../../assets/styles/SearchBarStyle";
+import { SearchBarStyle } from "../../assets/styles/all-products/SearchBarStyle";
 import { ContainerStyle } from "../../assets/styles/ContainerStyle";
 import SearchIcon from "../../assets/icons/SearchIcon";
 

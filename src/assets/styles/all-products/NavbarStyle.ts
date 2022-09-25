@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IStyle } from "../ts-types/styleTypes";
+import { IStyle } from "../../ts-types/styleTypes";
 
 export const NavbarStyle = styled.nav<IStyle>`
   box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.13);
