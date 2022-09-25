@@ -38,9 +38,6 @@ export const ProductItemStyle = styled.section<IStyle>`
             margin-right: 5px;
           }
         }
-        span {
-          color: ${({ theme }) => theme.color.gray};
-        }
       }
 
       div:nth-child(2) {
@@ -61,6 +58,10 @@ export const ProductItemStyle = styled.section<IStyle>`
         span {
           margin-right: 5px;
         }
+      }
+
+      span {
+        color: ${({ theme }) => theme.color.gray};
       }
     }
   }

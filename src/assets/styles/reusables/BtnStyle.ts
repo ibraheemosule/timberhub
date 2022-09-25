@@ -5,10 +5,8 @@ import { IBtnStyle } from "../../ts-types/styleTypes";
 export const BtnStyle = styled.button<IBtnStyle>`
   background: ${({ bg }) => bg ?? "transparent"};
   border: 0.125rem solid ${({ theme }) => theme.color.sec1};
-  cursor: pointer;
   font-size: 0.675rem;
   font-weight: 700;
-  outline: none;
   padding: 0.5rem;
 
   @media (min-width: 576px) {

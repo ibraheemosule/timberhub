@@ -15,6 +15,13 @@ body {
   background: #fff;
 }
 
+button {
+  outline: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 h1 {
   font-size: 1.2rem;
 }

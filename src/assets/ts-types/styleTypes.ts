@@ -5,3 +5,7 @@ export interface IStyle {
 export interface IBtnStyle extends IStyle {
   bg?: string;
 }
+
+export interface IFormHeaderStyle extends IStyle {
+  border: boolean;
+}

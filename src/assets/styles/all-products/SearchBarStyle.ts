@@ -20,13 +20,7 @@ export const SearchBarStyle = styled.form<IStyle>`
   }
 
   button {
-    background: transparent;
-    border: 0;
-    cursor: pointer;
     left: 2rem;
-    margin: 0;
-    outline: 0;
-    padding: 0;
     position: absolute;
     top: 50%;
     transform: translateY(-40%);
