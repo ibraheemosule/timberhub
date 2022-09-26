@@ -23,6 +23,11 @@ export const ProductListStyle = styled.article<IStyle>`
     }
   }
 
+  h5 {
+    margin-top: 4rem;
+    text-align: center;
+  }
+
   @media (min-width: 576px) {
     > div {
       justify-content: flex-start;

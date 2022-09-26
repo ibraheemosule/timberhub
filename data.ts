@@ -46,8 +46,8 @@ const data = {
       created: 1660665689,
       usage: "Pallet/Packaging",
       species: "Spruce",
-      drying_method: "KD",
-      grade: "Nordic Blue Book",
+      drying_method: "BO",
+      grade: "Nordic Blue Bok",
       treatment: null,
       dimensions: [
         {

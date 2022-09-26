@@ -18,9 +18,11 @@ const ProductList: React.FC = () => {
             Dimensions <small>(ThicknessxWidth)</small>
           </h6>
         </div>
-        {list.map((val, i) => (
-          <ProductItem data={val} key={i} />
-        ))}
+        {list.length > 0 ? (
+          list.map((val, i) => <ProductItem data={val} key={i} />)
+        ) : (
+          <h5>No Item Found</h5>
+        )}
       </ProductListStyle>
     </ContainerStyle>
   );
