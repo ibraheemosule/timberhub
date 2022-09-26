@@ -4,7 +4,8 @@ import ProductIcon from "../../assets/icons/ProductIcon";
 import SpecificationIcon from "../../assets/icons/SpecificationIcon";
 import DimensionIcon from "../../assets/icons/DimensionIcon";
 import Btn from "../reusables/Btn";
-import { useEffect, useRef, useState } from "react";
+import { useContext } from "react";
+import { Context } from "../../assets/utils/Context";
 
 const Titles = {
   "Sawn Timber": ProductIcon,
@@ -12,25 +13,19 @@ const Titles = {
   Dimensions: DimensionIcon,
 };
 const CreateProduct: React.FC = () => {
-  const [slideOut, setSlideOut] = useState(false);
-  const element = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (slideOut)
-      element.current && element.current.classList.add("animate-reverse");
-  }, [slideOut]);
+  const { modal, setModal } = useContext(Context);
 
   return (
-    <CreateProductStyle>
-      <div ref={element}>
+    <CreateProductStyle modal={modal}>
+      <div className="create-product">
         <h1>Create Product</h1>
         {Object.entries(Titles).map((Val, i) => (
           <FormHeader Icon={Val[1]} title={Val[0]} key={i} />
         ))}
 
         <footer>
-          <button onClick={() => setSlideOut(true)}>close</button>
-          <Btn text="create product" />
+          <button onClick={() => setModal(false)}>close</button>
+          <Btn text="create product" click={() => setModal(true)} />
         </footer>
       </div>
     </CreateProductStyle>

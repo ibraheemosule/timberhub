@@ -21,7 +21,7 @@ const FormHeader: React.FC<IFormHeader> = ({ title, Icon }) => {
         )}
         <article>
           <div>
-            <SelectField type={"thickness"} />
+            <SelectField type={"another"} />
           </div>
           <div>
             <SelectField type={"thickness"} />

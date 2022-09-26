@@ -9,6 +9,11 @@ export const BtnStyle = styled.button<IBtnStyle>`
   font-weight: 700;
   padding: 0.5rem;
   text-transform: uppercase;
+  transition: all 0.5s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
 
   @media (min-width: 576px) {
     padding: 0.5rem 1rem;

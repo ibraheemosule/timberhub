@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-import { IStyle } from "../../ts-types/styleTypes";
+import { ICreateProductStyle } from "../../ts-types/styleTypes";
 
-export const CreateProductStyle = styled.section<IStyle>`
-  background: rgba(0, 0, 0, 0.3);
+export const CreateProductStyle = styled.section<ICreateProductStyle>`
+  ${({ modal }) =>
+    modal
+      ? " background: rgba(0, 0, 0, 0.3)"
+      : "animation: slide-out 0.5s linear 1 normal forwards"};
   height: 100%;
   left: 0;
   position: fixed;
@@ -12,6 +15,7 @@ export const CreateProductStyle = styled.section<IStyle>`
 
   > div {
     background: #fff;
+    display: none;
     height: 100%;
     margin: 0 0 0 auto;
     max-width: 972px;
@@ -19,6 +23,8 @@ export const CreateProductStyle = styled.section<IStyle>`
     padding: 0 0.9375rem;
     position: relative;
     width: 90%;
+    animation: ${({ modal }) => (modal ? "slide-in" : "slide-out")} 0.5s linear
+      1 normal forwards;
 
     h1 {
       border-bottom: 1px solid ${({ theme }) => theme.color.border2};
@@ -37,6 +43,52 @@ export const CreateProductStyle = styled.section<IStyle>`
         font-size: 0.875rem;
         font-weight: 700;
       }
+    }
+  }
+
+  .show {
+    display: block;
+  }
+
+  @keyframes slide-in {
+    0% {
+      left: 100%;
+    }
+    25% {
+      left: 75%;
+    }
+    40% {
+      left: 50%;
+    }
+    65% {
+      left: 25%;
+    }
+    90% {
+      left: 0%;
+    }
+    100% {
+      left: 0%;
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      left: 0%;
+    }
+    25% {
+      left: 20%;
+    }
+    40% {
+      left: 40%;
+    }
+    65% {
+      left: 60%;
+    }
+    90% {
+      left: 80%;
+    }
+    100% {
+      left: 100%;
     }
   }
 

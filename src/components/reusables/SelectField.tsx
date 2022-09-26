@@ -1,5 +1,5 @@
 import { SelectFieldStyle } from "../../assets/styles/reusables/SelectFieldStyle";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import ArrowDownIcon from "../../assets/icons/ArrowDownIcon";
 import { ISelectField } from "../../assets/ts-types/compTypes";
 
@@ -13,8 +13,8 @@ const SelectField: React.FC<ISelectField> = ({ type }) => {
     setOption(e.target.value);
   };
 
-  const sortValue = (e: any) => {
-    setOption(e.target.outerText as string);
+  const sortValue = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    setOption(e.currentTarget.innerText);
     dropdown.current?.blur();
   };
   return (
@@ -36,10 +36,10 @@ const SelectField: React.FC<ISelectField> = ({ type }) => {
 
             <ul className="dropdown">
               <li>
-                <a onClick={(e: any) => sortValue(e)}>here</a>
+                <a onClick={e => sortValue(e)}>here</a>
               </li>
               <li>
-                <a onClick={(e: any) => sortValue(e)}>her2</a>
+                <a onClick={e => sortValue(e)}>her2</a>
               </li>
             </ul>
           </button>
