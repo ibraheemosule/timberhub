@@ -1,13 +1,27 @@
 import { SelectFieldStyle } from "../../assets/styles/reusables/SelectFieldStyle";
-import React, { useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import ArrowDownIcon from "../../assets/icons/ArrowDownIcon";
 import { ISelectField } from "../../assets/ts-types/compTypes";
 
 const dimensionTypes = ["thickness", "width", "length"];
 
-const SelectField: React.FC<ISelectField> = ({ type }) => {
+const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   const dropdown = useRef<HTMLButtonElement | null>(null);
   const [option, setOption] = useState<string>("");
+  const [type, setType] = useState("");
+
+  useEffect(() => {
+    switch (options) {
+      case "species":
+        setType("wood species");
+        break;
+      case "drying_method":
+        setType("drying");
+        break;
+      default:
+        setType(options);
+    }
+  }, [options]);
 
   const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOption(e.target.value);
@@ -35,12 +49,12 @@ const SelectField: React.FC<ISelectField> = ({ type }) => {
             </div>
 
             <ul className="dropdown">
-              <li>
-                <a onClick={e => sortValue(e)}>here</a>
-              </li>
-              <li>
-                <a onClick={e => sortValue(e)}>her2</a>
-              </li>
+              {select &&
+                select.map((val, i) => (
+                  <li key={i}>
+                    <a onClick={e => sortValue(e)}>{val}</a>
+                  </li>
+                ))}
             </ul>
           </button>
         </fieldset>
@@ -49,4 +63,4 @@ const SelectField: React.FC<ISelectField> = ({ type }) => {
   );
 };
 
-export default SelectField;
+export default memo(SelectField);

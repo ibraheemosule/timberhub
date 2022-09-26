@@ -8,10 +8,30 @@ import { useContext } from "react";
 import { Context } from "../../assets/utils/Context";
 
 const Titles = {
-  "Sawn Timber": ProductIcon,
-  Specifications: SpecificationIcon,
-  Dimensions: DimensionIcon,
+  "Sawn Timber": {
+    Icon: ProductIcon,
+    options: ["usage", "species"],
+    select: [
+      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
+      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+    ],
+  },
+  Specifications: {
+    Icon: SpecificationIcon,
+    options: ["drying_method", "grade", "treatment"],
+    select: [
+      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
+      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      [null],
+    ],
+  },
+  Dimensions: {
+    Icon: DimensionIcon,
+    options: ["thickness", "width", "length"],
+  },
 };
+
 const CreateProduct: React.FC = () => {
   const { modal, setModal } = useContext(Context);
 
@@ -19,8 +39,8 @@ const CreateProduct: React.FC = () => {
     <CreateProductStyle modal={modal}>
       <div className="create-product">
         <h1>Create Product</h1>
-        {Object.entries(Titles).map((Val, i) => (
-          <FormHeader Icon={Val[1]} title={Val[0]} key={i} />
+        {Object.entries(Titles).map((val, i) => (
+          <FormHeader info={val} key={i} />
         ))}
 
         <footer>

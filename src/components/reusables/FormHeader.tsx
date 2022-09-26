@@ -5,14 +5,16 @@ import { IFormHeader } from "../../assets/ts-types/compTypes";
 
 const SelectField = dynamic(() => import("./SelectField"), { ssr: false });
 
-const FormHeader: React.FC<IFormHeader> = ({ title, Icon }) => {
+const FormHeader: React.FC<IFormHeader> = ({ info }) => {
+  const Icon = info[1].Icon;
+
   return (
-    <FormHeaderStyle border={title !== "Dimensions" && true}>
+    <FormHeaderStyle border={info[0] !== "Dimensions" && true}>
       <Icon />
       <div>
-        <h2>{title}</h2>
+        <h2>{info[0]}</h2>
 
-        {title === "Dimensions" ? (
+        {info[0] === "Dimensions" ? (
           <button>
             <PlusIcon /> <span>Add another set</span>
           </button>
@@ -20,12 +22,15 @@ const FormHeader: React.FC<IFormHeader> = ({ title, Icon }) => {
           ""
         )}
         <article>
-          <div>
-            <SelectField type={"another"} />
-          </div>
-          <div>
-            <SelectField type={"thickness"} />
-          </div>
+          {info[1].options.map((val, i) => (
+            <div key={i}>
+              <SelectField
+                options={val}
+                select={info[1].select && info[1].select[i]}
+                value={""}
+              />
+            </div>
+          ))}
         </article>
       </div>
     </FormHeaderStyle>

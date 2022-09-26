@@ -6,6 +6,7 @@ export const SelectFieldStyle = styled.section<IStyle>`
   h6 {
     font-size: 0.9375rem;
     font-weight: 700;
+    text-transform: capitalize;
   }
 
   fieldset {
@@ -51,14 +52,15 @@ export const SelectFieldStyle = styled.section<IStyle>`
       position: absolute;
       top: 120%;
       width: 100%;
+      z-index: 2;
 
       li {
-        background: transparent;
         border: 0;
         border-bottom: 1px solid ${({ theme }) => theme.color.border};
         transition: all 0.2s ease-out;
 
         a {
+          background: #fff;
           display: block;
           padding: 0.875rem;
           width: 100%;

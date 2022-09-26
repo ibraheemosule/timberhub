@@ -9,15 +9,21 @@ export interface IBtn {
   text: string;
   click: Dispatch<SetStateAction<boolean>>;
 }
-
 export interface IFormHeader {
-  children?: ReactElement;
-  title: string;
-  Icon: FC;
+  info: [
+    string,
+    {
+      Icon: FC<Record<string, unknown>>;
+      options: string[];
+      select?: (string[] | null[])[];
+    }
+  ];
 }
 
 export interface ISelectField {
-  type: string;
+  options: string;
+  select?: string[] | null[] | undefined;
+  value: string;
 }
 export interface IProductItem {
   data: RowItemType;
