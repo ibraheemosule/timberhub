@@ -1,28 +1,38 @@
 import { ProductItemStyle } from "../../assets/styles/reusables/ProductItemStyle";
 import ProductIcon from "../../assets/icons/ProductIcon";
+import { IProductItem } from "../../assets/ts-types/compTypes";
+import { formatDate, getDuplicates } from "../../assets/utils";
 
-const ProductItem: React.FC = () => {
+const ProductItem: React.FC<IProductItem> = ({ data }) => {
   return (
     <ProductItemStyle>
       <div>
         <ProductIcon />
         <div className="wrapper">
           <div>
-            <p>Spruce, Nordic Blue, KD</p>
             <p>
-              <mark>#00010072</mark> <span>31. August 2022</span>
+              {data.species}, {data.grade}, {data.drying_method}
+            </p>
+            <p>
+              <mark>#{data.id}</mark> <span>{formatDate(data.created)}</span>
             </p>
           </div>
           <div>
-            <p>
-              <span>1</span>
-              16x1050
-            </p>
-            <p>
-              <span>1</span>
-              16x1050
-            </p>
-            <p>+ 5 more sets</p>
+            {/* group the dimensions with the same thickness and width*/}
+            {getDuplicates(data).map(val => (
+              <p key={val[0]}>
+                <span>{val[1]}</span>
+                {val[0]}
+              </p>
+            ))}
+
+            {/* Checks if there are more items in the array 
+            and shows the number left*/}
+            {getDuplicates(data).length - 3 > 0 ? (
+              <p>{getDuplicates(data).length - 3} more sets</p>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { ReactElement, FC, Dispatch, SetStateAction } from "react";
+import { RowItemType } from "./dataTypes";
 
 export interface ILayout {
   children: ReactElement;
@@ -17,4 +18,7 @@ export interface IFormHeader {
 
 export interface ISelectField {
   type: string;
+}
+export interface IProductItem {
+  data: RowItemType;
 }

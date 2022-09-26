@@ -1,8 +1,12 @@
 import { ProductListStyle } from "../../assets/styles/all-products/ProductListStyle";
 import { ContainerStyle } from "../../assets/styles/ContainerStyle";
 import ProductItem from "../reusables/ProductItem";
+import { useContext } from "react";
+import { Context } from "../../assets/utils/Context";
 
 const ProductList: React.FC = () => {
+  const { list } = useContext(Context);
+
   return (
     <ContainerStyle>
       <ProductListStyle>
@@ -14,7 +18,9 @@ const ProductList: React.FC = () => {
             Dimensions <small>(ThicknessxWidth)</small>
           </h6>
         </div>
-        <ProductItem />
+        {list.map((val, i) => (
+          <ProductItem data={val} key={i} />
+        ))}
       </ProductListStyle>
     </ContainerStyle>
   );
