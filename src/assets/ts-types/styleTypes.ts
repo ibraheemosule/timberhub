@@ -10,7 +10,7 @@ export interface ICreateProductStyle {
 export interface IBtnStyle extends React.HTMLAttributes<HTMLButtonElement> {
   bg?: boolean;
   theme: ThemeType;
-  onClick: any;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface IFormHeaderStyle extends IStyle {

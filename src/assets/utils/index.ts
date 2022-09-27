@@ -73,7 +73,7 @@ export const dataFormat = {
   drying_method: "",
   grade: "",
   treatment: null,
-  dimensions: [{}] as Record<string, unknown>[],
+  dimensions: [{}] as IDimension[],
 };
 
 export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -84,9 +84,16 @@ export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
 export const validateData = (validObj: RowItemType, obj: RowItemType) => {
   return Object.keys(validObj).every(key => {
     if (key === "dimensions") {
-      const flattenObj = obj[key].map((val: IDimension) => Object.entries(val));
+      const mapObj = obj[key].map((val: IDimension) => Object.entries(val));
 
-      return flattenObj.every(val => val.length === 3);
+      const flattenObj = obj[key].flatMap((val: IDimension): unknown => {
+        return Object.values({ ...val });
+      });
+
+      if (flattenObj.includes("")) return false;
+
+      console.log(flattenObj);
+      return mapObj.every(val => val.length === 3);
     }
 
     if (!obj[key as keyof RowItemType]) return false;

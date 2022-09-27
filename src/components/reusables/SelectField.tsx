@@ -13,21 +13,11 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   const optionField = useRef<HTMLSpanElement | null>(null);
   const [option, setOption] = useState("");
   const [type, setType] = useState("");
-  const { rows } = useContext(Context);
+  const { modal } = useContext(Context);
 
   useEffect(() => {
     resetFields();
-  }, [rows.length]);
-
-  const resetFields = () => {
-    const searchBar = document.querySelector("input");
-    if (searchBar) searchBar.value = "";
-
-    setOption("");
-
-    if (!inputField.current) return;
-    inputField.current.value = "";
-  };
+  }, [modal]);
 
   useEffect(() => {
     switch (options) {
@@ -41,6 +31,16 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
         setType(options);
     }
   }, [options]);
+
+  const resetFields = () => {
+    const searchBar = document.querySelector("input");
+    if (searchBar) searchBar.value = "";
+
+    setOption("");
+
+    if (!inputField.current) return;
+    inputField.current.value = "";
+  };
 
   const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOption(e.target.value);

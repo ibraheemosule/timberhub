@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
 import { IStyle } from "../../ts-types/styleTypes";
 

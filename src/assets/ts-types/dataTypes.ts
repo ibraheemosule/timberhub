@@ -8,8 +8,8 @@ export interface IContext {
   setList: Dispatch<SetStateAction<RowItemType[]>>;
   rows: RowItemType[];
   setRows: Dispatch<SetStateAction<RowItemType[]>>;
-  obj: any;
-  setObj: any;
+  obj: RowItemType;
+  setObj: Dispatch<SetStateAction<RowItemType>>;
   error: boolean;
   setError: Dispatch<SetStateAction<boolean>>;
 }

@@ -1,17 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { CreateProductStyle } from "../../assets/styles/create-product/CreateProductStyle";
 import FormHeader from "../reusables/FormHeader";
 import Btn from "../reusables/Btn";
 import { useContext } from "react";
 import { Context } from "../../assets/utils/Context";
 import { titles, validateData } from "../../assets/utils";
+import { dataFormat } from "../../assets/utils";
 
 const CreateProduct: React.FC = () => {
-  const { modal, setModal, obj, setList, rows, setRows, error, setError } =
-    useContext(Context);
+  const {
+    modal,
+    setModal,
+    obj,
+    setObj,
+    setList,
+    rows,
+    setRows,
+    error,
+    setError,
+  } = useContext(Context);
 
   const addObj = () => {
     if (!validateData(rows[0], obj)) {
@@ -26,6 +32,14 @@ const CreateProduct: React.FC = () => {
     setModal(false);
   };
 
+  const closeModal = () => {
+    setObj({
+      ...dataFormat,
+      dimensions: [...dataFormat.dimensions],
+    });
+    setModal(false);
+  };
+
   return (
     <CreateProductStyle modal={modal}>
       <div className="create-product">
@@ -36,7 +50,7 @@ const CreateProduct: React.FC = () => {
 
         <footer>
           {error ? <h5>Please Select and Fill all fields</h5> : ""}
-          <button onClick={() => setModal(false)}>close</button>
+          <button onClick={closeModal}>close</button>
           <Btn text="create product" click={addObj} />
         </footer>
       </div>

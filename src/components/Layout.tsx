@@ -1,16 +1,23 @@
 import { ILayout } from "../assets/ts-types/compTypes";
 import { Context } from "../assets/utils/Context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "../../data";
 import { dataFormat } from "../assets/utils";
+import { RowItemType } from "../assets/ts-types/dataTypes";
 
 const Layout: React.FC<ILayout> = ({ children }) => {
   const [modal, setModal] = useState(false),
     [list, setList] = useState([...data.row]),
     [rows, setRows] = useState([...data.row]),
-    [obj, setObj] = useState({ ...dataFormat }),
-    [error, setError] = useState(false),
-    [submit, setSubmit] = useState(false);
+    [obj, setObj] = useState({} as RowItemType),
+    [error, setError] = useState(false);
+
+  useEffect(() => {
+    setObj({
+      ...dataFormat,
+      dimensions: [...dataFormat.dimensions],
+    });
+  }, []);
 
   return (
     <Context.Provider
