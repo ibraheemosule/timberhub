@@ -1,4 +1,4 @@
-import React from "react";
+import { MouseEvent } from "react";
 import { ThemeType } from "../styles/theme";
 export interface IStyle {
   theme: ThemeType;
@@ -7,10 +7,10 @@ export interface IStyle {
 export interface ICreateProductStyle {
   modal: boolean;
 }
-export interface IBtnStyle extends React.HTMLAttributes<HTMLButtonElement> {
+export interface IBtnStyle {
   bg?: boolean;
   theme: ThemeType;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export interface IFormHeaderStyle extends IStyle {

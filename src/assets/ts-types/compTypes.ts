@@ -1,4 +1,4 @@
-import { ReactElement, FC, Dispatch, SetStateAction } from "react";
+import { ReactElement, FC, MouseEvent } from "react";
 import { RowItemType } from "./dataTypes";
 
 export interface ILayout {
@@ -7,7 +7,7 @@ export interface ILayout {
 
 export interface IBtn {
   text: string;
-  click: Dispatch<SetStateAction<boolean>>;
+  click: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 export interface IFormHeader {
   info: [
@@ -15,7 +15,7 @@ export interface IFormHeader {
     {
       Icon: FC<Record<string, unknown>>;
       options: string[];
-      select?: (string[] | null[])[];
+      select?: string[][];
     }
   ];
 }

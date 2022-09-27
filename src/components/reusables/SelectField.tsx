@@ -1,5 +1,5 @@
 import { SelectFieldStyle } from "../../assets/styles/reusables/SelectFieldStyle";
-import React, { memo, useEffect, useRef, useState, useContext } from "react";
+import { memo, useEffect, useRef, useState, useContext } from "react";
 import ArrowDownIcon from "../../assets/icons/ArrowDownIcon";
 import { ISelectField } from "../../assets/ts-types/compTypes";
 import { isNumber } from "../../assets/utils";
