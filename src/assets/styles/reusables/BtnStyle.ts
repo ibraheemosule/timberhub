@@ -5,6 +5,7 @@ import { IBtnStyle } from "../../ts-types/styleTypes";
 export const BtnStyle = styled.button<IBtnStyle>`
   background: ${({ bg, theme }) => (bg ? theme.color.sec2 : "transparent")};
   border: 0.125rem solid ${({ theme }) => theme.color.sec1};
+  color: #000;
   font-size: 0.675rem;
   font-weight: 700;
   padding: 0.5rem;
@@ -13,6 +14,7 @@ export const BtnStyle = styled.button<IBtnStyle>`
 
   &:hover {
     opacity: 0.7;
+    transform: translate(-1px);
   }
 
   @media (min-width: 576px) {

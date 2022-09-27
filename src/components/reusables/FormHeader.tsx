@@ -59,6 +59,7 @@ const FormHeader: React.FC<IFormHeader> = ({ info }) => {
   return (
     <FormHeaderStyle border={info[0] !== "Dimensions" && true}>
       <Icon />
+
       <div>
         <h2>{info[0]}</h2>
 
@@ -93,6 +94,11 @@ const FormHeader: React.FC<IFormHeader> = ({ info }) => {
                 </section>
               ))}
         </article>
+        {info[0] === "Sawn Timber" ? (
+          <h6>This will help us find what fits best to your needs.</h6>
+        ) : (
+          ""
+        )}
       </div>
     </FormHeaderStyle>
   );

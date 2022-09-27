@@ -29,7 +29,7 @@ const CreateProduct: React.FC = () => {
 
     setRows(newObj);
     setList(newObj);
-    setModal(false);
+    closeModal();
   };
 
   const closeModal = () => {

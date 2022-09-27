@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-import { IStyle } from "../../ts-types/styleTypes";
+import { ISelectFieldStyle } from "../../ts-types/styleTypes";
 
-export const SelectFieldStyle = styled.section<IStyle>`
+export const SelectFieldStyle = styled.section<ISelectFieldStyle>`
   h6 {
     font-size: 0.9375rem;
     font-weight: 700;
@@ -75,7 +75,10 @@ export const SelectFieldStyle = styled.section<IStyle>`
         border: 0;
       }
     }
-    > button:focus {
+    ${({ dropdown }) =>
+      // line 78 to 103 is responsible for the select list dropdown functionality
+      dropdown
+        ? `button {
       .wrapper {
         svg {
           transform: rotate(180deg);
@@ -85,7 +88,18 @@ export const SelectFieldStyle = styled.section<IStyle>`
       .dropdown {
         display: block;
       }
-    }
+    }`
+        : `button {
+      .wrapper {
+        svg {
+          transform: rotate(0deg);
+          transform-origin: 50%;
+        }
+      }
+      .dropdown {
+        display: none;
+      }
+    }`}
   }
 
   input {

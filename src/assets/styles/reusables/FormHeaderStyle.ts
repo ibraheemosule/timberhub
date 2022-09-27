@@ -12,7 +12,8 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
   > svg {
     height: auto;
     margin-top: 0.25rem;
-    width: 1rem;
+    min-width: 1.875rem;
+    width: 1.875rem;
   }
 
   > div {
@@ -61,15 +62,21 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
         flex-basis: 100%;
       }
     }
+
+    h6:last-child {
+      color: ${({ theme }) => theme.color.border};
+      font-size: 0.75rem;
+      font-weight: 400;
+      margin: 0.2rem 0;
+    }
   }
 
   @media (min-width: 576px) {
-    svg {
+    > svg {
+      min-width: 1.875rem;
       width: 1.875rem;
     }
     > div {
-      margin-left: 0.5rem;
-
       h2 {
         font-size: 1.5rem;
       }

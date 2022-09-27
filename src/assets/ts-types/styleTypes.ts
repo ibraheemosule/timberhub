@@ -16,3 +16,7 @@ export interface IBtnStyle {
 export interface IFormHeaderStyle extends IStyle {
   border: boolean;
 }
+
+export interface ISelectFieldStyle extends IStyle {
+  dropdown: boolean;
+}

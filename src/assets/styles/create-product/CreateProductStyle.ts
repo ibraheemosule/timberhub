@@ -36,7 +36,7 @@ export const CreateProductStyle = styled.section<ICreateProductStyle>`
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin: 14.9375rem 0 2rem 0;
+      margin: 4rem 0 2rem 0;
       position: relative;
       width: 100%;
 
@@ -51,9 +51,11 @@ export const CreateProductStyle = styled.section<ICreateProductStyle>`
       }
 
       button:first-of-type {
-        margin: 0.875rem 0.875rem 0;
+        color: #000;
         font-size: 0.875rem;
         font-weight: 700;
+        margin-top: -0.875rem;
+        padding: 0.875rem 0.875rem 0;
       }
     }
   }
@@ -121,6 +123,10 @@ export const CreateProductStyle = styled.section<ICreateProductStyle>`
   @media (min-width: 900px) {
     > div {
       width: 67.5%;
+
+      footer {
+        margin: 14.9375rem 0 2rem 0;
+      }
     }
   }
 `;

@@ -8,16 +8,23 @@ import { Context } from "../../assets/utils/Context";
 const dimensionTypes = ["thickness", "width", "length"];
 
 const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
-  const dropdown = useRef<HTMLButtonElement | null>(null);
-  const inputField = useRef<HTMLInputElement | null>(null);
-  const optionField = useRef<HTMLSpanElement | null>(null);
-  const [option, setOption] = useState("");
-  const [type, setType] = useState("");
-  const { modal } = useContext(Context);
+  // const dropdown = useRef<HTMLButtonElement | null>(null),
+  const inputField = useRef<HTMLInputElement | null>(null),
+    optionField = useRef<HTMLSpanElement | null>(null),
+    [dropdown, setDropdown] = useState(false),
+    [option, setOption] = useState(""),
+    [type, setType] = useState(""),
+    { modal } = useContext(Context);
 
   useEffect(() => {
     resetFields();
   }, [modal]);
+
+  useEffect(() => {
+    if (dropdown === false) return;
+    setDropdown(val => !val);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [option]);
 
   useEffect(() => {
     switch (options) {
@@ -51,21 +58,21 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   const updateValue = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     setOption(e.currentTarget.innerText);
     value(e.currentTarget.innerText);
-    dropdown.current?.blur();
   };
 
   return (
-    <SelectFieldStyle>
+    <SelectFieldStyle dropdown={dropdown}>
       <h6>{type} *</h6>
       {dimensionTypes.includes(type) ? (
         <input
           ref={inputField}
+          type="text"
           onKeyDown={e => isNumber(e)}
           onChange={e => getValue(e)}
         />
       ) : (
         <fieldset className="filter_box">
-          <button ref={dropdown}>
+          <button onClick={() => setDropdown(val => !val)}>
             <div className="wrapper">
               {option ? (
                 <span ref={optionField} className="option">

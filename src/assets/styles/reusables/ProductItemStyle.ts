@@ -7,7 +7,7 @@ export const ProductItemStyle = styled.section<IStyle>`
   border-bottom: 1px solid ${({ theme }) => theme.color.border2};
   display: flex;
   flex-wrap: wrap;
-  padding: 0.9375rem 0;
+  padding: 1.375rem 0;
 
   > div {
     align-items: center;
@@ -29,6 +29,9 @@ export const ProductItemStyle = styled.section<IStyle>`
       margin-left: 0.5rem;
 
       div:nth-child(1) {
+        padding-right: 2rem;
+        text-transform: capitalize;
+
         p:nth-child(2) {
           margin-top: 0.3125rem;
 
@@ -75,6 +78,7 @@ export const ProductItemStyle = styled.section<IStyle>`
       .wrapper {
         div:nth-child(1) {
           flex-basis: 43%;
+          padding-right: 0;
         }
 
         div:nth-child(2) {
