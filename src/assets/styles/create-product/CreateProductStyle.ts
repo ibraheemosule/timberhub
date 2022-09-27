@@ -34,11 +34,23 @@ export const CreateProductStyle = styled.section<ICreateProductStyle>`
     footer {
       align-items: center;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       margin: 14.9375rem 0 2rem 0;
+      position: relative;
       width: 100%;
 
-      button:nth-child(1) {
+      h5 {
+        color: ${({ theme }) => theme.color.gray_dark};
+        left: 0;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: -2rem;
+        width: 100%;
+      }
+
+      button:first-of-type {
         margin: 0.875rem 0.875rem 0;
         font-size: 0.875rem;
         font-weight: 700;

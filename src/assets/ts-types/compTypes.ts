@@ -23,7 +23,7 @@ export interface IFormHeader {
 export interface ISelectField {
   options: string;
   select?: string[] | null[] | undefined;
-  value: string;
+  value: (e: string | number) => void;
 }
 export interface IProductItem {
   data: RowItemType;

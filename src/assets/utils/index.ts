@@ -1,4 +1,7 @@
-import { RowItemType } from "../ts-types/dataTypes";
+import { IDimension, RowItemType } from "../ts-types/dataTypes";
+import ProductIcon from "../../assets/icons/ProductIcon";
+import SpecificationIcon from "../../assets/icons/SpecificationIcon";
+import DimensionIcon from "../../assets/icons/DimensionIcon";
 
 const months = [
   "January",
@@ -15,12 +18,34 @@ const months = [
   "December",
 ];
 
+export const titles = {
+  "Sawn Timber": {
+    Icon: ProductIcon,
+    options: ["usage", "species"],
+    select: [
+      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
+      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+    ],
+  },
+  Specifications: {
+    Icon: SpecificationIcon,
+    options: ["drying_method", "grade", "treatment"],
+    select: [
+      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
+      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+    ],
+  },
+  Dimensions: {
+    Icon: DimensionIcon,
+    options: ["thickness", "width", "length"],
+  },
+};
+
 export const formatDate = (val: number) => {
   const date = new Date(val);
 
-  return `${date.getDay() + 1}. ${
-    months[date.getMonth() + 1]
-  } ${date.getFullYear()}`;
+  return `${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
 };
 
 export const getDuplicates = (dimensionArr: RowItemType) => {
@@ -38,4 +63,34 @@ export const getDuplicates = (dimensionArr: RowItemType) => {
   });
 
   return Object.entries(duplicates);
+};
+
+export const dataFormat = {
+  id: 10013433,
+  created: 1660665689,
+  usage: "",
+  species: "",
+  drying_method: "",
+  grade: "",
+  treatment: null,
+  dimensions: [{}] as Record<string, unknown>[],
+};
+
+export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const rgx = /^[0-9]*\.?[0-9]*$/;
+  if (!e.key.match(rgx) && e.key !== "Backspace") e.preventDefault();
+};
+
+export const validateData = (validObj: RowItemType, obj: RowItemType) => {
+  return Object.keys(validObj).every(key => {
+    if (key === "dimensions") {
+      const flattenObj = obj[key].map((val: IDimension) => Object.entries(val));
+
+      return flattenObj.every(val => val.length === 3);
+    }
+
+    if (!obj[key as keyof RowItemType]) return false;
+
+    return true;
+  });
 };

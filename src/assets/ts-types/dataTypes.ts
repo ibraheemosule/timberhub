@@ -8,6 +8,10 @@ export interface IContext {
   setList: Dispatch<SetStateAction<RowItemType[]>>;
   rows: RowItemType[];
   setRows: Dispatch<SetStateAction<RowItemType[]>>;
+  obj: any;
+  setObj: any;
+  error: boolean;
+  setError: Dispatch<SetStateAction<boolean>>;
 }
 export type RowItemType = typeof data.row[0];
 export interface Idata {

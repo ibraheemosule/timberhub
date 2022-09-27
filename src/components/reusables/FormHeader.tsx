@@ -1,12 +1,62 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import dynamic from "next/dynamic";
 import PlusIcon from "../../assets/icons/PlusIcon";
 import { FormHeaderStyle } from "../../assets/styles/reusables/FormHeaderStyle";
 import { IFormHeader } from "../../assets/ts-types/compTypes";
+import { useContext } from "react";
+import { Context } from "../../assets/utils/Context";
 
 const SelectField = dynamic(() => import("./SelectField"), { ssr: false });
 
 const FormHeader: React.FC<IFormHeader> = ({ info }) => {
+  const { obj, setObj } = useContext(Context);
+
   const Icon = info[1].Icon;
+
+  const addDimension = () => {
+    const newObj = { ...obj };
+    newObj.dimensions.push({});
+    setObj(newObj);
+  };
+
+  const getValue = (val: string, i?: number) => (e: string | number) => {
+    const time: number = new Date().getTime();
+    const dimensions = ["thickness", "width", "length"].includes(val);
+
+    if (!dimensions) {
+      setObj((prev: typeof obj) => ({
+        ...prev,
+        created: time,
+        [val]: e,
+      }));
+      return;
+    }
+    if (i === undefined) return;
+
+    if (!obj.dimensions[i]) {
+      setObj((prev: typeof obj) => ({
+        ...prev,
+        dimensions: [
+          ...prev.dimensions,
+          {
+            [val]: e,
+          },
+        ],
+      }));
+      return;
+    }
+    setObj((prev: typeof obj) => {
+      prev.dimensions[i] = {
+        ...prev.dimensions[i],
+        [val]: e,
+      };
+      return {
+        ...prev,
+      };
+    });
+  };
 
   return (
     <FormHeaderStyle border={info[0] !== "Dimensions" && true}>
@@ -15,22 +65,35 @@ const FormHeader: React.FC<IFormHeader> = ({ info }) => {
         <h2>{info[0]}</h2>
 
         {info[0] === "Dimensions" ? (
-          <button>
+          <button onClick={addDimension}>
             <PlusIcon /> <span>Add another set</span>
           </button>
         ) : (
           ""
         )}
         <article>
-          {info[1].options.map((val, i) => (
-            <div key={i}>
-              <SelectField
-                options={val}
-                select={info[1].select && info[1].select[i]}
-                value={""}
-              />
-            </div>
-          ))}
+          {info[1].select
+            ? info[1].select.map((val, i) => (
+                <div key={i}>
+                  <SelectField
+                    options={info[1].options[i]}
+                    select={val}
+                    value={getValue(info[1].options[i])}
+                  />
+                </div>
+              ))
+            : obj.dimensions.map((val: any, i: number) => (
+                <section key={i}>
+                  {info[1].options.map((opt, index) => (
+                    <div key={opt}>
+                      <SelectField
+                        options={info[1].options[index]}
+                        value={getValue(info[1].options[index], i)}
+                      />
+                    </div>
+                  ))}
+                </section>
+              ))}
         </article>
       </div>
     </FormHeaderStyle>

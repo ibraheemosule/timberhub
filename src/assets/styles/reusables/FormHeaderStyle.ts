@@ -48,11 +48,12 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
       }
     }
 
-    article {
+    article,
+    section {
       display: flex;
       flex-basis: 100%;
       flex-wrap: wrap;
-      gap: 1.81rem;
+      column-gap: 1.81rem;
       margin-top: 1rem;
 
       > div {
@@ -81,9 +82,10 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
     > div {
       margin-left: 0.75rem;
 
-      article {
+      article,
+      section {
         > div {
-          flex-basis: auto;
+          flex-basis: 45%;
         }
       }
     }
@@ -92,6 +94,13 @@ export const FormHeaderStyle = styled.section<IFormHeaderStyle>`
   @media (min-width: 992px) {
     > div {
       margin-left: 1.3819rem;
+
+      article,
+      section {
+        > div {
+          flex-basis: 30%;
+        }
+      }
     }
   }
 `;
