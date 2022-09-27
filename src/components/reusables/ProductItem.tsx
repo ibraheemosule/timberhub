@@ -19,12 +19,15 @@ const ProductItem: React.FC<IProductItem> = ({ data }) => {
           </div>
           <div>
             {/* group the dimensions with the same thickness and width*/}
-            {getDuplicates(data).map(val => (
-              <p key={val[0]}>
-                <span>{val[1]}</span>
-                {val[0]}
-              </p>
-            ))}
+            {getDuplicates(data).map((val, i) => {
+              if (i > 2) return;
+              return (
+                <p key={val[0]}>
+                  <span>{val[1]}</span>
+                  {val[0]}
+                </p>
+              );
+            })}
 
             {/* Checks if there are more items in the array 
             and shows the number left*/}
