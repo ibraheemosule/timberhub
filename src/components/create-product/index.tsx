@@ -25,7 +25,7 @@ const CreateProduct: React.FC = () => {
       setTimeout(() => setError(false), 3000);
       return;
     }
-    const newObj = [...rows, obj];
+    const newObj = [obj, ...rows];
 
     setRows(newObj);
     setList(newObj);
