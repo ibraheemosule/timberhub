@@ -1,7 +1,7 @@
 import { CreateProductStyle } from "../../assets/styles/create-product/CreateProductStyle";
 import FormHeader from "../reusables/FormHeader";
 import Btn from "../reusables/Btn";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Context } from "../../assets/utils/Context";
 import { titles, validateData } from "../../assets/utils";
 import { dataFormat } from "../../assets/utils";
@@ -19,6 +19,13 @@ const CreateProduct: React.FC = () => {
     setError,
   } = useContext(Context);
 
+  const parentElement = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!parentElement.current) return;
+    parentElement.current.scrollTo(0, 0);
+  }, [modal]);
+
   const addObj = () => {
     if (!validateData(rows[0], obj)) {
       setError(true);
@@ -27,9 +34,11 @@ const CreateProduct: React.FC = () => {
     }
     const newObj = [obj, ...rows];
 
-    setRows(newObj);
-    setList(newObj);
-    closeModal();
+    setTimeout(() => {
+      setRows(newObj);
+      setList(newObj);
+      closeModal();
+    }, 500);
   };
 
   const closeModal = () => {
@@ -42,7 +51,11 @@ const CreateProduct: React.FC = () => {
 
   return (
     <CreateProductStyle modal={modal} onClick={closeModal}>
-      <div className="create-product" onClick={e => e.stopPropagation()}>
+      <div
+        className="create-product"
+        ref={parentElement}
+        onClick={e => e.stopPropagation()}
+      >
         <h1>Create Product</h1>
         {Object.entries(titles).map((val, i) => (
           <FormHeader info={val} key={i} />
