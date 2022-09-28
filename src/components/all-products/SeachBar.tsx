@@ -9,7 +9,7 @@ const SearchBar: React.FC = () => {
 
   const filterList = (e: ChangeEvent<HTMLInputElement>) => {
     const list = [...rows].filter(val =>
-      (val.usage + val.species + val.grade)
+      (val.species + val.grade + val.drying_method)
         .toLowerCase()
         .includes(e.target.value.toLowerCase())
     );
