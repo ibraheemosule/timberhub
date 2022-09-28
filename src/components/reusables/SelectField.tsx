@@ -8,7 +8,6 @@ import { Context } from "../../assets/utils/Context";
 const dimensionTypes = ["thickness", "width", "length"];
 
 const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
-  // const dropdown = useRef<HTMLButtonElement | null>(null),
   const inputField = useRef<HTMLInputElement | null>(null),
     optionField = useRef<HTMLSpanElement | null>(null),
     [dropdown, setDropdown] = useState(false),

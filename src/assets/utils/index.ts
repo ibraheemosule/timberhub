@@ -42,7 +42,7 @@ export const titles = {
   },
 };
 
-export const formatDate = (val: number) => {
+export const formatDate = (val: number): string => {
   const date = new Date(val);
 
   return `${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
@@ -76,12 +76,17 @@ export const dataFormat = {
   dimensions: [{}] as IDimension[],
 };
 
+//prevents typing of letters to the create products input fields
 export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
   const rgx = /^[0-9]*\.?[0-9]*$/;
   if (!e.key.match(rgx) && e.key !== "Backspace") e.preventDefault();
 };
 
-export const validateData = (validObj: RowItemType, obj: RowItemType) => {
+//validate data before adding it to the root data array
+export const validateData = (
+  validObj: RowItemType,
+  obj: RowItemType
+): boolean => {
   return Object.keys(validObj).every(key => {
     if (key === "dimensions") {
       const mapObj = obj[key].map((val: IDimension) => Object.entries(val));
@@ -92,7 +97,6 @@ export const validateData = (validObj: RowItemType, obj: RowItemType) => {
 
       if (flattenObj.includes("")) return false;
 
-      console.log(flattenObj);
       return mapObj.every(val => val.length === 3);
     }
 
