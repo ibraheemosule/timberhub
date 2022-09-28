@@ -41,8 +41,8 @@ const CreateProduct: React.FC = () => {
   };
 
   return (
-    <CreateProductStyle modal={modal}>
-      <div className="create-product">
+    <CreateProductStyle modal={modal} onClick={closeModal}>
+      <div className="create-product" onClick={e => e.stopPropagation()}>
         <h1>Create Product</h1>
         {Object.entries(titles).map((val, i) => (
           <FormHeader info={val} key={i} />
