@@ -19,4 +19,5 @@ export interface IFormHeaderStyle extends IStyle {
 
 export interface ISelectFieldStyle extends IStyle {
   dropdown: boolean;
+  tabIndex: number;
 }

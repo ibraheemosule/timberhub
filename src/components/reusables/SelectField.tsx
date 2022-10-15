@@ -60,7 +60,11 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   };
 
   return (
-    <SelectFieldStyle dropdown={dropdown}>
+    <SelectFieldStyle
+      dropdown={dropdown}
+      tabIndex={-1}
+      onBlur={() => setDropdown(false)}
+    >
       <h6>{type} *</h6>
       {dimensionTypes.includes(type) ? (
         <input
