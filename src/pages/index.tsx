@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
-import Layout from "../components/Layout";
-import AllProducts from "../components/all-products";
-import CreateProduct from "../components/create-product";
+import Context from "../components/others/Context/Context";
+import Products from "../components/Products/Products";
+import AddProductModal from "../components/AddProductModal/AddProductModal";
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Context>
       <>
-        <AllProducts />
-        <CreateProduct />
+        <Products />
+        <AddProductModal />
       </>
-    </Layout>
+    </Context>
   );
 };
 
