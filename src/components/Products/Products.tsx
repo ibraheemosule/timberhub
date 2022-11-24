@@ -1,4 +1,4 @@
-import Navbar from "./TopHeader/TopHeader";
+import TopHeader from "./TopHeader/TopHeader";
 import ProductHeader from "./ProductsHeader/ProductsHeader";
 import SearchBar from "./SearchBar/SeachBar";
 import ProductList from "./ProductsList/ProductsList";
@@ -9,7 +9,7 @@ const AllProducts: React.FC = () => {
   const { modal } = useContext(Context);
   return (
     <div style={{ overflow: modal ? "hidden" : "auto" }}>
-      <Navbar />
+      <TopHeader />
       <ProductHeader />
       <SearchBar />
       <ProductList />

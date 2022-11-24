@@ -1,7 +1,7 @@
 import { S_TopHeader } from "./S_TopHeader";
 import ProjectLogo from "../../../assets/icons/ProjectLogo";
 
-const Navbar: React.FC = () => {
+const TopHeader: React.FC = () => {
   return (
     <S_TopHeader>
       <ProjectLogo />
@@ -9,4 +9,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default TopHeader;
