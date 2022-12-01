@@ -63,6 +63,26 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
     display: block;
   }
 
+  @media (min-width: 576px) {
+    > div {
+      padding: 0 1rem;
+      width: 80%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    > div {
+      padding: 0 1.8125rem 0 1.375rem;
+      width: 75%;
+    }
+  }
+
+  @media (min-width: 900px) {
+    > div {
+      width: 67.5%;
+    }
+  }
+
   @keyframes slide-in {
     0% {
       left: 100%;
@@ -102,30 +122,6 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
     }
     100% {
       left: 100%;
-    }
-  }
-
-  @media (min-width: 576px) {
-    > div {
-      padding: 0 1rem;
-      width: 80%;
-    }
-  }
-
-  @media (min-width: 768px) {
-    > div {
-      padding: 0 1.8125rem 0 1.375rem;
-      width: 75%;
-    }
-  }
-
-  @media (min-width: 900px) {
-    > div {
-      width: 67.5%;
-
-      footer {
-        margin: 4.9375rem 0 2rem 0;
-      }
     }
   }
 `;
