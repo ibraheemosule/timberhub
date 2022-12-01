@@ -2,7 +2,7 @@ import { S_ProductsHeader } from "./S_ProductHeader";
 import { S_Container } from "../../others/reusable-styles/S_Container";
 import Btn from "../../others/Btn/Btn";
 import { useContext } from "react";
-import { Context } from "../../../assets/utils/Context";
+import { Context } from "../../../utils/Context";
 
 const btnText = "+ CREATE PRODUCT";
 

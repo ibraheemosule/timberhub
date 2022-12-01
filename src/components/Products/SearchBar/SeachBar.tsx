@@ -2,7 +2,7 @@ import { S_SearchBar } from "./S_SearchBar";
 import { S_Container } from "../../others/reusable-styles/S_Container";
 import SearchIcon from "../../../assets/icons/SearchIcon";
 import { useContext, ChangeEvent } from "react";
-import { Context } from "../../../assets/utils/Context";
+import { Context } from "../../../utils/Context";
 
 const SearchBar: React.FC = () => {
   const { rows, setList } = useContext(Context);

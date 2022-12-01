@@ -1,7 +1,7 @@
 import { S_ProductItem } from "./S_ProductItem";
 import ProductIcon from "../../../../assets/icons/ProductIcon";
 import { IProductItem } from "../../../../ts-types/componentsTypes";
-import { formatDate, getDuplicates } from "../../../../assets/utils";
+import { formatDate, getDuplicates } from "../../../../utils";
 
 const ProductItem: React.FC<IProductItem> = ({ data }) => {
   return (

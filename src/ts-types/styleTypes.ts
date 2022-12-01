@@ -1,5 +1,5 @@
 import { MouseEvent } from "react";
-import { ThemeType } from "../assets/utils/theme";
+import { ThemeType } from "../utils/theme";
 
 export interface IStyle {
   theme: ThemeType;

@@ -2,7 +2,7 @@ import { S_ProductsList } from "./S_ProductsList";
 import { S_Container } from "../../others/reusable-styles/S_Container";
 import ProductItem from "./ProductItem/ProductItem";
 import { useContext } from "react";
-import { Context } from "../../../assets/utils/Context";
+import { Context } from "../../../utils/Context";
 
 const ProductList: React.FC = () => {
   const { list } = useContext(Context);
@@ -18,7 +18,7 @@ const ProductList: React.FC = () => {
             Dimensions <small>(ThicknessxWidth)</small>
           </h6>
         </div>
-        {list.length > 0 ? (
+        {list?.length > 0 ? (
           list.map((val, i) => <ProductItem data={val} key={i} />)
         ) : (
           <h5>No Item Found</h5>

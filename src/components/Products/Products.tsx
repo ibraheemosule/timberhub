@@ -3,7 +3,7 @@ import ProductHeader from "./ProductsHeader/ProductsHeader";
 import SearchBar from "./SearchBar/SeachBar";
 import ProductList from "./ProductsList/ProductsList";
 import { useContext } from "react";
-import { Context } from "../../assets/utils/Context";
+import { Context } from "../../utils/Context";
 
 const AllProducts: React.FC = () => {
   const { modal } = useContext(Context);

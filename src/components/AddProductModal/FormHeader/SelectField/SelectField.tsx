@@ -2,8 +2,8 @@ import { S_SelectField } from "./S_SelectField";
 import { memo, useEffect, useRef, useState, useContext } from "react";
 import ArrowDownIcon from "../../../../assets/icons/ArrowDownIcon";
 import { ISelectField } from "../../../../ts-types/componentsTypes";
-import { isNumber } from "../../../../assets/utils";
-import { Context } from "../../../../assets/utils/Context";
+import { isNumber } from "../../../../utils";
+import { Context } from "../../../../utils/Context";
 
 const dimensionTypes = ["thickness", "width", "length"];
 

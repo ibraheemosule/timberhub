@@ -1,7 +1,7 @@
-import { IDimension, RowItemType } from "../../ts-types/dataTypes";
-import ProductIcon from "../../assets/icons/ProductIcon";
-import SpecificationIcon from "../../assets/icons/SpecificationIcon";
-import DimensionIcon from "../../assets/icons/DimensionIcon";
+import { IDimension, RowItemType } from "../ts-types/dataTypes";
+import ProductIcon from "../assets/icons/ProductIcon";
+import SpecificationIcon from "../assets/icons/SpecificationIcon";
+import DimensionIcon from "../assets/icons/DimensionIcon";
 
 const months = [
   "January",
@@ -65,7 +65,7 @@ export const getDuplicates = (dimensionArr: RowItemType) => {
   return Object.entries(duplicates);
 };
 
-export const dataFormat = {
+export const newProductFormat = {
   id: 10013433,
   created: 1660665689,
   usage: "",

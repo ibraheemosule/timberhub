@@ -8,10 +8,11 @@ export interface IContext {
   setList: Dispatch<SetStateAction<RowItemType[]>>;
   rows: RowItemType[];
   setRows: Dispatch<SetStateAction<RowItemType[]>>;
-  obj: RowItemType;
-  setObj: Dispatch<SetStateAction<RowItemType>>;
-  error: boolean;
-  setError: Dispatch<SetStateAction<boolean>>;
+  newProduct: RowItemType;
+  setNewProduct: Dispatch<SetStateAction<RowItemType>>;
+  error: string;
+  setError: Dispatch<SetStateAction<string>>;
+  url: string;
 }
 export type RowItemType = typeof data.row[0];
 export interface Idata {

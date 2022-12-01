@@ -35,7 +35,7 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin: 4rem 0 2rem 0;
+      margin: 2rem 0;
       position: relative;
       width: 100%;
 
@@ -124,7 +124,7 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
       width: 67.5%;
 
       footer {
-        margin: 14.9375rem 0 2rem 0;
+        margin: 4.9375rem 0 2rem 0;
       }
     }
   }

@@ -1,8 +1,10 @@
 import { ReactElement, FC, MouseEvent } from "react";
-import { RowItemType } from "./dataTypes";
+import { Idata, RowItemType } from "./dataTypes";
 
-export interface ILayout {
+export interface IContextWrapper {
   children: ReactElement;
+  fetchedData: Idata;
+  url: string;
 }
 
 export interface IBtn {
