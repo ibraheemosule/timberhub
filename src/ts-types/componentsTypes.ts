@@ -12,7 +12,7 @@ export interface IBtn {
   click: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 export interface IFormHeader {
-  info: [
+  formField: [
     string,
     {
       Icon: FC<Record<string, unknown>>;

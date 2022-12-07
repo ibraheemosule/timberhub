@@ -3,7 +3,7 @@ import FormHeader from "./FormHeader/FormHeader";
 import Btn from "../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../utils/Context";
-import { titles, validateData } from "../../utils";
+import { formFieldDetails, validateData } from "../../utils";
 import { newProductFormat } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
 import { Idata } from "../../ts-types/dataTypes";
@@ -39,7 +39,7 @@ const AddProductModal: React.FC = () => {
       setLoading(true);
 
       if (!validateData(rows[0], newProduct)) {
-        throw new Error("Please Select and Fill all fields");
+        throw new Error("Ensure all fields are valid");
       }
 
       const postNewProduct = await fetch(url + "/api", {
@@ -95,8 +95,8 @@ const AddProductModal: React.FC = () => {
           onClick={e => e.stopPropagation()}
         >
           <h1>Create Product</h1>
-          {Object.entries(titles).map((val, i) => (
-            <FormHeader info={val} key={i} />
+          {Object.entries(formFieldDetails).map((titleKeyValueArray, i) => (
+            <FormHeader formField={titleKeyValueArray} key={i} />
           ))}
 
           <footer>

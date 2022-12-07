@@ -10,10 +10,10 @@ const SelectField = dynamic(() => import("./SelectField/SelectField"), {
   ssr: false,
 });
 
-const FormHeader: React.FC<IFormHeader> = ({ info }) => {
+const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
   const { newProduct, setNewProduct } = useContext(Context);
 
-  const Icon = info[1].Icon;
+  const Icon = formField[1].Icon;
 
   const addDimensionField = () => {
     const newProductClone = { ...newProduct };
@@ -59,13 +59,13 @@ const FormHeader: React.FC<IFormHeader> = ({ info }) => {
   };
 
   return (
-    <S_FormHeader border={info[0] !== "Dimensions" && true}>
+    <S_FormHeader border={formField[0] !== "Dimensions" && true}>
       <Icon />
 
       <div>
-        <h2>{info[0]}</h2>
+        <h2>{formField[0]}</h2>
 
-        {info[0] === "Dimensions" ? (
+        {formField[0] === "Dimensions" ? (
           <button onClick={addDimensionField}>
             <PlusIcon /> <span>Add another set</span>
           </button>
@@ -73,30 +73,30 @@ const FormHeader: React.FC<IFormHeader> = ({ info }) => {
           ""
         )}
         <article>
-          {info[1].select
-            ? info[1].select.map((val, i) => (
+          {formField[1].select
+            ? formField[1].select.map((val, i) => (
                 <div key={i}>
                   <SelectField
-                    options={info[1].options[i]}
+                    options={formField[1].options[i]}
                     select={val}
-                    value={getValue(info[1].options[i])}
+                    value={getValue(formField[1].options[i])}
                   />
                 </div>
               ))
             : newProduct.dimensions?.map((val: IDimension, i: number) => (
                 <section key={i}>
-                  {info[1].options.map((opt, index) => (
+                  {formField[1].options.map((opt, index) => (
                     <div key={opt}>
                       <SelectField
-                        options={info[1].options[index]}
-                        value={getValue(info[1].options[index], i)}
+                        options={formField[1].options[index]}
+                        value={getValue(formField[1].options[index], i)}
                       />
                     </div>
                   ))}
                 </section>
               ))}
         </article>
-        {info[0] === "Sawn Timber" ? (
+        {formField[0] === "Sawn Timber" ? (
           <h6>This will help us find what fits best to your needs.</h6>
         ) : (
           ""
