@@ -18,7 +18,7 @@ const months = [
   "December",
 ];
 
-export const titles = {
+export const formFieldDetails = {
   "Sawn Timber": {
     Icon: ProductIcon,
     options: ["usage", "species"],
@@ -31,7 +31,15 @@ export const titles = {
     Icon: SpecificationIcon,
     options: ["drying_method", "grade", "treatment"],
     select: [
-      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
+      [
+        "Lorem ipsum dolor",
+        "quis nostrud",
+        "akfdkdf",
+        "dkf kladff",
+        "kdfllddff",
+        "dkfladfdf",
+        "omnis iste natus error",
+      ],
       ["Lorem ipdolor", "quis trud", "omnite natusrror"],
       ["Lorem ipdolor", "quis trud", "omnite natusrror"],
     ],
@@ -79,7 +87,8 @@ export const newProductFormat = {
 //prevents typing of letters to the create products input fields
 export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
   const rgx = /^[0-9]*\.?[0-9]*$/;
-  if (!e.key.match(rgx) && e.key !== "Backspace") e.preventDefault();
+  if (!e.key.match(rgx) && e.key !== "Backspace") return false;
+  return true;
 };
 
 //validate data before adding it to the root data array
@@ -89,13 +98,20 @@ export const validateData = (
 ): boolean => {
   return Object.keys(validObj).every(key => {
     if (key === "dimensions") {
-      const mapObj = obj[key].map((val: IDimension) => Object.entries(val));
+      const mapObj = obj[key].map((dimension: IDimension) =>
+        Object.entries(dimension)
+      );
 
-      const flattenObj = obj[key].flatMap((val: IDimension): unknown => {
-        return Object.values({ ...val });
+      const flattenObj = obj[key].flatMap((dimension: IDimension): unknown => {
+        return Object.values({ ...dimension });
       });
 
-      if (flattenObj.includes("")) return false;
+      // if (flattenObj.includes("")) return false;
+      const dimensionValueTypes = flattenObj.every(
+        value => !isNaN(Number(value))
+      );
+
+      if (!dimensionValueTypes) return false;
 
       return mapObj.every(val => val.length === 3);
     }

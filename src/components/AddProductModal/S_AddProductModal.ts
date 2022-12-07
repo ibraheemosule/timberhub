@@ -18,7 +18,8 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
     height: 100%;
     margin: 0 0 0 auto;
     max-width: 972px;
-    overflow: scroll;ƒ
+    overflow-y: scroll;
+    overflow-x: hidden;
     padding: 0 0.9375rem;
     position: relative;
     width: 90%;
