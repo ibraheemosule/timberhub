@@ -17,4 +17,5 @@ export const S_SuccessMessageModal = styled.div<IS_SuccessMessageModal>`
   color: ${({ theme }) => theme.color.pry};
   font-weight: 600;
   transition: top 1s ease;
+  z-index: -1;
 `;

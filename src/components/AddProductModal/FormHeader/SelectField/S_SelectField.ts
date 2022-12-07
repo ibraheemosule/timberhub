@@ -3,10 +3,20 @@ import styled from "styled-components";
 import { ISelectFieldStyle } from "../../../../ts-types/styleTypes";
 
 export const S_SelectField = styled.section<ISelectFieldStyle>`
+  position: relative;
+
   h6 {
     font-size: 0.9375rem;
     font-weight: 700;
     text-transform: capitalize;
+  }
+
+  .input-error {
+    display: block;
+    color: ${({ theme }) => theme.color.border};
+    position: absolute;
+    inset: 100% 0 0 0;
+    text-align: center;
   }
 
   fieldset {
@@ -21,24 +31,30 @@ export const S_SelectField = styled.section<ISelectFieldStyle>`
       font-size: 0.875rem;
       font-weight: 400;
       height: 100%;
-
+      text-align: right;
       padding: 1rem 0;
       width: 100%;
+
+      input {
+        all: unset;
+        padding: 0 1rem;
+        position: absolute;
+        inset: 0;
+        text-align: left;
+        z-index: 1;
+
+        &:focus,
+        &:hover {
+          border: 0;
+          outline: 0;
+        }
+      }
     }
 
-    .wrapper {
-      color: ${({ theme }) => theme.color.gray_dark};
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 0.875rem;
-
-      svg {
-        width: 0.7212rem;
-        height: auto;
-        transition: all 0.2s ease-in;
-      }
+    svg {
+      width: 0.7212rem;
+      height: auto;
+      transition: all 0.2s ease-in;
     }
 
     .dropdown {
@@ -52,18 +68,26 @@ export const S_SelectField = styled.section<ISelectFieldStyle>`
       position: absolute;
       top: 120%;
       width: 100%;
+      max-height: 135px;
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
       z-index: 2;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       li {
         border: 0;
         border-bottom: 1px solid ${({ theme }) => theme.color.border};
         transition: all 0.2s ease-out;
+        text-align: center;
 
         a {
           background: #fff;
           display: block;
           padding: 0.875rem;
-          width: 100%;
 
           &:hover {
             background-color: ${({ theme }) => theme.color.gray_light};
@@ -79,23 +103,23 @@ export const S_SelectField = styled.section<ISelectFieldStyle>`
       // line 78 to 103 is responsible for the select list dropdown functionality
       dropdown
         ? `button {
-      .wrapper {
+
         svg {
           transform: rotate(180deg);
           transform-origin: 50%;
         }
-      }
+
       .dropdown {
         display: block;
       }
     }`
         : `button {
-      .wrapper {
+
         svg {
           transform: rotate(0deg);
           transform-origin: 50%;
         }
-      }
+
       .dropdown {
         display: none;
       }

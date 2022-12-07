@@ -1,5 +1,5 @@
 import { S_SelectField } from "./S_SelectField";
-import { memo, useEffect, useRef, useState, useContext } from "react";
+import { memo, useEffect, useRef, useState, useContext, useMemo } from "react";
 import ArrowDownIcon from "../../../../assets/icons/ArrowDownIcon";
 import { ISelectField } from "../../../../ts-types/componentsTypes";
 import { isNumber } from "../../../../utils";
@@ -9,8 +9,9 @@ const dimensionTypes = ["thickness", "width", "length"];
 
 const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   const inputField = useRef<HTMLInputElement | null>(null),
-    optionField = useRef<HTMLSpanElement | null>(null),
+    selectInputField = useRef<HTMLInputElement | null>(null),
     [dropdown, setDropdown] = useState(false),
+    [errorInput, setErrorInput] = useState(false),
     [option, setOption] = useState(""),
     [type, setType] = useState(""),
     { modal } = useContext(Context);
@@ -19,11 +20,11 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
     resetFields();
   }, [modal]);
 
-  useEffect(() => {
-    if (dropdown === false) return;
-    setDropdown(val => !val);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [option]);
+  // useEffect(() => {
+  //   if (dropdown === false) return;
+  //   setDropdown(val => !val);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [option]);
 
   useEffect(() => {
     switch (options) {
@@ -50,50 +51,86 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
 
   const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOption(e.target.value);
-
     value(e.target.value);
   };
 
   const updateValue = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
     setOption(e.currentTarget.innerText);
     value(e.currentTarget.innerText);
+    setDropdown(false);
   };
 
+  const validateKeyInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    setErrorInput(false);
+    if (isNumber(e)) return;
+    e.preventDefault();
+    setErrorInput(true);
+  };
+
+  const selectFieldBlurred = () => {
+    setDropdown(false);
+    if (!select?.includes(option as never)) {
+      setOption("");
+      value("");
+    }
+    selectInputField.current?.blur();
+  };
+
+  const filteredSelectOptions = useMemo(() => {
+    if (!select) return;
+    return Array.from(select).filter(val =>
+      val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [option, select]);
+
   return (
-    <S_SelectField
-      dropdown={dropdown}
-      tabIndex={-1}
-      onBlur={() => setDropdown(false)}
-    >
+    <S_SelectField dropdown={dropdown} tabIndex={-1}>
       <h6>{type} *</h6>
       {dimensionTypes.includes(type) ? (
-        <input
-          ref={inputField}
-          type="text"
-          onKeyDown={e => isNumber(e)}
-          onChange={e => getValue(e)}
-        />
+        <>
+          <input
+            ref={inputField}
+            type="text"
+            onKeyDown={e => validateKeyInput(e)}
+            onChange={e => getValue(e)}
+            onBlur={() => setErrorInput(false)}
+          />
+          {errorInput && (
+            <div className="input-error">Numerical values only</div>
+          )}
+        </>
       ) : (
-        <fieldset className="filter_box">
-          <button onClick={() => setDropdown(val => !val)}>
-            <div className="wrapper">
-              {option ? (
-                <span ref={optionField} className="option">
-                  {option}
-                </span>
-              ) : (
-                <span className="placeholder">Select</span>
-              )}
-              <ArrowDownIcon />
-            </div>
+        <fieldset className="filter-box">
+          <button onFocus={() => setDropdown(true)} onBlur={selectFieldBlurred}>
+            <input
+              value={option}
+              onChange={e => {
+                !dropdown && setDropdown(true);
+                setOption(e.target.value);
+              }}
+              ref={selectInputField}
+            />
+            <ArrowDownIcon />
 
             <ul className="dropdown">
-              {select &&
-                select.map((val, i) => (
+              {Number(filteredSelectOptions?.length) > 3 && (
+                <li>
+                  <b>Scroll for more options</b>
+                </li>
+              )}
+              {filteredSelectOptions?.length ? (
+                filteredSelectOptions.map((val, i) => (
                   <li key={i}>
-                    <a onClick={e => updateValue(e)}>{val}</a>
+                    <a onMouseDown={e => updateValue(e)}>{val}</a>
                   </li>
-                ))}
+                ))
+              ) : (
+                <li>
+                  <a> No Result</a>
+                </li>
+              )}
             </ul>
           </button>
         </fieldset>
