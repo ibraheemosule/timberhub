@@ -22,7 +22,7 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
     overflow-x: hidden;
     padding: 0 0.9375rem;
     position: relative;
-    width: 90%;
+    width: 80%;
     animation: ${({ modal }) => (modal ? "slide-in" : "slide-out")} 0.5s linear
       1 normal forwards;
 
@@ -67,7 +67,6 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
   @media (min-width: 576px) {
     > div {
       padding: 0 1rem;
-      width: 80%;
     }
   }
 
