@@ -36,6 +36,7 @@ const AddProductModal: React.FC = () => {
   const addnewProduct = async (): Promise<void> => {
     try {
       setLoading(true);
+      setError("");
 
       if (!validateData(rows[0], newProduct)) {
         throw new Error("Ensure all fields are valid");
@@ -73,7 +74,7 @@ const AddProductModal: React.FC = () => {
       }
     } finally {
       setLoading(false);
-      setTimeout(() => setError(""), 3000);
+      error.includes("An") && setTimeout(() => setError(""), 3000);
     }
   };
 

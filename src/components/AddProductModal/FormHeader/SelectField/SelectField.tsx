@@ -5,7 +5,7 @@ import { ISelectField } from "../../../../ts-types/componentsTypes";
 import { isNumber } from "../../../../utils";
 import { Context } from "../../../../utils/Context";
 
-const dimensionTypes = ["thickness", "width", "length"];
+const dimensionFields = ["thickness", "width", "length"];
 
 const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   const inputField = useRef<HTMLInputElement | null>(null),
@@ -14,7 +14,7 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
     [errorInput, setErrorInput] = useState(false),
     [option, setOption] = useState(""),
     [type, setType] = useState(""),
-    { modal } = useContext(Context);
+    { modal, error, setError } = useContext(Context);
 
   useEffect(() => {
     resetFields();
@@ -85,10 +85,21 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [option, select]);
 
+  const errorBorderColor = useMemo(() => {
+    if (dimensionFields.includes(type)) {
+      return isNaN(parseInt(option)) && !!error;
+    }
+    return !!(error && !option);
+  }, [error, option, type]);
+
   return (
-    <S_SelectField dropdown={dropdown} tabIndex={-1}>
+    <S_SelectField
+      dropdown={dropdown}
+      inputError={errorBorderColor}
+      tabIndex={-1}
+    >
       <h6>{type} *</h6>
-      {dimensionTypes.includes(type) ? (
+      {dimensionFields.includes(type) ? (
         <>
           <input
             ref={inputField}
@@ -108,8 +119,10 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
               value={option}
               onChange={e => {
                 !dropdown && setDropdown(true);
+                setError("");
                 setOption(e.target.value);
               }}
+              inputMode="numeric"
               ref={selectInputField}
             />
             <ArrowDownIcon />

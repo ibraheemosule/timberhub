@@ -91,7 +91,7 @@ export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
   return true;
 };
 
-//validate data before adding it to the root data array
+//validate data before sending it to the backend
 export const validateData = (
   validObj: RowItemType,
   obj: RowItemType
