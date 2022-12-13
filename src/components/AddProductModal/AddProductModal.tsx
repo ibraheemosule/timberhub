@@ -6,7 +6,7 @@ import { Context } from "../../utils/Context";
 import { formFieldDetails, validateData } from "../../utils";
 import { newProductFormat } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
-import { Idata } from "../../ts-types/dataTypes";
+import { Idata, RowItemType } from "../../ts-types/dataTypes";
 import Loader from "../others/Loader/Loader";
 
 const AddProductModal: React.FC = () => {
@@ -20,7 +20,6 @@ const AddProductModal: React.FC = () => {
     setRows,
     error,
     setError,
-    url,
   } = useContext(Context);
 
   const [successMsgPopUp, setSuccessMsgPopUp] = useState<boolean>(false);
@@ -42,7 +41,7 @@ const AddProductModal: React.FC = () => {
         throw new Error("Ensure all fields are valid");
       }
 
-      const postNewProduct = await fetch(url + "/api", {
+      const postNewProduct = await fetch("/api", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -79,7 +78,7 @@ const AddProductModal: React.FC = () => {
   };
 
   const closeModal = () => {
-    setNewProduct(prevDataFormat => ({
+    setNewProduct((prevDataFormat: RowItemType) => ({
       ...prevDataFormat,
       dimensions: [...newProductFormat.dimensions],
     }));

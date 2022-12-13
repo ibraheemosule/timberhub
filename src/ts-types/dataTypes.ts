@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import data from "../../data";
+import data from "../../data.json";
 
 export interface IContext {
   modal: boolean;
@@ -12,7 +12,6 @@ export interface IContext {
   setNewProduct: Dispatch<SetStateAction<RowItemType>>;
   error: string;
   setError: Dispatch<SetStateAction<string>>;
-  url: string;
 }
 export type RowItemType = typeof data.row[0];
 export interface Idata {

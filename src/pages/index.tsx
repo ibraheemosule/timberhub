@@ -3,16 +3,9 @@ import ContextWrapper from "../components/others/ContextWrapper/ContextWrapper";
 import Products from "../components/Products/Products";
 import AddProductModal from "../components/AddProductModal/AddProductModal";
 import { Idata } from "../ts-types/dataTypes";
+import data from "../../data.json" assert { type: "json" };
 
-const url =
-  process.env.NODE_ENV == "development"
-    ? "http://localhost:3000"
-    : "https://timberhub-task.vercel.app";
-
-export async function getStaticProps() {
-  const res = await fetch(`${url}/api/`);
-  const { data } = (await res.json()) as { data: Idata };
-
+export function getStaticProps() {
   return {
     props: {
       data,
@@ -21,7 +14,7 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage<{ data: Idata }> = ({ data }) => (
-  <ContextWrapper fetchedData={data} url={url}>
+  <ContextWrapper fetchedData={data}>
     <>
       <Products />
       <AddProductModal />

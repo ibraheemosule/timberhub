@@ -4,7 +4,6 @@ import { Idata, RowItemType } from "./dataTypes";
 export interface IContextWrapper {
   children: ReactElement;
   fetchedData: Idata;
-  url: string;
 }
 
 export interface IBtn {

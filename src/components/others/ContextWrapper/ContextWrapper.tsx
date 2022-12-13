@@ -8,7 +8,6 @@ import { RowItemType } from "../../../ts-types/dataTypes";
 const ContextWrapper: React.FC<IContextWrapper> = ({
   children,
   fetchedData,
-  url,
 }) => {
   const [modal, setModal] = useState(false),
     [list, setList] = useState<RowItemType[]>([...fetchedData.row]),
@@ -36,7 +35,6 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
         setNewProduct,
         error,
         setError,
-        url,
       }}
     >
       {children}
