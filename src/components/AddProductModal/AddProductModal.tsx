@@ -18,8 +18,8 @@ const AddProductModal: React.FC = () => {
     setList,
     rows,
     setRows,
-    error,
-    setError,
+    formError,
+    setFormError,
   } = useContext(Context);
 
   const [successMsgPopUp, setSuccessMsgPopUp] = useState<boolean>(false);
@@ -36,7 +36,7 @@ const AddProductModal: React.FC = () => {
   const addnewProduct = async (): Promise<void> => {
     try {
       setLoading(true);
-      setError("");
+      setFormError("");
 
       if (!validateData(rows[0], newProduct)) {
         throw new Error("Ensure all fields are valid");
@@ -68,13 +68,13 @@ const AddProductModal: React.FC = () => {
       }, 5000);
     } catch (e) {
       if (e instanceof Error && e.message) {
-        setError(e.message);
+        setFormError(e.message);
       } else {
-        setError("An Error Occurred");
+        setFormError("An Error Occurred");
       }
     } finally {
       setLoading(false);
-      error.includes("An") && setTimeout(() => setError(""), 3000);
+      formError.includes("An") && setTimeout(() => setFormError(""), 3000);
     }
   };
 
@@ -100,7 +100,7 @@ const AddProductModal: React.FC = () => {
           ))}
 
           <footer>
-            {error && <h5>{error}</h5>}
+            {formError && <h5>{formError}</h5>}
             {loading && <Loader />}
 
             <button onClick={closeModal}>close</button>

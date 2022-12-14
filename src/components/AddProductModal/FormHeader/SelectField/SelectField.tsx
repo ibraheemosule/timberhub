@@ -14,11 +14,19 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
     [errorInput, setErrorInput] = useState(false),
     [option, setOption] = useState(""),
     [type, setType] = useState(""),
-    { modal, error, setError } = useContext(Context);
+    { modal, formError, setFormError } = useContext(Context);
 
   useEffect(() => {
     resetFields();
   }, [modal]);
+
+  const filteredSelectOptions = useMemo(() => {
+    if (!select) return;
+    return Array.from(select).filter(val =>
+      val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [option, select]);
 
   // useEffect(() => {
   //   if (dropdown === false) return;
@@ -77,20 +85,13 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
     selectInputField.current?.blur();
   };
 
-  const filteredSelectOptions = useMemo(() => {
-    if (!select) return;
-    return Array.from(select).filter(val =>
-      val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [option, select]);
-
   const errorBorderColor = useMemo(() => {
     if (dimensionFields.includes(type)) {
-      return isNaN(parseInt(option)) && !!error;
+      return !Number(option) && !!formError;
     }
-    return !!(error && !option);
-  }, [error, option, type]);
+
+    return !!(formError && !option);
+  }, [formError, option, type]);
 
   return (
     <S_SelectField
@@ -119,7 +120,7 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
               value={option}
               onChange={e => {
                 !dropdown && setDropdown(true);
-                setError("");
+                setFormError("");
                 setOption(e.target.value);
               }}
               inputMode="numeric"

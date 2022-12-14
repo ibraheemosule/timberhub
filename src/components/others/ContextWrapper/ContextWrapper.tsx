@@ -13,7 +13,7 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
     [list, setList] = useState<RowItemType[]>([...fetchedData.row]),
     [rows, setRows] = useState<RowItemType[]>([...fetchedData.row]),
     [newProduct, setNewProduct] = useState({} as RowItemType),
-    [error, setError] = useState("");
+    [formError, setFormError] = useState("");
 
   useEffect(() => {
     setNewProduct({
@@ -33,8 +33,8 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
         setRows,
         newProduct,
         setNewProduct,
-        error,
-        setError,
+        formError,
+        setFormError,
       }}
     >
       {children}

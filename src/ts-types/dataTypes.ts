@@ -10,8 +10,8 @@ export interface IContext {
   setRows: Dispatch<SetStateAction<RowItemType[]>>;
   newProduct: RowItemType;
   setNewProduct: Dispatch<SetStateAction<RowItemType>>;
-  error: string;
-  setError: Dispatch<SetStateAction<string>>;
+  formError: string;
+  setFormError: Dispatch<SetStateAction<string>>;
 }
 export type RowItemType = typeof data.row[0];
 export interface Idata {

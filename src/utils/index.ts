@@ -106,10 +106,7 @@ export const validateData = (
         return Object.values({ ...dimension });
       });
 
-      // if (flattenObj.includes("")) return false;
-      const dimensionValueTypes = flattenObj.every(
-        value => !isNaN(Number(value))
-      );
+      const dimensionValueTypes = flattenObj.every(value => !!Number(value));
 
       if (!dimensionValueTypes) return false;
 
