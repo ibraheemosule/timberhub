@@ -8,7 +8,7 @@ export const S_SearchBar = styled.form<IStyle>`
   position: relative;
 
   input {
-    outline: 0
+    outline: 0;
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: 5px;
     box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.05);
