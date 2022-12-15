@@ -8,6 +8,7 @@ export const S_SearchBar = styled.form<IStyle>`
   position: relative;
 
   input {
+    outline: 0
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: 5px;
     box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.05);
@@ -16,7 +17,8 @@ export const S_SearchBar = styled.form<IStyle>`
   }
 
   input:focus {
-    outline: 1px solid ${({ theme }) => theme.color.sec2};
+    outline: 0;
+    border-color: ${({ theme }) => theme.color.sec2};
   }
 
   button {

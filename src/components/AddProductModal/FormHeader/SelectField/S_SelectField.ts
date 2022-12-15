@@ -128,6 +128,7 @@ export const S_SelectField = styled.section<ISelectFieldStyle>`
   }
 
   input {
+    outline: 0;
     border: 1px solid
       ${({ theme, inputError }) => (inputError ? "red" : theme.color.border)};
     border-radius: 5px;
@@ -138,6 +139,7 @@ export const S_SelectField = styled.section<ISelectFieldStyle>`
   }
 
   input:focus {
-    outline: 1px solid ${({ theme }) => theme.color.sec2};
+    outline: 0;
+   border-color: ${({ theme }) => theme.color.sec2};
   }
 `;
