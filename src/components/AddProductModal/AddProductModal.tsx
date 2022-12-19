@@ -61,11 +61,6 @@ const AddProductModal: React.FC = () => {
             } as RowItemType)
           : await apiRequest("POST", newProduct);
 
-      // if (indexOfDuplicateProduct > -1) {
-      //   console.log(list[indexOfDuplicateProduct], newProduct);
-      // } else {
-      //   const { data } = (await postNewProduct.json()) as { data: RowItemType };
-      // }
       if (!data) throw new Error("An Error Occurred! Try Again");
 
       if (indexOfDuplicateProduct > -1) {
@@ -78,20 +73,6 @@ const AddProductModal: React.FC = () => {
           prevArray[indexOfDuplicateProduct] = data;
           return prevArray;
         });
-
-        console.log(list, rows);
-        // const newProductsArray = [...list];
-        // console.log(
-        //   Array.isArray(data),
-        //   newProductsArray,
-        //   indexOfDuplicateProduct
-        // );
-        // newProductsArray[indexOfDuplicateProduct] = data;
-
-        // console.log(newProductsArray);
-
-        // setRows([...newProductsArray]);
-        // setList([...newProductsArray]);
       } else {
         setRows(prevArray => [...prevArray, data]);
         setList(prevArray => [...prevArray, data]);

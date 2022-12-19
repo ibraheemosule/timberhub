@@ -174,7 +174,7 @@ export const apiRequest = async (method: string, body: RowItemType) => {
     },
     body: JSON.stringify(body),
   });
-  const data = (await res.json()) as RowItemType;
+  const { data } = (await res.json()) as { data: RowItemType };
 
   return data;
 };

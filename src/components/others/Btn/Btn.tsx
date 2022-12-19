@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { IBtn } from "../../../ts-types/componentsTypes";
 import { S_Btn } from "./S_Btn";
 
@@ -9,4 +10,4 @@ const Btn: React.FC<IBtn> = ({ text, click }) => {
   );
 };
 
-export default Btn;
+export default memo(Btn);

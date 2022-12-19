@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     treatment: {
-      type: mongoose.Schema.Types.Mixed,
+      type: mongoose.SchemaTypes.Mixed,
       enum: [
         "tultricesexegest",
         "sDuisid",
@@ -56,7 +56,6 @@ const productSchema = new mongoose.Schema(
         "metloremsod",
         null,
       ],
-      required: true,
     },
     dimensions: {
       type: [

@@ -14,8 +14,7 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
     case "GET":
       try {
         const data = await ProductModel.find({}).exec();
-        console.log(data);
-        return res.status(200).json([]);
+        return res.status(200).json(data);
       } catch (e) {
         return res.status(500).json("Internal Server Error");
       }
@@ -34,7 +33,6 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
 
         return res.status(200).json({ data });
       } catch (e) {
-        console.log(e);
         return res.status(500).json("Internal Server Error");
       }
 

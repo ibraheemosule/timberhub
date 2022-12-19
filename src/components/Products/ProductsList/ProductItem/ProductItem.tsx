@@ -2,6 +2,7 @@ import { S_ProductItem } from "./S_ProductItem";
 import ProductIcon from "../../../../assets/icons/ProductIcon";
 import { IProductItem } from "../../../../ts-types/componentsTypes";
 import { formatDate, getProductDimensionsDuplicates } from "../../../../utils";
+import { memo } from "react";
 
 const ProductItem: React.FC<IProductItem> = ({ data }) => {
   return (
@@ -44,4 +45,4 @@ const ProductItem: React.FC<IProductItem> = ({ data }) => {
   );
 };
 
-export default ProductItem;
+export default memo(ProductItem);
