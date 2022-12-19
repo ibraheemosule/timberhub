@@ -108,17 +108,7 @@ export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
 //validate data before sending it to the backend
 export const validateData = (obj: RowItemType): boolean => {
-  const objectKeys = [
-    "created",
-    "usage",
-    "species",
-    "drying_method",
-    "grade",
-    "treatment",
-    "dimensions",
-  ];
-
-  return objectKeys.every(key => {
+  return Object.keys(newProductObj).every(key => {
     if (key === "dimensions") {
       const mapObj = obj[key].map((dimension: IDimension) =>
         Object.entries(dimension)
@@ -141,4 +131,50 @@ export const validateData = (obj: RowItemType): boolean => {
 
     return true;
   });
+};
+
+export const checkIfProductExist = (
+  product: RowItemType,
+  allProducts: RowItemType[]
+) => {
+  if (!allProducts.length) return -1;
+
+  type PartialRowItemType = Partial<
+    Pick<RowItemType, "dimensions" | "created">
+  >;
+
+  const productToCheck = { ...product } as PartialRowItemType;
+  delete productToCheck.dimensions;
+  delete productToCheck.created;
+
+  const productsInDB = [...allProducts];
+
+  for (let i = 0; i < productsInDB.length; i++) {
+    const compareValues = Object.keys(productToCheck).every(key => {
+      return (
+        productsInDB[i][key as keyof RowItemType] ===
+        productToCheck[key as keyof PartialRowItemType]
+      );
+    });
+
+    if (compareValues) {
+      return i;
+    }
+  }
+
+  return -1;
+};
+
+export const apiRequest = async (method: string, body: RowItemType) => {
+  const res = await fetch("/api", {
+    method,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const data = (await res.json()) as RowItemType;
+
+  return data;
 };

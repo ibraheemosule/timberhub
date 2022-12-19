@@ -1,10 +1,11 @@
 import mongoose, { Model } from "mongoose";
 import { RowItemType } from "../ts-types/dataTypes";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 const productSchema = new mongoose.Schema(
   {
     created: {
-      type: String,
+      type: Number,
       required: true,
     },
     usage: {
@@ -96,9 +97,10 @@ const productSchema = new mongoose.Schema(
 );
 
 productSchema.virtual("id").get(function () {
-  console.log(this, "here", this._id);
-  return this._id.toString();
+  return this._id.toJSON();
 });
+
+productSchema.plugin(mongooseLeanVirtuals);
 
 type modelType = mongoose.Document & RowItemType;
 

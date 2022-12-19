@@ -14,7 +14,8 @@ const ProductItem: React.FC<IProductItem> = ({ data }) => {
               {data.species}, {data.grade}, {data.drying_method}
             </p>
             <p>
-              <mark>#{data.id}</mark> <span>{formatDate(data.created)}</span>
+              <mark>#{data.id?.slice(0, 6) + "..."}</mark>{" "}
+              <span>{formatDate(data.created)}</span>
             </p>
           </div>
           <div>

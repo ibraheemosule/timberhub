@@ -1,20 +1,19 @@
-//import data from "../../../data.json" assert { type: "json" };
 import { NextApiRequest, NextApiResponse } from "next";
 import { RowItemType } from "../../ts-types/dataTypes";
 import { ProductModel } from "../../lib/model";
-import { newProductObject } from "../../utils";
+import { newProductObj } from "../../utils";
 
 interface ExtendNextApiRequest extends NextApiRequest {
   body: RowItemType;
 }
 
 const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
-  const { method } = req;
+  const { method, body } = req;
 
   switch (method) {
     case "GET":
       try {
-        const data = await ProductModel.find({}).lean().exec();
+        const data = await ProductModel.find({}).exec();
         console.log(data);
         return res.status(200).json([]);
       } catch (e) {
@@ -23,15 +22,14 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
 
     case "POST":
       try {
-        const { body } = req;
-
         const isBodyValid =
-          JSON.stringify(Object.keys(newProductObject)) ===
+          JSON.stringify(Object.keys(newProductObj)) ===
           JSON.stringify(Object.keys(body));
 
         if (!isBodyValid) {
           return res.status(401).json("Invalid body syntax");
         }
+
         const data = await ProductModel.create(body);
 
         return res.status(200).json({ data });
@@ -39,19 +37,24 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
         console.log(e);
         return res.status(500).json("Internal Server Error");
       }
+
+    case "PUT":
+      try {
+        const { id, ...rest } = body;
+        const data = await ProductModel.findByIdAndUpdate({ _id: id }, rest, {
+          new: true,
+        });
+
+        return res.status(200).json({ data });
+      } catch (e) {
+        return res.status(500).json("internal server error");
+      }
+
+    default:
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      res.status(404).json(`No method path ${method} in the server`);
   }
-  // if (req.method === "GET") {
-  //   return res.status(200).json({
-  //     data,
-  //   });
-  // }
 
-  // if (req.method === "POST") {
-  //   data.row.unshift(req.body as RowItemType);
-  //   return res.status(201).json({ data });
-  // }
-
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
   return res.status(500).json("internal server error");
 };
 

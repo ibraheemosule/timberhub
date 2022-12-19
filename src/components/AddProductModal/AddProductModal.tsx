@@ -3,10 +3,15 @@ import FormHeader from "./FormHeader/FormHeader";
 import Btn from "../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../utils/Context";
-import { formFieldDetails, validateData } from "../../utils";
+import {
+  formFieldDetails,
+  validateData,
+  checkIfProductExist,
+  apiRequest,
+} from "../../utils";
 import { newProductObj } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
-import { Idata, RowItemType } from "../../ts-types/dataTypes";
+import { RowItemType } from "../../ts-types/dataTypes";
 import Loader from "../others/Loader/Loader";
 
 const AddProductModal: React.FC = () => {
@@ -16,6 +21,7 @@ const AddProductModal: React.FC = () => {
     newProduct,
     setNewProduct,
     setList,
+    list,
     rows,
     setRows,
     formError,
@@ -38,29 +44,58 @@ const AddProductModal: React.FC = () => {
       setLoading(true);
       setFormError("");
 
-      console.log(newProduct);
-
       if (!validateData(newProduct)) {
         throw new Error("Ensure all fields are valid");
       }
 
-      console.log(newProduct);
+      const indexOfDuplicateProduct = checkIfProductExist(newProduct, list);
 
-      const postNewProduct = await fetch("/api", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProduct),
-      });
+      const data: RowItemType =
+        indexOfDuplicateProduct > -1
+          ? await apiRequest("PUT", {
+              id: list[indexOfDuplicateProduct].id,
+              dimensions: [
+                ...list[indexOfDuplicateProduct].dimensions,
+                ...newProduct.dimensions,
+              ],
+            } as RowItemType)
+          : await apiRequest("POST", newProduct);
 
-      const { data } = (await postNewProduct.json()) as { data: RowItemType };
-
+      // if (indexOfDuplicateProduct > -1) {
+      //   console.log(list[indexOfDuplicateProduct], newProduct);
+      // } else {
+      //   const { data } = (await postNewProduct.json()) as { data: RowItemType };
+      // }
       if (!data) throw new Error("An Error Occurred! Try Again");
 
-      setRows(prevArray => [...prevArray, data]);
-      setList(prevArray => [...prevArray, data]);
+      if (indexOfDuplicateProduct > -1) {
+        setList(prevArray => {
+          prevArray[indexOfDuplicateProduct] = data;
+          return prevArray;
+        });
+
+        setRows(prevArray => {
+          prevArray[indexOfDuplicateProduct] = data;
+          return prevArray;
+        });
+
+        console.log(list, rows);
+        // const newProductsArray = [...list];
+        // console.log(
+        //   Array.isArray(data),
+        //   newProductsArray,
+        //   indexOfDuplicateProduct
+        // );
+        // newProductsArray[indexOfDuplicateProduct] = data;
+
+        // console.log(newProductsArray);
+
+        // setRows([...newProductsArray]);
+        // setList([...newProductsArray]);
+      } else {
+        setRows(prevArray => [...prevArray, data]);
+        setList(prevArray => [...prevArray, data]);
+      }
 
       setSuccessMsgPopUp(true);
       closeModal();
@@ -81,9 +116,9 @@ const AddProductModal: React.FC = () => {
   };
 
   const closeModal = () => {
-    setNewProduct((prevDataFormat: RowItemType) => ({
-      ...prevDataFormat,
-      dimensions: [...newProductFormat.dimensions],
+    setNewProduct((prev: RowItemType) => ({
+      ...prev,
+      dimensions: [...newProductObj.dimensions],
     }));
     setModal(false);
   };

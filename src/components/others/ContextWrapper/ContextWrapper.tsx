@@ -2,7 +2,7 @@
 import { IContextWrapper } from "../../../ts-types/componentsTypes";
 import { Context } from "../../../utils/Context";
 import { useEffect, useState } from "react";
-import { newProductObject } from "../../../utils";
+import { newProductObj } from "../../../utils";
 import { RowItemType } from "../../../ts-types/dataTypes";
 
 const ContextWrapper: React.FC<IContextWrapper> = ({
@@ -17,8 +17,8 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
 
   useEffect(() => {
     setNewProduct({
-      ...newProductObject,
-      dimensions: [...newProductObject.dimensions],
+      ...newProductObj,
+      dimensions: [...newProductObj.dimensions],
     });
   }, []);
 

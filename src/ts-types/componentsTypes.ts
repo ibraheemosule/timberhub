@@ -1,5 +1,5 @@
 import { ReactElement, FC, MouseEvent } from "react";
-import { Idata, RowItemType } from "./dataTypes";
+import { RowItemType } from "./dataTypes";
 
 export interface IContextWrapper {
   children: ReactElement;

@@ -2,20 +2,17 @@ import type { NextPage } from "next";
 import ContextWrapper from "../components/others/ContextWrapper/ContextWrapper";
 import Products from "../components/Products/Products";
 import AddProductModal from "../components/AddProductModal/AddProductModal";
-import { Idata, RowItemType } from "../ts-types/dataTypes";
-import data from "../../data.json" assert { type: "json" };
+import { RowItemType } from "../ts-types/dataTypes";
 import dbConnect from "../lib/mongodb";
 import { ProductModel } from "../lib/model";
 
 export async function getStaticProps() {
   await dbConnect();
-  const dat = await ProductModel.find({}).lean();
-  //console.log(dat);
-  // console.log(dat, "here");
+  const res = await ProductModel.find({}).lean({ virtuals: true }).exec();
+  console.log(res, "hre");
   return {
     props: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      data: JSON.parse(JSON.stringify(dat)),
+      data: JSON.parse(JSON.stringify(res)) as RowItemType[],
     },
   };
 }
