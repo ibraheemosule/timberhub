@@ -3,7 +3,7 @@ import { Idata, RowItemType } from "./dataTypes";
 
 export interface IContextWrapper {
   children: ReactElement;
-  fetchedData: Idata;
+  fetchedData: RowItemType[];
 }
 
 export interface IBtn {

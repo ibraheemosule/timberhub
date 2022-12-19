@@ -2,7 +2,7 @@
 import { IContextWrapper } from "../../../ts-types/componentsTypes";
 import { Context } from "../../../utils/Context";
 import { useEffect, useState } from "react";
-import { newProductFormat } from "../../../utils";
+import { newProductObject } from "../../../utils";
 import { RowItemType } from "../../../ts-types/dataTypes";
 
 const ContextWrapper: React.FC<IContextWrapper> = ({
@@ -10,15 +10,15 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
   fetchedData,
 }) => {
   const [modal, setModal] = useState(false),
-    [list, setList] = useState<RowItemType[]>([...fetchedData.row]),
-    [rows, setRows] = useState<RowItemType[]>([...fetchedData.row]),
+    [list, setList] = useState<RowItemType[]>([...fetchedData]),
+    [rows, setRows] = useState<RowItemType[]>([...fetchedData]),
     [newProduct, setNewProduct] = useState({} as RowItemType),
     [formError, setFormError] = useState("");
 
   useEffect(() => {
     setNewProduct({
-      ...newProductFormat,
-      dimensions: [...newProductFormat.dimensions],
+      ...newProductObject,
+      dimensions: [...newProductObject.dimensions],
     });
   }, []);
 

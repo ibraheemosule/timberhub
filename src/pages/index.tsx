@@ -2,18 +2,25 @@ import type { NextPage } from "next";
 import ContextWrapper from "../components/others/ContextWrapper/ContextWrapper";
 import Products from "../components/Products/Products";
 import AddProductModal from "../components/AddProductModal/AddProductModal";
-import { Idata } from "../ts-types/dataTypes";
+import { Idata, RowItemType } from "../ts-types/dataTypes";
 import data from "../../data.json" assert { type: "json" };
+import dbConnect from "../lib/mongodb";
+import { ProductModel } from "../lib/model";
 
-export function getStaticProps() {
+export async function getStaticProps() {
+  await dbConnect();
+  const dat = await ProductModel.find({}).lean();
+  //console.log(dat);
+  // console.log(dat, "here");
   return {
     props: {
-      data,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      data: JSON.parse(JSON.stringify(dat)),
     },
   };
 }
 
-const Home: NextPage<{ data: Idata }> = ({ data }) => (
+const Home: NextPage<{ data: RowItemType[] }> = ({ data }) => (
   <ContextWrapper fetchedData={data}>
     <>
       <Products />

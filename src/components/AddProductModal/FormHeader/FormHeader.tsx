@@ -29,7 +29,7 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
       setNewProduct((prev: typeof newProduct) => ({
         ...prev,
         created: time,
-        [val]: e,
+        [val]: val === "treatment" && e === "None" ? null : e,
       }));
       return;
     }

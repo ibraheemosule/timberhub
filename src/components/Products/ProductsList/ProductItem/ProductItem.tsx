@@ -1,7 +1,7 @@
 import { S_ProductItem } from "./S_ProductItem";
 import ProductIcon from "../../../../assets/icons/ProductIcon";
 import { IProductItem } from "../../../../ts-types/componentsTypes";
-import { formatDate, getDuplicates } from "../../../../utils";
+import { formatDate, getProductDimensionsDuplicates } from "../../../../utils";
 
 const ProductItem: React.FC<IProductItem> = ({ data }) => {
   return (
@@ -19,7 +19,7 @@ const ProductItem: React.FC<IProductItem> = ({ data }) => {
           </div>
           <div>
             {/* group the dimensions with the same thickness and width*/}
-            {getDuplicates(data).map((val, i) => {
+            {getProductDimensionsDuplicates(data).map((val, i) => {
               if (i > 2) return;
               return (
                 <p key={val[0]}>
@@ -31,8 +31,8 @@ const ProductItem: React.FC<IProductItem> = ({ data }) => {
 
             {/* Checks if there are more items in the array 
             and shows the number left*/}
-            {getDuplicates(data).length - 3 > 0 ? (
-              <p>{getDuplicates(data).length - 3} more sets</p>
+            {getProductDimensionsDuplicates(data).length - 3 > 0 ? (
+              <p>{getProductDimensionsDuplicates(data).length - 3} more sets</p>
             ) : (
               ""
             )}

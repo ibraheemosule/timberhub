@@ -4,7 +4,7 @@ import Btn from "../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../utils/Context";
 import { formFieldDetails, validateData } from "../../utils";
-import { newProductFormat } from "../../utils";
+import { newProductObj } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
 import { Idata, RowItemType } from "../../ts-types/dataTypes";
 import Loader from "../others/Loader/Loader";
@@ -38,9 +38,13 @@ const AddProductModal: React.FC = () => {
       setLoading(true);
       setFormError("");
 
-      if (!validateData(rows[0], newProduct)) {
+      console.log(newProduct);
+
+      if (!validateData(newProduct)) {
         throw new Error("Ensure all fields are valid");
       }
+
+      console.log(newProduct);
 
       const postNewProduct = await fetch("/api", {
         method: "POST",
@@ -51,14 +55,12 @@ const AddProductModal: React.FC = () => {
         body: JSON.stringify(newProduct),
       });
 
-      const {
-        data: { row },
-      } = (await postNewProduct.json()) as { data: Idata };
+      const { data } = (await postNewProduct.json()) as { data: RowItemType };
 
-      if (!row) throw new Error("An Error Occurred! Try Again");
+      if (!data) throw new Error("An Error Occurred! Try Again");
 
-      setRows(row);
-      setList(row);
+      setRows(prevArray => [...prevArray, data]);
+      setList(prevArray => [...prevArray, data]);
 
       setSuccessMsgPopUp(true);
       closeModal();

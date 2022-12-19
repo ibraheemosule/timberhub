@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction } from "react";
-import data from "../../data.json";
 
 export interface IContext {
   modal: boolean;
@@ -13,7 +12,20 @@ export interface IContext {
   formError: string;
   setFormError: Dispatch<SetStateAction<string>>;
 }
-export type RowItemType = typeof data.row[0];
+export type RowItemType = {
+  readonly id: string;
+  created: number;
+  usage: string;
+  species: string;
+  drying_method: string;
+  grade: string;
+  treatment: string | null;
+  dimensions: {
+    thickness: number;
+    width: number;
+    length: number;
+  }[];
+};
 export interface Idata {
   row: RowItemType[];
 }

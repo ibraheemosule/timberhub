@@ -23,25 +23,41 @@ export const formFieldDetails = {
     Icon: ProductIcon,
     options: ["usage", "species"],
     select: [
-      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
-      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      [
+        "Fuscebl",
+        "nditeuismodqu",
+        "mnonorn",
+        "rePdjkkdfk",
+        "sellusconsequ",
+        "tduivit",
+      ],
+      ["etemporf", "cilisisAene", "nultricesm"],
     ],
   },
   Specifications: {
     Icon: SpecificationIcon,
     options: ["drying_method", "grade", "treatment"],
     select: [
+      ["dictumstliqu", "msitfgghgj", "metdolorins", "pighdheni"],
       [
-        "Lorem ipsum dolor",
-        "quis nostrud",
-        "akfdkdf",
-        "dkf kladff",
-        "kdfllddff",
-        "dkfladfdf",
-        "omnis iste natus error",
+        "culissceler",
+        "isquevelidduiM",
+        "urisquispos",
+        "uereligul",
+        "inlcinim",
+        "culissceleri",
+        "squeveliddui",
+        "urisquispo",
+        "suereligul",
       ],
-      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
-      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      [
+        "None",
+        "tultricesexegest",
+        "sDuisid",
+        "rcutempusfeugi",
+        "tSednonestsit",
+        "metloremsod",
+      ],
     ],
   },
   Dimensions: {
@@ -56,7 +72,7 @@ export const formatDate = (val: number): string => {
   return `${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
 };
 
-export const getDuplicates = (dimensionArr: RowItemType) => {
+export const getProductDimensionsDuplicates = (dimensionArr: RowItemType) => {
   let duplicates: { [key: string]: number } = {};
 
   dimensionArr.dimensions?.forEach(val => {
@@ -73,16 +89,15 @@ export const getDuplicates = (dimensionArr: RowItemType) => {
   return Object.entries(duplicates);
 };
 
-export const newProductFormat = {
-  id: 10013433,
-  created: 1660665689,
+export const newProductObj = {
+  created: Date.now(),
   usage: "",
   species: "",
   drying_method: "",
   grade: "",
   treatment: null,
   dimensions: [{}] as IDimension[],
-};
+} as RowItemType;
 
 //prevents typing of letters to the create products input fields
 export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -92,11 +107,18 @@ export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
 };
 
 //validate data before sending it to the backend
-export const validateData = (
-  validObj: RowItemType,
-  obj: RowItemType
-): boolean => {
-  return Object.keys(validObj).every(key => {
+export const validateData = (obj: RowItemType): boolean => {
+  const objectKeys = [
+    "created",
+    "usage",
+    "species",
+    "drying_method",
+    "grade",
+    "treatment",
+    "dimensions",
+  ];
+
+  return objectKeys.every(key => {
     if (key === "dimensions") {
       const mapObj = obj[key].map((dimension: IDimension) =>
         Object.entries(dimension)
@@ -112,6 +134,8 @@ export const validateData = (
 
       return mapObj.every(val => val.length === 3);
     }
+
+    if (key === "treatment" && obj.treatment === null) return true;
 
     if (!obj[key as keyof RowItemType]) return false;
 
