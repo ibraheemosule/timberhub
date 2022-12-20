@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { RowItemType } from "../../ts-types/dataTypes";
 import { ProductModel } from "../../lib/model";
 import { newProductObj } from "../../utils";
+import dbConnect from "../../lib/connectToDB";
 
 interface ExtendNextApiRequest extends NextApiRequest {
   body: RowItemType;
@@ -9,6 +10,8 @@ interface ExtendNextApiRequest extends NextApiRequest {
 
 const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
   const { method, body } = req;
+
+  await dbConnect();
 
   switch (method) {
     case "GET":
