@@ -22,7 +22,6 @@ const AddProductModal: React.FC = () => {
     setNewProduct,
     setList,
     list,
-    rows,
     setRows,
     formError,
     setFormError,
