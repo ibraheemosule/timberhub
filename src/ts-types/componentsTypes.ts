@@ -29,3 +29,9 @@ export interface ISelectField {
 export interface IProductItem {
   data: RowItemType;
 }
+
+export interface ITitle {
+  title: string;
+  btnText: string;
+  eventHandler: () => void;
+}
