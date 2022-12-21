@@ -121,7 +121,11 @@ const AddProductModal: React.FC = () => {
             {loading && <Loader />}
 
             <button onClick={closeModal}>close</button>
-            <Btn text="create product" click={() => void addnewProduct()} />
+            <Btn
+              text="create product"
+              click={() => void addnewProduct()}
+              bg={"#23D899"}
+            />
           </footer>
         </div>
       </S_AddProductModal>

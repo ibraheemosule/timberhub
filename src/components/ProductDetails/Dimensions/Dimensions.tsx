@@ -20,11 +20,14 @@ const Dimensions: React.FC<{ dimension: IDimension[] }> = ({ dimension }) => {
               <small>Length:</small>
               {key.length}
             </h4>
-            <div>
-              <button>
-                <DeleteIcon />
-              </button>
-            </div>
+
+            {dimension.length > 1 && (
+              <div>
+                <button>
+                  <DeleteIcon />
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </S_Container>

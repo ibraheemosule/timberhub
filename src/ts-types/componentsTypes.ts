@@ -9,6 +9,7 @@ export interface IContextWrapper {
 export interface IBtn {
   text: string;
   click: (event: MouseEvent<HTMLButtonElement>) => void;
+  bg?: string;
 }
 export interface IFormHeader {
   formField: [

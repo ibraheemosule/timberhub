@@ -4,6 +4,8 @@ import { RowItemType } from "../../ts-types/dataTypes";
 import Title from "../others/Title/Title";
 import Description from "./Description/Description";
 import Dimensions from "./Dimensions/Dimensions";
+import TopHeader from "../Products/TopHeader/TopHeader";
+import DeleteProduct from "./DeleteProduct/DeleteProduct";
 
 const ProductDetails: React.FC<{ data: RowItemType }> = ({ data }) => {
   const router = useRouter();
@@ -11,6 +13,7 @@ const ProductDetails: React.FC<{ data: RowItemType }> = ({ data }) => {
 
   return (
     <div>
+      <TopHeader />
       <Title
         title={"Product Details"}
         btnText={"Go  Back"}
@@ -18,6 +21,7 @@ const ProductDetails: React.FC<{ data: RowItemType }> = ({ data }) => {
       />
       <Description data={data} />
       <Dimensions dimension={data.dimensions} />
+      <DeleteProduct id={data.id} />
     </div>
   );
 };

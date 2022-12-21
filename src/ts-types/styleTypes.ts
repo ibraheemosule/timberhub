@@ -9,7 +9,7 @@ export interface ICreateProductStyle {
   modal: boolean;
 }
 export interface IBtnStyle {
-  bg?: boolean;
+  bg?: string;
   theme: ThemeType;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
