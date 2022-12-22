@@ -77,8 +77,8 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
             ? formField[1].select.map((val, i) => (
                 <div key={i}>
                   <SelectField
-                    options={formField[1].options[i]}
-                    select={val}
+                    title={formField[1].options[i]}
+                    dropdownList={val}
                     value={getValue(formField[1].options[i])}
                   />
                 </div>
@@ -88,7 +88,7 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
                   {formField[1].options.map((opt, index) => (
                     <div key={opt}>
                       <SelectField
-                        options={formField[1].options[index]}
+                        title={formField[1].options[index]}
                         value={getValue(formField[1].options[index], i)}
                       />
                     </div>

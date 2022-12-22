@@ -23,9 +23,9 @@ export interface IFormHeader {
 }
 
 export interface ISelectField {
-  options: string;
-  select?: string[] | null[] | undefined;
-  value: (e: string | number) => void;
+  title: string;
+  dropdownList?: (string | null)[] | undefined;
+  value: (e: string) => void;
 }
 export interface IProductItem {
   data: ProductType;

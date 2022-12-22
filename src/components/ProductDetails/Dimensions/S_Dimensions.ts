@@ -6,9 +6,29 @@ export const S_Dimensions = styled.section<IStyle>`
   padding: 0 0.9375rem;
 
   & > div {
-    align-items: center;
     display: flex;
     flex-wrap: wrap;
     margin: 1.7rem auto 0;
+
+    .filter-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 0 2rem 0;
+      width: 100%;
+
+      section {
+        width: 150px;
+        margin: 1rem 1rem 0 0;
+      }
+    }
+  }
+
+  @media (min-width: 576px) {
+    & > div {
+      .filter-wrapper {
+        justify-content: flex-start;
+      }
+    }
   }
 `;
