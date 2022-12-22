@@ -26,8 +26,6 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
   useMemo(() => {
     setDimensions(() => [...rootDimension.current]);
 
-    console.log(rootDimension.current, range);
-
     const stopExecution =
       !filterBy || !+filterValue || !range || range === "none";
     if (stopExecution) return;
@@ -121,6 +119,7 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
             arrLength={dimensions.length}
           />
         ))}
+        {!dimensions.length && <h3>No Dimensions Matched</h3>}
       </S_Container>
     </S_Dimensions>
   );

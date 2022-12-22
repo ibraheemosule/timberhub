@@ -22,12 +22,21 @@ export const S_Dimensions = styled.section<IStyle>`
         margin: 1rem 1rem 0 0;
       }
     }
+
+    h3 {
+      text-align: center;
+      flex-basis: 100%;
+    }
   }
 
   @media (min-width: 576px) {
     & > div {
       .filter-wrapper {
         justify-content: flex-start;
+      }
+
+      h3 {
+        text-align: left;
       }
     }
   }
