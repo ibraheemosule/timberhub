@@ -28,12 +28,6 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [option, select]);
 
-  // useEffect(() => {
-  //   if (dropdown === false) return;
-  //   setDropdown(val => !val);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [option]);
-
   useEffect(() => {
     switch (options) {
       case "species":
@@ -105,6 +99,7 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
           <input
             ref={inputField}
             type="text"
+            inputMode="numeric"
             onKeyDown={e => validateKeyInput(e)}
             onChange={e => getValue(e)}
             onBlur={() => setErrorInput(false)}
@@ -123,7 +118,6 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
                 setFormError("");
                 setOption(e.target.value);
               }}
-              inputMode="numeric"
               ref={selectInputField}
             />
             <ArrowDownIcon />

@@ -3,12 +3,14 @@ import FormHeader from "./FormHeader/FormHeader";
 import Btn from "../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../utils/Context";
+import LoaderIcon from "../../assets/icons/LoaderIcon";
 import {
   formFieldDetails,
   validateData,
   checkIfProductExist,
   apiRequest,
 } from "../../utils";
+
 import { newProductObj } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
 import { RowItemType } from "../../ts-types/dataTypes";
