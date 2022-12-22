@@ -1,9 +1,9 @@
 import { ReactElement, FC, MouseEvent } from "react";
-import { RowItemType } from "./dataTypes";
+import { ProductType } from "./dataTypes";
 
 export interface IContextWrapper {
   children: ReactElement;
-  fetchedData: RowItemType[];
+  fetchedData: ProductType[];
 }
 
 export interface IBtn {
@@ -28,7 +28,7 @@ export interface ISelectField {
   value: (e: string | number) => void;
 }
 export interface IProductItem {
-  data: RowItemType;
+  data: ProductType;
 }
 
 export interface ITitle {

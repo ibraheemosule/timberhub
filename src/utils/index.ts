@@ -1,4 +1,4 @@
-import { IDimension, RowItemType } from "../ts-types/dataTypes";
+import { IDimension, ProductType } from "../ts-types/dataTypes";
 import ProductIcon from "../assets/icons/ProductIcon";
 import SpecificationIcon from "../assets/icons/SpecificationIcon";
 import DimensionIcon from "../assets/icons/DimensionIcon";
@@ -72,7 +72,7 @@ export const formatDate = (val: number): string => {
   return `${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
 };
 
-export const getProductDimensionsDuplicates = (dimensionArr: RowItemType) => {
+export const getProductDimensionsDuplicates = (dimensionArr: ProductType) => {
   let duplicates: { [key: string]: number } = {};
 
   dimensionArr.dimensions?.forEach(val => {
@@ -97,7 +97,7 @@ export const newProductObj = {
   grade: "",
   treatment: null,
   dimensions: [{}] as IDimension[],
-} as RowItemType;
+} as ProductType;
 
 //prevents typing of letters to the create products input fields
 export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -107,7 +107,7 @@ export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
 };
 
 //validate data before sending it to the backend
-export const validateData = (obj: RowItemType): boolean => {
+export const validateData = (obj: ProductType): boolean => {
   return Object.keys(newProductObj).every(key => {
     if (key === "dimensions") {
       const mapObj = obj[key].map((dimension: IDimension) =>
@@ -127,23 +127,23 @@ export const validateData = (obj: RowItemType): boolean => {
 
     if (key === "treatment" && obj.treatment === null) return true;
 
-    if (!obj[key as keyof RowItemType]) return false;
+    if (!obj[key as keyof ProductType]) return false;
 
     return true;
   });
 };
 
 export const checkIfProductExist = (
-  product: RowItemType,
-  allProducts: RowItemType[]
+  product: ProductType,
+  allProducts: ProductType[]
 ) => {
   if (!allProducts.length) return -1;
 
-  type PartialRowItemType = Partial<
-    Pick<RowItemType, "dimensions" | "created">
+  type PartialProductType = Partial<
+    Pick<ProductType, "dimensions" | "created">
   >;
 
-  const productToCheck = { ...product } as PartialRowItemType;
+  const productToCheck = { ...product } as PartialProductType;
   delete productToCheck.dimensions;
   delete productToCheck.created;
 
@@ -152,8 +152,8 @@ export const checkIfProductExist = (
   for (let i = 0; i < productsInDB.length; i++) {
     const compareValues = Object.keys(productToCheck).every(key => {
       return (
-        productsInDB[i][key as keyof RowItemType] ===
-        productToCheck[key as keyof PartialRowItemType]
+        productsInDB[i][key as keyof ProductType] ===
+        productToCheck[key as keyof PartialProductType]
       );
     });
 
@@ -167,7 +167,7 @@ export const checkIfProductExist = (
 
 export const apiRequest = async (
   method: "PUT" | "POST" | "DELETE",
-  body: RowItemType,
+  body: ProductType,
   signal?: AbortSignal
 ) => {
   const res = await fetch("/api", {
@@ -179,7 +179,7 @@ export const apiRequest = async (
     },
     body: JSON.stringify(body),
   });
-  const { data } = (await res.json()) as { data: RowItemType };
+  const { data } = (await res.json()) as { data: ProductType };
 
   return data;
 };

@@ -3,16 +3,16 @@ import { Dispatch, SetStateAction } from "react";
 export interface IContext {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
-  list: RowItemType[];
-  setList: Dispatch<SetStateAction<RowItemType[]>>;
-  rows: RowItemType[];
-  setRows: Dispatch<SetStateAction<RowItemType[]>>;
-  newProduct: RowItemType;
-  setNewProduct: Dispatch<SetStateAction<RowItemType>>;
+  list: ProductType[];
+  setList: Dispatch<SetStateAction<ProductType[]>>;
+  rows: ProductType[];
+  setRows: Dispatch<SetStateAction<ProductType[]>>;
+  newProduct: ProductType;
+  setNewProduct: Dispatch<SetStateAction<ProductType>>;
   formError: string;
   setFormError: Dispatch<SetStateAction<string>>;
 }
-export type RowItemType = {
+export type ProductType = {
   readonly id: string;
   created: number;
   usage: string;
@@ -28,7 +28,7 @@ export type RowItemType = {
   }[];
 };
 export interface Idata {
-  row: RowItemType[];
+  row: ProductType[];
 }
 
 export interface IDimension {

@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { S_Description } from "./S_Description";
 import { S_Container } from "../../others/reusable-styles/S_Container";
-import { RowItemType } from "../../../ts-types/dataTypes";
+import { ProductType } from "../../../ts-types/dataTypes";
 import { formatDate } from "../../../utils";
 
 const keys = [
@@ -13,19 +13,19 @@ const keys = [
   "created",
 ];
 
-const Description: React.FC<{ data: RowItemType }> = ({ data }) => {
+const Description: React.FC<{ data: ProductType }> = ({ data }) => {
   return (
     <S_Description>
       <S_Container>
         {keys.map(key => {
-          if (!data[key as keyof RowItemType]) return null;
+          if (!data[key as keyof ProductType]) return null;
           return (
             <div key={key} className="details">
               <h4>{key}</h4>
               <p>
                 {key === "created"
                   ? formatDate(data.created)
-                  : data[key as keyof RowItemType]}
+                  : data[key as keyof ProductType]}
               </p>
             </div>
           );

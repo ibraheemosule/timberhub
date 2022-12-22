@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import dbConnect from "../lib/connectToDB";
 import { ProductModel } from "../lib/model";
-import { RowItemType } from "../ts-types/dataTypes";
+import { ProductType } from "../ts-types/dataTypes";
 import ProductDetails from "../components/ProductDetails/ProductDetails";
 
 export async function getServerSideProps({ params }: Record<string, any>) {
@@ -9,15 +9,15 @@ export async function getServerSideProps({ params }: Record<string, any>) {
 
   await dbConnect();
   const res = await ProductModel.findById(id).lean({ virtuals: true }).exec();
-  console.log(res?.dimensions);
+
   return {
     props: {
-      data: JSON.parse(JSON.stringify(res)) as RowItemType,
+      data: JSON.parse(JSON.stringify(res)) as ProductType,
     },
   };
 }
 
-const ProductDetailsPage: NextPage<{ data: RowItemType }> = ({ data }) => (
+const ProductDetailsPage: NextPage<{ data: ProductType }> = ({ data }) => (
   <ProductDetails data={data} />
 );
 

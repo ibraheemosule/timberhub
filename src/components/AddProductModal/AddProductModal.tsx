@@ -13,7 +13,7 @@ import {
 
 import { newProductObj } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
-import { RowItemType } from "../../ts-types/dataTypes";
+import { ProductType } from "../../ts-types/dataTypes";
 
 const AddProductModal: React.FC = () => {
   const {
@@ -50,7 +50,7 @@ const AddProductModal: React.FC = () => {
 
       const indexOfDuplicateProduct = checkIfProductExist(newProduct, list);
 
-      const data: RowItemType =
+      const data: ProductType =
         indexOfDuplicateProduct > -1
           ? await apiRequest("PUT", {
               id: list[indexOfDuplicateProduct].id,
@@ -58,7 +58,7 @@ const AddProductModal: React.FC = () => {
                 ...list[indexOfDuplicateProduct].dimensions,
                 ...newProduct.dimensions,
               ],
-            } as RowItemType)
+            } as ProductType)
           : await apiRequest("POST", newProduct);
 
       if (!data) throw new Error("An Error Occurred! Try Again");
@@ -97,7 +97,7 @@ const AddProductModal: React.FC = () => {
   };
 
   const closeModal = () => {
-    setNewProduct((prev: RowItemType) => ({
+    setNewProduct((prev: ProductType) => ({
       ...prev,
       dimensions: [...newProductObj.dimensions],
     }));

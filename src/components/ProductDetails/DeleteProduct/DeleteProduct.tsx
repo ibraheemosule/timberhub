@@ -3,7 +3,7 @@ import { S_DeleteProduct } from "./S_DeleteProduct";
 import { S_Container } from "../../others/reusable-styles/S_Container";
 import Btn from "../../others/Btn/Btn";
 import { apiRequest } from "../../../utils";
-import { RowItemType } from "../../../ts-types/dataTypes";
+import { ProductType } from "../../../ts-types/dataTypes";
 import { useRouter } from "next/router";
 import { S_SuccessMessageModal } from "../../others/reusable-styles/S_SuccessMessageModal";
 import LoaderIcon from "../../../assets/icons/LoaderIcon";
@@ -27,7 +27,7 @@ const DeleteProduct: React.FC<{ id: string }> = ({ id }) => {
         try {
           const data = await apiRequest(
             "DELETE",
-            { id } as RowItemType,
+            { id } as ProductType,
             controller.signal
           );
 

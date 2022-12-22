@@ -3,16 +3,16 @@ import { IContextWrapper } from "../../../ts-types/componentsTypes";
 import { Context } from "../../../utils/Context";
 import { useEffect, useState } from "react";
 import { newProductObj } from "../../../utils";
-import { RowItemType } from "../../../ts-types/dataTypes";
+import { ProductType } from "../../../ts-types/dataTypes";
 
 const ContextWrapper: React.FC<IContextWrapper> = ({
   children,
   fetchedData,
 }) => {
   const [modal, setModal] = useState(false),
-    [list, setList] = useState<RowItemType[]>([...fetchedData]),
-    [rows, setRows] = useState<RowItemType[]>([...fetchedData]),
-    [newProduct, setNewProduct] = useState({} as RowItemType),
+    [list, setList] = useState<ProductType[]>([...fetchedData]),
+    [rows, setRows] = useState<ProductType[]>([...fetchedData]),
+    [newProduct, setNewProduct] = useState({} as ProductType),
     [formError, setFormError] = useState("");
 
   useEffect(() => {

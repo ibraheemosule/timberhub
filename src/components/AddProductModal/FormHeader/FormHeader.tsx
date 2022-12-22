@@ -4,7 +4,7 @@ import { S_FormHeader } from "./S_FormHeader";
 import { IFormHeader } from "../../../ts-types/componentsTypes";
 import { useContext } from "react";
 import { Context } from "../../../utils/Context";
-import { IDimension, RowItemType } from "../../../ts-types/dataTypes";
+import { IDimension, ProductType } from "../../../ts-types/dataTypes";
 
 const SelectField = dynamic(() => import("./SelectField/SelectField"), {
   ssr: false,
@@ -36,7 +36,7 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
     if (i === undefined) return;
 
     if (!newProduct.dimensions[i]) {
-      setNewProduct((prev: RowItemType) => ({
+      setNewProduct((prev: ProductType) => ({
         ...prev,
         dimensions: [
           ...prev.dimensions,

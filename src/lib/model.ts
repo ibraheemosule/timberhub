@@ -1,5 +1,5 @@
 import mongoose, { Model } from "mongoose";
-import { RowItemType } from "../ts-types/dataTypes";
+import { ProductType } from "../ts-types/dataTypes";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 const productSchema = new mongoose.Schema(
@@ -101,8 +101,8 @@ productSchema.virtual("id").get(function () {
 
 productSchema.plugin(mongooseLeanVirtuals);
 
-type modelType = mongoose.Document & RowItemType;
+type modelType = mongoose.Document & ProductType;
 
 export const ProductModel =
   (mongoose.models.product as Model<modelType>) ||
-  mongoose.model<RowItemType, Model<modelType>>("product", productSchema);
+  mongoose.model<ProductType, Model<modelType>>("product", productSchema);

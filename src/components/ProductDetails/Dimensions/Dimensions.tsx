@@ -1,11 +1,11 @@
 import { memo, useState, Dispatch, SetStateAction } from "react";
 import { S_Dimensions } from "./S_Dimensions";
 import { S_Container } from "../../others/reusable-styles/S_Container";
-import { IDimension, RowItemType } from "../../../ts-types/dataTypes";
+import { IDimension, ProductType } from "../../../ts-types/dataTypes";
 import { apiRequest } from "../../../utils";
 import DimensionCard from "./DimensionCard/DimensionCard";
 
-const Dimensions: React.FC<{ data: RowItemType }> = ({ data }) => {
+const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
   const [dimensions, setDimensions] = useState([...data.dimensions]);
 
   const deleteDimension =

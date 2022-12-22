@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { RowItemType } from "../../ts-types/dataTypes";
+import { ProductType } from "../../ts-types/dataTypes";
 import { ProductModel } from "../../lib/model";
 import { newProductObj } from "../../utils";
 import dbConnect from "../../lib/connectToDB";
 
 interface ExtendNextApiRequest extends NextApiRequest {
-  body: RowItemType;
+  body: ProductType;
 }
 
 const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {

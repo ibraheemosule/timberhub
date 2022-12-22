@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import ContextWrapper from "../components/others/ContextWrapper/ContextWrapper";
 import Products from "../components/Products/Products";
 import AddProductModal from "../components/AddProductModal/AddProductModal";
-import { RowItemType } from "../ts-types/dataTypes";
+import { ProductType } from "../ts-types/dataTypes";
 import dbConnect from "../lib/connectToDB";
 import { ProductModel } from "../lib/model";
 
@@ -12,12 +12,12 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      data: JSON.parse(JSON.stringify(res)) as RowItemType[],
+      data: JSON.parse(JSON.stringify(res)) as ProductType[],
     },
   };
 }
 
-const Home: NextPage<{ data: RowItemType[] }> = ({ data }) => (
+const Home: NextPage<{ data: ProductType[] }> = ({ data }) => (
   <ContextWrapper fetchedData={data}>
     <>
       <Products />
