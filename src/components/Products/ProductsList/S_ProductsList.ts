@@ -10,6 +10,7 @@ export const S_ProductsList = styled.article<IStyle>`
   > div {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
 
     h6 {
       color: ${({ theme }) => theme.color.gray};

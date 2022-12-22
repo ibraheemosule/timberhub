@@ -183,3 +183,25 @@ export const apiRequest = async (
 
   return data;
 };
+
+type PaginateType = {
+  arr: ProductType[];
+  pageSize: number;
+  pageNumber: number;
+};
+
+export const paginateFunction = ({
+  arr,
+  pageSize,
+  pageNumber,
+}: PaginateType) => {
+  const start = pageSize * (pageNumber - 1);
+  const end = pageSize * pageNumber;
+  return {
+    *[Symbol.iterator]() {
+      for (let i = start; i < arr.length && i < end; i++) {
+        yield arr[i];
+      }
+    },
+  };
+};
