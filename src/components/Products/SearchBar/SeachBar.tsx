@@ -8,11 +8,14 @@ const SearchBar: React.FC = () => {
   const { rows, setList } = useContext(Context);
 
   const filterList = (e: ChangeEvent<HTMLInputElement>) => {
-    const list = [...rows].filter(product =>
-      (product.species + product.grade + product.drying_method)
+    const list = [...rows].filter(product => {
+      const concatenateString = `${product.species}${product.grade}${
+        product.drying_method
+      }${product.treatment || ""}${product.usage}`;
+      return concatenateString
         .toLowerCase()
-        .includes(e.target.value.toLowerCase())
-    );
+        .includes(e.target.value.toLowerCase());
+    });
     setList([...list]);
   };
   return (

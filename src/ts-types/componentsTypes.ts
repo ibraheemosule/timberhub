@@ -28,7 +28,7 @@ export interface ISelectField {
   value: (e: string) => void;
 }
 export interface IProductItem {
-  data: ProductType;
+  product: ProductType;
 }
 
 export interface ITitle {

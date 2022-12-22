@@ -5,25 +5,26 @@ import { formatDate, getProductDimensionsDuplicates } from "../../../../utils";
 import { memo } from "react";
 import Link from "next/link";
 
-const ProductItem: React.FC<IProductItem> = ({ data }) => {
+const ProductItem: React.FC<IProductItem> = ({ product }) => {
   return (
-    <Link href={`/${data.id}`} passHref>
+    <Link href={`/${product.id}`} passHref>
       <S_ProductItem>
         <div>
           <ProductIcon />
           <div className="wrapper">
             <div>
-              <p>
-                {data.species}, {data.grade}, {data.drying_method}
+              <p className="categories">
+                {product.species}, {product.grade}, {product.drying_method},{" "}
+                {product.treatment}, {product.usage}
               </p>
               <p>
-                <mark>#{data.id?.slice(0, 6) + "..."}</mark>{" "}
-                <span>{formatDate(data.created)}</span>
+                <mark>#{product.id?.slice(0, 6) + "..."}</mark>{" "}
+                <span>{formatDate(product.created)}</span>
               </p>
             </div>
-            <div>
+            <div className="measurements">
               {/* group the dimensions with the same thickness and width*/}
-              {getProductDimensionsDuplicates(data).map((val, i) => {
+              {getProductDimensionsDuplicates(product).map((val, i) => {
                 if (i > 2) return;
                 return (
                   <p key={val[0]}>
@@ -35,9 +36,9 @@ const ProductItem: React.FC<IProductItem> = ({ data }) => {
 
               {/* Checks if there are more items in the array 
             and shows the number left*/}
-              {getProductDimensionsDuplicates(data).length - 3 > 0 ? (
+              {getProductDimensionsDuplicates(product).length - 3 > 0 ? (
                 <p>
-                  {getProductDimensionsDuplicates(data).length - 3} more sets
+                  {getProductDimensionsDuplicates(product).length - 3} more sets
                 </p>
               ) : (
                 ""

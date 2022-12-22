@@ -13,15 +13,15 @@ const ProductList: FC<CompType> = ({ paginatedProductArray }) => {
       <S_ProductsList>
         <div>
           <h6>
-            Product <small>(Species, Grade, Drying)</small>
+            Product <small>(Species, Grade, Drying, Treatment, Usage)</small>
           </h6>
           <h6>
             Dimensions <small>(ThicknessxWidth)</small>
           </h6>
         </div>
         {paginatedProductArray?.length > 0 ? (
-          paginatedProductArray.map((val, i) => (
-            <ProductItem data={val} key={i} />
+          paginatedProductArray.map((product, i) => (
+            <ProductItem product={product} key={i} />
           ))
         ) : (
           <h5>No Item Found</h5>

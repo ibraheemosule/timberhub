@@ -34,6 +34,11 @@ export const S_ProductItem = styled.a<IStyle>`
         padding-right: 2rem;
         text-transform: capitalize;
 
+        .categories {
+          font-size: 0.75rem;
+          font-weight: 500;
+        }
+
         p:nth-child(2) {
           margin-top: 0.3125rem;
 
@@ -45,7 +50,7 @@ export const S_ProductItem = styled.a<IStyle>`
         }
       }
 
-      div:nth-child(2) {
+      .measurements {
         margin-top: 0.5rem;
 
         p {
@@ -80,10 +85,10 @@ export const S_ProductItem = styled.a<IStyle>`
       .wrapper {
         div:nth-child(1) {
           flex-basis: 43%;
-          padding-right: 0;
+          padding-right: 2rem;
         }
 
-        div:nth-child(2) {
+        .measurements {
           p {
             margin: 0.5rem 0.8125rem 0 0;
           }
@@ -111,7 +116,7 @@ export const S_ProductItem = styled.a<IStyle>`
           flex-basis: 42%;
         }
 
-        div:nth-child(2) {
+        .measurements {
           margin-top: 0;
         }
       }
