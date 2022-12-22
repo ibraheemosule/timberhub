@@ -42,7 +42,7 @@ const DimensionCard: React.FC<IDimensionCard> = ({
             onClick={() => void deleteFunction(setLoading, setError)}
           >
             {loading ? (
-              <LoaderIcon size={15} color="#939393" />
+              <LoaderIcon size={18} color="#939393" />
             ) : (
               <DeleteIcon />
             )}
