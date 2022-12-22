@@ -165,9 +165,14 @@ export const checkIfProductExist = (
   return -1;
 };
 
-export const apiRequest = async (method: string, body: RowItemType) => {
+export const apiRequest = async (
+  method: "PUT" | "POST" | "DELETE",
+  body: RowItemType,
+  signal?: AbortSignal
+) => {
   const res = await fetch("/api", {
     method,
+    signal,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
         const data = await ProductModel.find({}).exec();
         return res.status(200).json(data);
       } catch (e) {
-        return res.status(500).json("Internal Server Error");
+        return res.status(400).json(e);
       }
 
     case "POST":
@@ -36,7 +36,7 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
 
         return res.status(200).json({ data });
       } catch (e) {
-        return res.status(500).json("Internal Server Error");
+        return res.status(400).json(e);
       }
 
     case "PUT":
@@ -48,15 +48,23 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
 
         return res.status(200).json({ data });
       } catch (e) {
-        return res.status(500).json("internal server error");
+        return res.status(400).json(e);
+      }
+
+    case "DELETE":
+      try {
+        const { id } = body;
+        const data = await ProductModel.findByIdAndRemove({ _id: id });
+
+        return res.status(200).json({ data });
+      } catch (e) {
+        return res.status(400).json(e);
       }
 
     default:
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      res.status(404).json(`No method path ${method} in the server`);
+      return res.status(404).send(`No method path ${method} in the server`);
   }
-
-  return res.status(500).json("internal server error");
 };
 
 export default handler;

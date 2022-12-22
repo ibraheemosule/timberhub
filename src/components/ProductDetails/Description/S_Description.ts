@@ -8,7 +8,6 @@ export const S_Description = styled.section<IStyle>`
   & > div {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     margin: 1.7rem auto 0;
 
     .details {
@@ -23,12 +22,6 @@ export const S_Description = styled.section<IStyle>`
       p {
         font-size: 1rem;
       }
-    }
-  }
-
-  @media (min-width: 768px) {
-    & > div {
-      justify-content: start;
     }
   }
 `;

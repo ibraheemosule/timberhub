@@ -1,34 +1,50 @@
-import { memo } from "react";
+import { memo, useState, Dispatch, SetStateAction } from "react";
 import { S_Dimensions } from "./S_Dimensions";
 import { S_Container } from "../../others/reusable-styles/S_Container";
-import { IDimension } from "../../../ts-types/dataTypes";
-import DeleteIcon from "../../../assets/icons/DeleteIcon";
+import { RowItemType } from "../../../ts-types/dataTypes";
+import { apiRequest } from "../../../utils";
+import DimensionCard from "./DimensionCard/DimensionCard";
 
-const Dimensions: React.FC<{ dimension: IDimension[] }> = ({ dimension }) => {
+const Dimensions: React.FC<{ data: RowItemType }> = ({ data }) => {
+  const [dimensions, setDimensions] = useState([...data.dimensions]);
+
+  const deleteDimension =
+    (i: number) =>
+    async (
+      setLoading: Dispatch<SetStateAction<boolean>>,
+      setError: Dispatch<SetStateAction<string>>
+    ) => {
+      let productDimension = [...dimensions];
+
+      delete productDimension[i];
+      productDimension = productDimension.filter(value => value !== null);
+
+      try {
+        setLoading(true);
+        const res = await apiRequest("PUT", {
+          ...data,
+          dimensions: productDimension,
+        });
+
+        if (!res) throw Error();
+        setDimensions([...productDimension]);
+      } catch (e) {
+        setError("Error Occurred");
+        setLoading(false);
+        setTimeout(() => setError(""), 2000);
+      }
+    };
+
   return (
     <S_Dimensions>
       <S_Container>
-        {dimension.map((key, i) => (
-          <div className="details" key={i}>
-            <h4>
-              <small>Thickness:</small> {key.thickness}
-            </h4>
-            <h4>
-              <small>Width:</small> {key.width}
-            </h4>
-            <h4>
-              <small>Length:</small>
-              {key.length}
-            </h4>
-
-            {dimension.length > 1 && (
-              <div>
-                <button>
-                  <DeleteIcon />
-                </button>
-              </div>
-            )}
-          </div>
+        {dimensions.map((dimensionObj, i) => (
+          <DimensionCard
+            key={Math.random() * 9999}
+            obj={dimensionObj}
+            deleteFunction={deleteDimension(i)}
+            arrLength={dimensions.length}
+          />
         ))}
       </S_Container>
     </S_Dimensions>

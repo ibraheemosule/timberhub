@@ -130,7 +130,7 @@ const AddProductModal: React.FC = () => {
         </div>
       </S_AddProductModal>
       {
-        <S_SuccessMessageModal popup={successMsgPopUp}>
+        <S_SuccessMessageModal popup={successMsgPopUp} success={true}>
           Product Added
         </S_SuccessMessageModal>
       }

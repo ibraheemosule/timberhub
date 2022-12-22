@@ -20,7 +20,7 @@ const ProductDetails: React.FC<{ data: RowItemType }> = ({ data }) => {
         eventHandler={redirectToAllProducts}
       />
       <Description data={data} />
-      <Dimensions dimension={data.dimensions} />
+      <Dimensions data={data} />
       <DeleteProduct id={data.id} />
     </div>
   );
