@@ -9,7 +9,7 @@ export async function getServerSideProps({ params }: Record<string, any>) {
 
   await dbConnect();
   const res = await ProductModel.findById(id).lean({ virtuals: true }).exec();
-
+  console.log(res?.dimensions);
   return {
     props: {
       data: JSON.parse(JSON.stringify(res)) as RowItemType,

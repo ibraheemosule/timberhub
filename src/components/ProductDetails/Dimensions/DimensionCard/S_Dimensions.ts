@@ -38,6 +38,7 @@ export const S_DimensionCard = styled.div<IStyle>`
       height: 15px;
       width: 15px;
       color: #ab767649;
+      padding: 5px;
 
       &:hover {
         color: ${({ theme }) => theme.color.gray};

@@ -50,7 +50,7 @@ export const S_AddProductModal = styled.section<ICreateProductStyle>`
         width: 100%;
       }
 
-      button:first-of-type {
+      .close-btn {
         color: #000;
         font-size: 0.875rem;
         font-weight: 700;

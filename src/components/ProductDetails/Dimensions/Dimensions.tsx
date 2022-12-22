@@ -1,7 +1,7 @@
 import { memo, useState, Dispatch, SetStateAction } from "react";
 import { S_Dimensions } from "./S_Dimensions";
 import { S_Container } from "../../others/reusable-styles/S_Container";
-import { RowItemType } from "../../../ts-types/dataTypes";
+import { IDimension, RowItemType } from "../../../ts-types/dataTypes";
 import { apiRequest } from "../../../utils";
 import DimensionCard from "./DimensionCard/DimensionCard";
 
@@ -9,16 +9,12 @@ const Dimensions: React.FC<{ data: RowItemType }> = ({ data }) => {
   const [dimensions, setDimensions] = useState([...data.dimensions]);
 
   const deleteDimension =
-    (i: number) =>
+    (id: string) =>
     async (
       setLoading: Dispatch<SetStateAction<boolean>>,
       setError: Dispatch<SetStateAction<string>>
     ) => {
-      let productDimension = [...dimensions];
-
-      delete productDimension[i];
-      productDimension = productDimension.filter(value => value !== null);
-
+      const productDimension = [...dimensions].filter(obj => obj.id !== id);
       try {
         setLoading(true);
         const res = await apiRequest("PUT", {
@@ -38,11 +34,11 @@ const Dimensions: React.FC<{ data: RowItemType }> = ({ data }) => {
   return (
     <S_Dimensions>
       <S_Container>
-        {dimensions.map((dimensionObj, i) => (
+        {dimensions.map((dimensionObj: IDimension) => (
           <DimensionCard
-            key={Math.random() * 9999}
+            key={dimensionObj.id}
             obj={dimensionObj}
-            deleteFunction={deleteDimension(i)}
+            deleteFunction={deleteDimension(dimensionObj.id)}
             arrLength={dimensions.length}
           />
         ))}

@@ -24,6 +24,7 @@ export type RowItemType = {
     thickness: number;
     width: number;
     length: number;
+    readonly id: string;
   }[];
 };
 export interface Idata {
@@ -34,4 +35,5 @@ export interface IDimension {
   thickness: number;
   width: number;
   length: number;
+  readonly id: string;
 }

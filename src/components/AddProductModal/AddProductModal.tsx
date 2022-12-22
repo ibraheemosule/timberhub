@@ -14,7 +14,6 @@ import {
 import { newProductObj } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
 import { RowItemType } from "../../ts-types/dataTypes";
-import Loader from "../others/Loader/Loader";
 
 const AddProductModal: React.FC = () => {
   const {
@@ -117,12 +116,18 @@ const AddProductModal: React.FC = () => {
           {Object.entries(formFieldDetails).map((titleKeyValueArray, i) => (
             <FormHeader formField={titleKeyValueArray} key={i} />
           ))}
-
           <footer>
-            {formError && <h5>{formError}</h5>}
-            {loading && <Loader />}
+            {
+              <h5>
+                {formError
+                  ? formError
+                  : loading && <LoaderIcon size={25} color="#23D899" />}
+              </h5>
+            }
 
-            <button onClick={closeModal}>close</button>
+            <button className="close-btn" onClick={closeModal}>
+              close
+            </button>
             <Btn
               text="create product"
               click={() => void addnewProduct()}
