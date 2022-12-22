@@ -92,25 +92,27 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
   return (
     <S_Dimensions>
       <S_Container>
-        <aside className="filter-wrapper">
-          <FilterField
-            title="Filter By"
-            type="select"
-            dropdownList={dimensionObjKeys}
-            value={getFilterValue("filterBy")}
-          />
-          <FilterField
-            title="Range"
-            type="select"
-            dropdownList={filterOptions}
-            value={getFilterValue("range")}
-          />
-          <FilterField
-            title="Value"
-            dropdownList={dimensionObjKeys}
-            value={getFilterValue("filterValue")}
-          />
-        </aside>
+        {dimensions.length > 5 && (
+          <aside className="filter-wrapper">
+            <FilterField
+              title="Filter By"
+              type="select"
+              dropdownList={dimensionObjKeys}
+              value={getFilterValue("filterBy")}
+            />
+            <FilterField
+              title="Range"
+              type="select"
+              dropdownList={filterOptions}
+              value={getFilterValue("range")}
+            />
+            <FilterField
+              title="Value"
+              dropdownList={dimensionObjKeys}
+              value={getFilterValue("filterValue")}
+            />
+          </aside>
+        )}
         {dimensions.map((dimensionObj: IDimension) => (
           <DimensionCard
             key={dimensionObj.id}

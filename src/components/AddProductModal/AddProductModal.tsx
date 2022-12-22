@@ -74,8 +74,8 @@ const AddProductModal: React.FC = () => {
           return prevArray;
         });
       } else {
-        setRows(prevArray => [...prevArray, data]);
-        setList(prevArray => [...prevArray, data]);
+        setRows(prevArray => [data, ...prevArray]);
+        setList(prevArray => [data, ...prevArray]);
       }
 
       setSuccessMsgPopUp(true);

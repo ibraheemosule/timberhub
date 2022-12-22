@@ -8,7 +8,10 @@ import { ProductModel } from "../lib/model";
 
 export async function getServerSideProps() {
   await dbConnect();
-  const res = await ProductModel.find({}).lean({ virtuals: true }).exec();
+  const res = await ProductModel.find({})
+    .sort({ created: -1 })
+    .lean({ virtuals: true })
+    .exec();
 
   return {
     props: {
