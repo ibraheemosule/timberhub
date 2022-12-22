@@ -2,12 +2,14 @@
 import styled from "styled-components";
 import { IStyle } from "../../../../ts-types/styleTypes";
 
-export const S_ProductItem = styled.section<IStyle>`
+export const S_ProductItem = styled.a<IStyle>`
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.border2};
+  color: unset;
   display: flex;
   flex-wrap: wrap;
   padding: 1.375rem 0;
+  text-decoration: none;
 
   > div {
     align-items: center;
@@ -132,5 +134,9 @@ export const S_ProductItem = styled.section<IStyle>`
         }
       }
     }
+  }
+
+  &:hover {
+    background: ${({ theme }) => theme.color.gray_light};
   }
 `;

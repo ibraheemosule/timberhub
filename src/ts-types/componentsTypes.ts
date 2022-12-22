@@ -1,14 +1,15 @@
 import { ReactElement, FC, MouseEvent } from "react";
-import { Idata, RowItemType } from "./dataTypes";
+import { ProductType } from "./dataTypes";
 
 export interface IContextWrapper {
   children: ReactElement;
-  fetchedData: Idata;
+  fetchedData: ProductType[];
 }
 
 export interface IBtn {
   text: string;
   click: (event: MouseEvent<HTMLButtonElement>) => void;
+  bg?: string;
 }
 export interface IFormHeader {
   formField: [
@@ -22,10 +23,16 @@ export interface IFormHeader {
 }
 
 export interface ISelectField {
-  options: string;
-  select?: string[] | null[] | undefined;
-  value: (e: string | number) => void;
+  title: string;
+  dropdownList?: (string | null)[] | undefined;
+  value: (e: string) => void;
 }
 export interface IProductItem {
-  data: RowItemType;
+  data: ProductType;
+}
+
+export interface ITitle {
+  title: string;
+  btnText: string;
+  eventHandler: () => void;
 }

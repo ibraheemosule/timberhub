@@ -3,11 +3,17 @@ import FormHeader from "./FormHeader/FormHeader";
 import Btn from "../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Context } from "../../utils/Context";
-import { formFieldDetails, validateData } from "../../utils";
-import { newProductFormat } from "../../utils";
+import LoaderIcon from "../../assets/icons/LoaderIcon";
+import {
+  formFieldDetails,
+  validateData,
+  checkIfProductExist,
+  apiRequest,
+} from "../../utils";
+
+import { newProductObj } from "../../utils";
 import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
-import { Idata, RowItemType } from "../../ts-types/dataTypes";
-import Loader from "../others/Loader/Loader";
+import { ProductType } from "../../ts-types/dataTypes";
 
 const AddProductModal: React.FC = () => {
   const {
@@ -16,7 +22,7 @@ const AddProductModal: React.FC = () => {
     newProduct,
     setNewProduct,
     setList,
-    rows,
+    list,
     setRows,
     formError,
     setFormError,
@@ -38,27 +44,39 @@ const AddProductModal: React.FC = () => {
       setLoading(true);
       setFormError("");
 
-      if (!validateData(rows[0], newProduct)) {
+      if (!validateData(newProduct)) {
         throw new Error("Ensure all fields are valid");
       }
 
-      const postNewProduct = await fetch("/api", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProduct),
-      });
+      const indexOfDuplicateProduct = checkIfProductExist(newProduct, list);
 
-      const {
-        data: { row },
-      } = (await postNewProduct.json()) as { data: Idata };
+      const data: ProductType =
+        indexOfDuplicateProduct > -1
+          ? await apiRequest("PUT", {
+              id: list[indexOfDuplicateProduct].id,
+              dimensions: [
+                ...list[indexOfDuplicateProduct].dimensions,
+                ...newProduct.dimensions,
+              ],
+            } as ProductType)
+          : await apiRequest("POST", newProduct);
 
-      if (!row) throw new Error("An Error Occurred! Try Again");
+      if (!data) throw new Error("An Error Occurred! Try Again");
 
-      setRows(row);
-      setList(row);
+      if (indexOfDuplicateProduct > -1) {
+        setList(prevArray => {
+          prevArray[indexOfDuplicateProduct] = data;
+          return prevArray;
+        });
+
+        setRows(prevArray => {
+          prevArray[indexOfDuplicateProduct] = data;
+          return prevArray;
+        });
+      } else {
+        setRows(prevArray => [...prevArray, data]);
+        setList(prevArray => [...prevArray, data]);
+      }
 
       setSuccessMsgPopUp(true);
       closeModal();
@@ -79,9 +97,9 @@ const AddProductModal: React.FC = () => {
   };
 
   const closeModal = () => {
-    setNewProduct((prevDataFormat: RowItemType) => ({
-      ...prevDataFormat,
-      dimensions: [...newProductFormat.dimensions],
+    setNewProduct((prev: ProductType) => ({
+      ...prev,
+      dimensions: [...newProductObj.dimensions],
     }));
     setModal(false);
   };
@@ -98,18 +116,28 @@ const AddProductModal: React.FC = () => {
           {Object.entries(formFieldDetails).map((titleKeyValueArray, i) => (
             <FormHeader formField={titleKeyValueArray} key={i} />
           ))}
-
           <footer>
-            {formError && <h5>{formError}</h5>}
-            {loading && <Loader />}
+            {
+              <h5>
+                {formError
+                  ? formError
+                  : loading && <LoaderIcon size={25} color="#23D899" />}
+              </h5>
+            }
 
-            <button onClick={closeModal}>close</button>
-            <Btn text="create product" click={() => void addnewProduct()} />
+            <button className="close-btn" onClick={closeModal}>
+              close
+            </button>
+            <Btn
+              text="create product"
+              click={() => void addnewProduct()}
+              bg={"#23D899"}
+            />
           </footer>
         </div>
       </S_AddProductModal>
       {
-        <S_SuccessMessageModal popup={successMsgPopUp}>
+        <S_SuccessMessageModal popup={successMsgPopUp} success={true}>
           Product Added
         </S_SuccessMessageModal>
       }

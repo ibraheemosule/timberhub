@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-export const S_ProductsHeader = styled.section<IStyle>`
+export const S_Title = styled.section<IStyle>`
   padding: 0 0.9375rem;
 
   & > div {

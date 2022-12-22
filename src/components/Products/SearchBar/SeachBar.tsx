@@ -8,8 +8,8 @@ const SearchBar: React.FC = () => {
   const { rows, setList } = useContext(Context);
 
   const filterList = (e: ChangeEvent<HTMLInputElement>) => {
-    const list = [...rows].filter(val =>
-      (val.species + val.grade + val.drying_method)
+    const list = [...rows].filter(product =>
+      (product.species + product.grade + product.drying_method)
         .toLowerCase()
         .includes(e.target.value.toLowerCase())
     );

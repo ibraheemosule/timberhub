@@ -1,25 +1,39 @@
 import { Dispatch, SetStateAction } from "react";
-import data from "../../data.json";
 
 export interface IContext {
   modal: boolean;
   setModal: Dispatch<SetStateAction<boolean>>;
-  list: RowItemType[];
-  setList: Dispatch<SetStateAction<RowItemType[]>>;
-  rows: RowItemType[];
-  setRows: Dispatch<SetStateAction<RowItemType[]>>;
-  newProduct: RowItemType;
-  setNewProduct: Dispatch<SetStateAction<RowItemType>>;
+  list: ProductType[];
+  setList: Dispatch<SetStateAction<ProductType[]>>;
+  rows: ProductType[];
+  setRows: Dispatch<SetStateAction<ProductType[]>>;
+  newProduct: ProductType;
+  setNewProduct: Dispatch<SetStateAction<ProductType>>;
   formError: string;
   setFormError: Dispatch<SetStateAction<string>>;
 }
-export type RowItemType = typeof data.row[0];
+export type ProductType = {
+  readonly id: string;
+  created: number;
+  usage: string;
+  species: string;
+  drying_method: string;
+  grade: string;
+  treatment: string | null;
+  dimensions: {
+    thickness: number;
+    width: number;
+    length: number;
+    readonly id: string;
+  }[];
+};
 export interface Idata {
-  row: RowItemType[];
+  row: ProductType[];
 }
 
 export interface IDimension {
   thickness: number;
   width: number;
   length: number;
+  readonly id: string;
 }

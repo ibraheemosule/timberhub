@@ -4,6 +4,7 @@ import { IStyle } from "../../../ts-types/styleTypes";
 
 interface IS_SuccessMessageModal extends IStyle {
   popup: boolean;
+  success?: boolean;
 }
 
 export const S_SuccessMessageModal = styled.div<IS_SuccessMessageModal>`
@@ -12,7 +13,8 @@ export const S_SuccessMessageModal = styled.div<IS_SuccessMessageModal>`
   top: ${({ popup }) => (popup ? "0%" : "-100%")};
   display: inline-block;
   padding: 1rem 3rem;
-  background: ${({ theme }) => theme.color.sec1};
+  background: ${({ theme, success }) =>
+    success ? theme.color.sec1 : "#ab767645"};
   border-radius: 0 0 0 5px;
   color: ${({ theme }) => theme.color.pry};
   font-weight: 600;
