@@ -7,7 +7,11 @@ import { Context } from "../../../../utils/Context";
 
 const dimensionFields = ["thickness", "width", "length"];
 
-const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
+const SelectField: React.FC<ISelectField> = ({
+  title,
+  dropdownList,
+  value,
+}) => {
   const inputField = useRef<HTMLInputElement | null>(null),
     selectInputField = useRef<HTMLInputElement | null>(null),
     [dropdown, setDropdown] = useState(false),
@@ -21,21 +25,15 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
   }, [modal]);
 
   const filteredSelectOptions = useMemo(() => {
-    if (!select) return;
-    return Array.from(select).filter(val =>
+    if (!dropdownList) return;
+    return Array.from(dropdownList).filter(val =>
       val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [option, select]);
-
-  // useEffect(() => {
-  //   if (dropdown === false) return;
-  //   setDropdown(val => !val);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [option]);
+  }, [option, dropdownList]);
 
   useEffect(() => {
-    switch (options) {
+    switch (title) {
       case "species":
         setType("wood species");
         break;
@@ -43,9 +41,9 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
         setType("drying");
         break;
       default:
-        setType(options);
+        setType(title);
     }
-  }, [options]);
+  }, [title]);
 
   const resetFields = () => {
     const searchBar = document.querySelector("input");
@@ -78,7 +76,7 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
 
   const selectFieldBlurred = () => {
     setDropdown(false);
-    if (!select?.includes(option as never)) {
+    if (!dropdownList?.includes(option as never)) {
       setOption("");
       value("");
     }
@@ -105,6 +103,7 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
           <input
             ref={inputField}
             type="text"
+            inputMode="numeric"
             onKeyDown={e => validateKeyInput(e)}
             onChange={e => getValue(e)}
             onBlur={() => setErrorInput(false)}
@@ -123,7 +122,6 @@ const SelectField: React.FC<ISelectField> = ({ options, select, value }) => {
                 setFormError("");
                 setOption(e.target.value);
               }}
-              inputMode="numeric"
               ref={selectInputField}
             />
             <ArrowDownIcon />

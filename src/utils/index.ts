@@ -1,4 +1,4 @@
-import { IDimension, RowItemType } from "../ts-types/dataTypes";
+import { IDimension, ProductType } from "../ts-types/dataTypes";
 import ProductIcon from "../assets/icons/ProductIcon";
 import SpecificationIcon from "../assets/icons/SpecificationIcon";
 import DimensionIcon from "../assets/icons/DimensionIcon";
@@ -23,25 +23,41 @@ export const formFieldDetails = {
     Icon: ProductIcon,
     options: ["usage", "species"],
     select: [
-      ["Lorem ipsum dolor", "quis nostrud", "omnis iste natus error"],
-      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      [
+        "Fuscebl",
+        "nditeuismodqu",
+        "mnonorn",
+        "rePdjkkdfk",
+        "sellusconsequ",
+        "tduivit",
+      ],
+      ["etemporf", "cilisisAene", "nultricesm"],
     ],
   },
   Specifications: {
     Icon: SpecificationIcon,
     options: ["drying_method", "grade", "treatment"],
     select: [
+      ["dictumstliqu", "msitfgghgj", "metdolorins", "pighdheni"],
       [
-        "Lorem ipsum dolor",
-        "quis nostrud",
-        "akfdkdf",
-        "dkf kladff",
-        "kdfllddff",
-        "dkfladfdf",
-        "omnis iste natus error",
+        "culissceler",
+        "isquevelidduiM",
+        "urisquispos",
+        "uereligul",
+        "inlcinim",
+        "culissceleri",
+        "squeveliddui",
+        "urisquispo",
+        "suereligul",
       ],
-      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
-      ["Lorem ipdolor", "quis trud", "omnite natusrror"],
+      [
+        "None",
+        "tultricesexegest",
+        "sDuisid",
+        "rcutempusfeugi",
+        "tSednonestsit",
+        "metloremsod",
+      ],
     ],
   },
   Dimensions: {
@@ -56,7 +72,7 @@ export const formatDate = (val: number): string => {
   return `${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
 };
 
-export const getDuplicates = (dimensionArr: RowItemType) => {
+export const getProductDimensionsDuplicates = (dimensionArr: ProductType) => {
   let duplicates: { [key: string]: number } = {};
 
   dimensionArr.dimensions?.forEach(val => {
@@ -73,16 +89,15 @@ export const getDuplicates = (dimensionArr: RowItemType) => {
   return Object.entries(duplicates);
 };
 
-export const newProductFormat = {
-  id: 10013433,
-  created: 1660665689,
+export const newProductObj = {
+  created: Date.now(),
   usage: "",
   species: "",
   drying_method: "",
   grade: "",
   treatment: null,
   dimensions: [{}] as IDimension[],
-};
+} as ProductType;
 
 //prevents typing of letters to the create products input fields
 export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -92,11 +107,8 @@ export const isNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
 };
 
 //validate data before sending it to the backend
-export const validateData = (
-  validObj: RowItemType,
-  obj: RowItemType
-): boolean => {
-  return Object.keys(validObj).every(key => {
+export const validateData = (obj: ProductType): boolean => {
+  return Object.keys(newProductObj).every(key => {
     if (key === "dimensions") {
       const mapObj = obj[key].map((dimension: IDimension) =>
         Object.entries(dimension)
@@ -113,8 +125,61 @@ export const validateData = (
       return mapObj.every(val => val.length === 3);
     }
 
-    if (!obj[key as keyof RowItemType]) return false;
+    if (key === "treatment" && obj.treatment === null) return true;
+
+    if (!obj[key as keyof ProductType]) return false;
 
     return true;
   });
+};
+
+export const checkIfProductExist = (
+  product: ProductType,
+  allProducts: ProductType[]
+) => {
+  if (!allProducts.length) return -1;
+
+  type PartialProductType = Partial<
+    Pick<ProductType, "dimensions" | "created">
+  >;
+
+  const productToCheck = { ...product } as PartialProductType;
+  delete productToCheck.dimensions;
+  delete productToCheck.created;
+
+  const productsInDB = [...allProducts];
+
+  for (let i = 0; i < productsInDB.length; i++) {
+    const compareValues = Object.keys(productToCheck).every(key => {
+      return (
+        productsInDB[i][key as keyof ProductType] ===
+        productToCheck[key as keyof PartialProductType]
+      );
+    });
+
+    if (compareValues) {
+      return i;
+    }
+  }
+
+  return -1;
+};
+
+export const apiRequest = async (
+  method: "PUT" | "POST" | "DELETE",
+  body: ProductType,
+  signal?: AbortSignal
+) => {
+  const res = await fetch("/api", {
+    method,
+    signal,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const { data } = (await res.json()) as { data: ProductType };
+
+  return data;
 };

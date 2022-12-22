@@ -2,18 +2,22 @@ import type { NextPage } from "next";
 import ContextWrapper from "../components/others/ContextWrapper/ContextWrapper";
 import Products from "../components/Products/Products";
 import AddProductModal from "../components/AddProductModal/AddProductModal";
-import { Idata } from "../ts-types/dataTypes";
-import data from "../../data.json" assert { type: "json" };
+import { ProductType } from "../ts-types/dataTypes";
+import dbConnect from "../lib/connectToDB";
+import { ProductModel } from "../lib/model";
 
-export function getStaticProps() {
+export async function getServerSideProps() {
+  await dbConnect();
+  const res = await ProductModel.find({}).lean({ virtuals: true }).exec();
+
   return {
     props: {
-      data,
+      data: JSON.parse(JSON.stringify(res)) as ProductType[],
     },
   };
 }
 
-const Home: NextPage<{ data: Idata }> = ({ data }) => (
+const Home: NextPage<{ data: ProductType[] }> = ({ data }) => (
   <ContextWrapper fetchedData={data}>
     <>
       <Products />

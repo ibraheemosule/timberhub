@@ -3,18 +3,18 @@ import styled from "styled-components";
 import { IBtnStyle } from "../../../ts-types/styleTypes";
 
 export const S_Btn = styled.button<IBtnStyle>`
-  background: ${({ bg, theme }) => (bg ? theme.color.sec2 : "transparent")};
-  border: 0.125rem solid ${({ theme }) => theme.color.sec1};
+  background: ${({ bg }) => bg};
+  border: 0.125rem solid ${({ theme, bg }) => bg ?? theme.color.sec1};
   color: #000;
   font-size: 0.675rem;
   font-weight: 700;
   padding: 0.5rem;
   text-transform: uppercase;
-  transition: all 0.5s ease;
+  transition: all 0.25s ease;
 
   &:hover {
     opacity: 0.7;
-    transform: translate(-1px);
+    transform: translate(0, -1px);
   }
 
   @media (min-width: 576px) {
