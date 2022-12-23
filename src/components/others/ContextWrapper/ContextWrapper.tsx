@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { IContextWrapper } from "../../../ts-types/componentsTypes";
 import { Context } from "../../../utils/Context";
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactElement } from "react";
 import { newProductObj } from "../../../utils";
 import { ProductType } from "../../../ts-types/dataTypes";
+
+export interface IContextWrapper {
+  children: ReactElement;
+  fetchedData: ProductType[];
+}
 
 const ContextWrapper: React.FC<IContextWrapper> = ({
   children,

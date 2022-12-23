@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IFormHeaderStyle } from "../../../ts-types/styleTypes";
 
-export const S_FormHeader = styled.section<IFormHeaderStyle>`
+export const S_formHeader = styled.section<IFormHeaderStyle>`
   align-items: flex-start;
   border-bottom: 1px solid
     ${({ border, theme }) => (border ? theme.color.border2 : "transparent")};

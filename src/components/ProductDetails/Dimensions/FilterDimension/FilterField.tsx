@@ -1,7 +1,7 @@
 import { S_filterField } from "./S_filterField";
 import { memo, useEffect, useRef, useState, useContext } from "react";
 import ArrowDownIcon from "../../../../assets/icons/ArrowDownIcon";
-import { ISelectField } from "../../../../ts-types/componentsTypes";
+import { ISelectField } from "../../../../ts-types/resuableCompTypes";
 import { isNumber } from "../../../../utils";
 
 const dimensionObjKeys = ["thickness", "width", "length"];

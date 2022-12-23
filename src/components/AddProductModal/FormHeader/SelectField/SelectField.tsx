@@ -1,7 +1,7 @@
-import { S_SelectField } from "./S_SelectField";
+import { S_selectField } from "./S_selectField";
 import { memo, useEffect, useRef, useState, useContext, useMemo } from "react";
 import ArrowDownIcon from "../../../../assets/icons/ArrowDownIcon";
-import { ISelectField } from "../../../../ts-types/componentsTypes";
+import { ISelectField } from "../../../../ts-types/resuableCompTypes";
 import { isNumber } from "../../../../utils";
 import { Context } from "../../../../utils/Context";
 
@@ -92,7 +92,7 @@ const SelectField: React.FC<ISelectField> = ({
   }, [formError, option, type]);
 
   return (
-    <S_SelectField
+    <S_selectField
       dropdown={dropdown}
       inputError={errorBorderColor}
       tabIndex={-1}
@@ -147,7 +147,7 @@ const SelectField: React.FC<ISelectField> = ({
           </button>
         </fieldset>
       )}
-    </S_SelectField>
+    </S_selectField>
   );
 };
 

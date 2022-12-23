@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { ISelectFieldStyle } from "../../../../ts-types/styleTypes";
 
-export const S_SelectField = styled.section<ISelectFieldStyle>`
+export const S_selectField = styled.section<ISelectFieldStyle>`
   position: relative;
 
   h6 {
@@ -140,6 +140,6 @@ export const S_SelectField = styled.section<ISelectFieldStyle>`
 
   input:focus {
     outline: 0;
-   border-color: ${({ theme }) => theme.color.sec2};
+    border-color: ${({ theme }) => theme.color.sec2};
   }
 `;

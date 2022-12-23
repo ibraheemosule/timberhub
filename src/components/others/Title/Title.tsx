@@ -1,7 +1,12 @@
 import { S_Title } from "./S_Title";
 import { S_Container } from "../reusable-styles/S_Container";
 import Btn from "../Btn/Btn";
-import { ITitle } from "../../../ts-types/componentsTypes";
+
+interface ITitle {
+  title: string;
+  btnText: string;
+  eventHandler: () => void;
+}
 
 const Title: React.FC<ITitle> = ({ title, btnText, eventHandler }) => {
   return (

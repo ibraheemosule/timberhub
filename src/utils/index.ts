@@ -21,8 +21,8 @@ const months = [
 export const formFieldDetails = {
   "Sawn Timber": {
     Icon: ProductIcon,
-    options: ["usage", "species"],
-    select: [
+    inputFieldTitles: ["usage", "species"],
+    selectFieldDropdownList: [
       [
         "Fuscebl",
         "nditeuismodqu",
@@ -36,8 +36,8 @@ export const formFieldDetails = {
   },
   Specifications: {
     Icon: SpecificationIcon,
-    options: ["drying_method", "grade", "treatment"],
-    select: [
+    inputFieldTitles: ["drying_method", "grade", "treatment"],
+    selectFieldDropdownList: [
       ["dictumstliqu", "msitfgghgj", "metdolorins", "pighdheni"],
       [
         "culissceler",
@@ -62,7 +62,7 @@ export const formFieldDetails = {
   },
   Dimensions: {
     Icon: DimensionIcon,
-    options: ["thickness", "width", "length"],
+    inputFieldTitles: ["thickness", "width", "length"],
   },
 };
 

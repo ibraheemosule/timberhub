@@ -1,6 +1,11 @@
-import { memo } from "react";
-import { IBtn } from "../../../ts-types/componentsTypes";
+import { memo, MouseEvent } from "react";
 import { S_Btn } from "./S_Btn";
+
+interface IBtn {
+  text: string;
+  click: (event: MouseEvent<HTMLButtonElement>) => void;
+  bg?: string;
+}
 
 const Btn: React.FC<IBtn> = ({ text, click, bg }) => {
   return (

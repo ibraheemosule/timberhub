@@ -1,14 +1,24 @@
 import dynamic from "next/dynamic";
 import PlusIcon from "../../../assets/icons/PlusIcon";
-import { S_FormHeader } from "./S_FormHeader";
-import { IFormHeader } from "../../../ts-types/componentsTypes";
-import { useContext } from "react";
+import { S_formHeader } from "./S_formHeader";
+import { useContext, FC } from "react";
 import { Context } from "../../../utils/Context";
 import { IDimension, ProductType } from "../../../ts-types/dataTypes";
 
 const SelectField = dynamic(() => import("./SelectField/SelectField"), {
   ssr: false,
 });
+
+interface IFormHeader {
+  formField: [
+    string,
+    {
+      Icon: FC<Record<string, unknown>>;
+      inputFieldTitles: string[];
+      selectFieldDropdownList?: string[][];
+    }
+  ];
+}
 
 const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
   const { newProduct, setNewProduct } = useContext(Context);
@@ -59,7 +69,7 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
   };
 
   return (
-    <S_FormHeader border={formField[0] !== "Dimensions" && true}>
+    <S_formHeader border={formField[0] !== "Dimensions" && true}>
       <Icon />
 
       <div>
@@ -73,23 +83,26 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
           ""
         )}
         <article>
-          {formField[1].select
-            ? formField[1].select.map((val, i) => (
+          {formField[1].selectFieldDropdownList
+            ? formField[1].selectFieldDropdownList.map((val, i) => (
                 <div key={i}>
                   <SelectField
-                    title={formField[1].options[i]}
+                    title={formField[1].inputFieldTitles[i]}
                     dropdownList={val}
-                    value={getValue(formField[1].options[i])}
+                    value={getValue(formField[1].inputFieldTitles[i])}
                   />
                 </div>
               ))
             : newProduct.dimensions?.map((val: IDimension, i: number) => (
                 <section key={i}>
-                  {formField[1].options.map((opt, index) => (
+                  {formField[1].inputFieldTitles.map((opt, index) => (
                     <div key={opt}>
                       <SelectField
-                        title={formField[1].options[index]}
-                        value={getValue(formField[1].options[index], i)}
+                        title={formField[1].inputFieldTitles[index]}
+                        value={getValue(
+                          formField[1].inputFieldTitles[index],
+                          i
+                        )}
                       />
                     </div>
                   ))}
@@ -102,7 +115,7 @@ const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
           ""
         )}
       </div>
-    </S_FormHeader>
+    </S_formHeader>
   );
 };
 

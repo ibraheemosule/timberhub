@@ -1,6 +1,6 @@
 import { S_ProductItem } from "./S_ProductItem";
 import ProductIcon from "../../../../assets/icons/ProductIcon";
-import { IProductItem } from "../../../../ts-types/componentsTypes";
+import { IProductItem } from "../../../../ts-types/resuableCompTypes";
 import { formatDate, getProductDimensionsDuplicates } from "../../../../utils";
 import { memo } from "react";
 import Link from "next/link";
