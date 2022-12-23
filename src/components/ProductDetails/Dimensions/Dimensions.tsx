@@ -48,7 +48,7 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
       setLoading: Dispatch<SetStateAction<boolean>>,
       setError: Dispatch<SetStateAction<string>>
     ) => {
-      const productDimension = [...data.dimensions].filter(
+      const productDimension = [...rootDimension.current].filter(
         obj => obj.id !== id
       );
       try {
@@ -92,7 +92,7 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
   return (
     <S_Dimensions>
       <S_Container>
-        {dimensions.length > 5 && (
+        {rootDimension.current.length > 5 && (
           <aside className="filter-wrapper">
             <FilterField
               title="Filter By"
