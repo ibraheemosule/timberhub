@@ -28,3 +28,6 @@ The product details page will display the following information:
 A dimension card can be deleted from the dimensions section. But this action is impossible if there is only one dimension card present
 
 A product can be deleted using the delete product button at the bottom of the page
+
+[Link](https://timberub-task.vercel.app) to project.
+[Link](https://hub.docker.com/repository/docker/ibraheemsulay/timberhub) to pull docker image.
