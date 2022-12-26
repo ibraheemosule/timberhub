@@ -8,6 +8,8 @@ interface ITitle {
   eventHandler: () => void;
 }
 
+console.log("testing");
+
 const Title: React.FC<ITitle> = ({ title, btnText, eventHandler }) => {
   return (
     <S_title>
