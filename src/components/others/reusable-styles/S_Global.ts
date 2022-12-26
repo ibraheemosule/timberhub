@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-const S_Global = createGlobalStyle<IStyle>`
+const S_global = createGlobalStyle<IStyle>`
 
 *, *:before, *:after {
     box-sizing: border-box;
@@ -35,4 +35,4 @@ h1 {
 }
 `;
 
-export default S_Global;
+export default S_global;

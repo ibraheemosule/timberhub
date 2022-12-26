@@ -2,7 +2,7 @@ import { memo, useState, Dispatch, SetStateAction } from "react";
 import { IDimension } from "../../../../ts-types/dataTypes";
 import DeleteIcon from "../../../../assets/icons/DeleteIcon";
 import LoaderIcon from "../../../../assets/icons/LoaderIcon";
-import { S_DimensionCard } from "./S_Dimensions";
+import { S_dimensionCard } from "./S_dimensions";
 
 interface IDimensionCard {
   obj: IDimension;
@@ -22,7 +22,7 @@ const DimensionCard: React.FC<IDimensionCard> = ({
     [loading, setLoading] = useState(false);
 
   return (
-    <S_DimensionCard>
+    <S_dimensionCard>
       <h4>
         <small>Thickness:</small> {obj?.thickness}
       </h4>
@@ -49,7 +49,7 @@ const DimensionCard: React.FC<IDimensionCard> = ({
           </button>
         </div>
       )}
-    </S_DimensionCard>
+    </S_dimensionCard>
   );
 };
 

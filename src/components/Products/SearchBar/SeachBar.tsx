@@ -1,5 +1,5 @@
-import { S_SearchBar } from "./S_SearchBar";
-import { S_Container } from "../../others/reusable-styles/S_Container";
+import { S_searchBar } from "./S_searchBar";
+import { S_container } from "../../others/reusable-styles/S_container";
 import SearchIcon from "../../../assets/icons/SearchIcon";
 import { useContext, ChangeEvent } from "react";
 import { Context } from "../../../utils/Context";
@@ -19,8 +19,8 @@ const SearchBar: React.FC = () => {
     setList([...list]);
   };
   return (
-    <S_Container>
-      <S_SearchBar>
+    <S_container>
+      <S_searchBar>
         <input
           type="text"
           onChange={e => filterList(e)}
@@ -30,8 +30,8 @@ const SearchBar: React.FC = () => {
         <button type="submit">
           <SearchIcon />
         </button>
-      </S_SearchBar>
-    </S_Container>
+      </S_searchBar>
+    </S_container>
   );
 };
 

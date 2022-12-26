@@ -1,4 +1,4 @@
-import { S_AddProductModal } from "./S_AddProductModal";
+import { S_addProductModal } from "./S_addProductModal";
 import FormHeader from "./FormHeader/FormHeader";
 import Btn from "../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -12,7 +12,7 @@ import {
 } from "../../utils";
 
 import { newProductObj } from "../../utils";
-import { S_SuccessMessageModal } from "../others/reusable-styles/S_SuccessMessageModal";
+import { S_successMessageModal } from "../others/reusable-styles/S_successMessageModal";
 import { ProductType } from "../../ts-types/dataTypes";
 
 const AddProductModal: React.FC = () => {
@@ -106,7 +106,7 @@ const AddProductModal: React.FC = () => {
 
   return (
     <>
-      <S_AddProductModal modal={modal} onClick={closeModal}>
+      <S_addProductModal modal={modal} onClick={closeModal}>
         <div
           className="create-product"
           ref={parentElement}
@@ -135,11 +135,11 @@ const AddProductModal: React.FC = () => {
             />
           </footer>
         </div>
-      </S_AddProductModal>
+      </S_addProductModal>
       {
-        <S_SuccessMessageModal popup={successMsgPopUp} success={true}>
+        <S_successMessageModal popup={successMsgPopUp} success={true}>
           Product Added
-        </S_SuccessMessageModal>
+        </S_successMessageModal>
       }
     </>
   );

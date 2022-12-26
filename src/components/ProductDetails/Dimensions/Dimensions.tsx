@@ -6,8 +6,8 @@ import {
   useMemo,
   useRef,
 } from "react";
-import { S_Dimensions } from "./S_Dimensions";
-import { S_Container } from "../../others/reusable-styles/S_Container";
+import { S_dimensions } from "./S_dimensions";
+import { S_container } from "../../others/reusable-styles/S_container";
 import { IDimension, ProductType } from "../../../ts-types/dataTypes";
 import { apiRequest } from "../../../utils";
 import DimensionCard from "./DimensionCard/DimensionCard";
@@ -90,8 +90,8 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
   };
 
   return (
-    <S_Dimensions>
-      <S_Container>
+    <S_dimensions>
+      <S_container>
         {rootDimension.current.length > 5 && (
           <aside className="filter-wrapper">
             <FilterField
@@ -122,8 +122,8 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
           />
         ))}
         {!dimensions.length && <h3>No Dimensions Matched</h3>}
-      </S_Container>
-    </S_Dimensions>
+      </S_container>
+    </S_dimensions>
   );
 };
 

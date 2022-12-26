@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-export const S_Container = styled.div<IStyle>`
+export const S_container = styled.div<IStyle>`
   max-width: 1440px;
   margin: auto;
 

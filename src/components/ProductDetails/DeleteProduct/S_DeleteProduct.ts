@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-export const S_DeleteProduct = styled.section<IStyle>`
+export const S_deleteProduct = styled.section<IStyle>`
 margin: 4rem 0;
 position: relative;
 padding: 0 0.9375rem;

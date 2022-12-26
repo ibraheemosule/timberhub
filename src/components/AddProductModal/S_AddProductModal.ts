@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
 import { ICreateProductStyle } from "../../ts-types/styleTypes";
-export const S_AddProductModal = styled.section<ICreateProductStyle>`
+export const S_addProductModal = styled.section<ICreateProductStyle>`
   ${({ modal }) =>
     modal
       ? " background: rgba(0, 0, 0, 0.3)"

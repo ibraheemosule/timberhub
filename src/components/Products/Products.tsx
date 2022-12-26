@@ -8,6 +8,7 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../../utils/Context";
 import { paginateFunction } from "../../utils";
 import { ProductType } from "../../ts-types/dataTypes";
+import { S_products } from "./S_products";
 
 const AllProducts: React.FC = () => {
   const { modal, setModal, list } = useContext(Context),
@@ -31,7 +32,7 @@ const AllProducts: React.FC = () => {
     setModal(true);
   };
   return (
-    <div style={{ overflow: modal ? "hidden" : "auto", height: "100vh" }}>
+    <S_products modal={modal}>
       <TopHeader />
 
       <Title
@@ -47,7 +48,7 @@ const AllProducts: React.FC = () => {
         numOfPages={numOfPages}
         setNumber={setNumber}
       />
-    </div>
+    </S_products>
   );
 };
 

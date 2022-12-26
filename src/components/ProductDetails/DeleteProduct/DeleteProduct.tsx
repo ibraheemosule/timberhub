@@ -1,11 +1,11 @@
 import { memo, useState } from "react";
-import { S_DeleteProduct } from "./S_DeleteProduct";
-import { S_Container } from "../../others/reusable-styles/S_Container";
+import { S_deleteProduct } from "./S_deleteProduct";
+import { S_container } from "../../others/reusable-styles/S_container";
 import Btn from "../../others/Btn/Btn";
 import { apiRequest } from "../../../utils";
 import { ProductType } from "../../../ts-types/dataTypes";
 import { useRouter } from "next/router";
-import { S_SuccessMessageModal } from "../../others/reusable-styles/S_SuccessMessageModal";
+import { S_successMessageModal } from "../../others/reusable-styles/S_successMessageModal";
 import LoaderIcon from "../../../assets/icons/LoaderIcon";
 
 const DeleteProduct: React.FC<{ id: string }> = ({ id }) => {
@@ -58,8 +58,8 @@ const DeleteProduct: React.FC<{ id: string }> = ({ id }) => {
   };
   return (
     <>
-      <S_DeleteProduct>
-        <S_Container>
+      <S_deleteProduct>
+        <S_container>
           <p className="api-call-info">
             {(!!error && !loading && error) ||
               (loading && <LoaderIcon size={30} color="#23d899" />)}
@@ -80,11 +80,11 @@ const DeleteProduct: React.FC<{ id: string }> = ({ id }) => {
               bg={"#ab767645"}
             />
           )}
-        </S_Container>
-      </S_DeleteProduct>
-      <S_SuccessMessageModal popup={deleted}>
+        </S_container>
+      </S_deleteProduct>
+      <S_successMessageModal popup={deleted}>
         Product Deleted
-      </S_SuccessMessageModal>
+      </S_successMessageModal>
     </>
   );
 };

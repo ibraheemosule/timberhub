@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../../ts-types/styleTypes";
 
-export const S_ProductItem = styled.a<IStyle>`
+export const S_productItem = styled.a<IStyle>`
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.color.border2};
   color: unset;

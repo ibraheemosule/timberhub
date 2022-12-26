@@ -1,5 +1,5 @@
-import { S_ProductsList } from "./S_ProductsList";
-import { S_Container } from "../../others/reusable-styles/S_Container";
+import { S_productsList } from "./S_productsList";
+import { S_container } from "../../others/reusable-styles/S_container";
 import ProductItem from "./ProductItem/ProductItem";
 import { FC } from "react";
 import { ProductType } from "../../../ts-types/dataTypes";
@@ -9,8 +9,8 @@ type CompType = {
 };
 const ProductList: FC<CompType> = ({ paginatedProductArray }) => {
   return (
-    <S_Container>
-      <S_ProductsList>
+    <S_container>
+      <S_productsList>
         <div>
           <h6>
             Product <small>(Species, Grade, Drying, Treatment, Usage)</small>
@@ -26,8 +26,8 @@ const ProductList: FC<CompType> = ({ paginatedProductArray }) => {
         ) : (
           <h5>No Item Found</h5>
         )}
-      </S_ProductsList>
-    </S_Container>
+      </S_productsList>
+    </S_container>
   );
 };
 

@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-export const S_SearchBar = styled.form<IStyle>`
+export const S_searchBar = styled.form<IStyle>`
   margin: 2rem 0 0;
   padding: 0 0.9375rem;
   position: relative;

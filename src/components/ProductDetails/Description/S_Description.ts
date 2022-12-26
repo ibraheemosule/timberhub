@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-export const S_Description = styled.section<IStyle>`
+export const S_description = styled.section<IStyle>`
   padding: 0 0.9375rem;
 
   & > div {

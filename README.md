@@ -1,24 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Product List App
 
-## Getting Started
+This is a list of dummy products that can be used for testing purposes. Each product has a unique identifier and a corresponding product page that displays information about the product. The list of products can be filtered by a search field and a product's dimensions can be filtered with a given range.
 
-First, run the development server:
+The dropdown list options are not wood terms, rather they are values gotten from a [Lorem Ipsum Text Here](https:https://loremipsum.io/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## All Products Page
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The all product page displays the list of products by concatenating the options picked when creating a product (usage, drying, treatment etc.)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Add Product
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+A product can be added to the database by clicking on add product and filling the form. When the form validation passes, the product can be add.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+When a product in the product list is clicked on, users are directed to a product details page.
 
-## Learn More
+## Products Details Page
+
+The product details page will display the following information:
+
+- Product Drying Method
+- Product Usage
+- Product Grade
+- Product Treatment (if any)
+- Product Creation Date
+- Product Dimensions (can be filtered by a given range)
 
 To learn more about Next.js, take a look at the following resources:
 

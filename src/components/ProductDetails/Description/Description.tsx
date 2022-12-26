@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { S_Description } from "./S_Description";
-import { S_Container } from "../../others/reusable-styles/S_Container";
+import { S_description } from "./S_description";
+import { S_container } from "../../others/reusable-styles/S_container";
 import { ProductType } from "../../../ts-types/dataTypes";
 import { formatDate } from "../../../utils";
 
@@ -15,8 +15,8 @@ const keys = [
 
 const Description: React.FC<{ data: ProductType }> = ({ data }) => {
   return (
-    <S_Description>
-      <S_Container>
+    <S_description>
+      <S_container>
         {keys.map(key => {
           if (!data[key as keyof ProductType]) return null;
           return (
@@ -30,8 +30,8 @@ const Description: React.FC<{ data: ProductType }> = ({ data }) => {
             </div>
           );
         })}
-      </S_Container>
-    </S_Description>
+      </S_container>
+    </S_description>
   );
 };
 

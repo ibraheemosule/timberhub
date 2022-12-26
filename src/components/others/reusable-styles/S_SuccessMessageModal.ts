@@ -2,12 +2,12 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-interface IS_SuccessMessageModal extends IStyle {
+interface IS_successMessageModal extends IStyle {
   popup: boolean;
   success?: boolean;
 }
 
-export const S_SuccessMessageModal = styled.div<IS_SuccessMessageModal>`
+export const S_successMessageModal = styled.div<IS_successMessageModal>`
   position: absolute;
   right: 0%;
   top: ${({ popup }) => (popup ? "0%" : "-100%")};

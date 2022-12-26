@@ -1,5 +1,5 @@
-import { S_Title } from "./S_Title";
-import { S_Container } from "../reusable-styles/S_Container";
+import { S_title } from "./S_title";
+import { S_container } from "../reusable-styles/S_container";
 import Btn from "../Btn/Btn";
 
 interface ITitle {
@@ -10,12 +10,12 @@ interface ITitle {
 
 const Title: React.FC<ITitle> = ({ title, btnText, eventHandler }) => {
   return (
-    <S_Title>
-      <S_Container>
+    <S_title>
+      <S_container>
         <h1>{title}</h1>
         <Btn text={btnText} click={eventHandler} />
-      </S_Container>
-    </S_Title>
+      </S_container>
+    </S_title>
   );
 };
 

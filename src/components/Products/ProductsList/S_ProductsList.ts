@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../ts-types/styleTypes";
 
-export const S_ProductsList = styled.article<IStyle>`
+export const S_productsList = styled.article<IStyle>`
   font-family: "Inter", sans-serif;
   margin: 2rem 0 0;
   padding: 0 0.9375rem;

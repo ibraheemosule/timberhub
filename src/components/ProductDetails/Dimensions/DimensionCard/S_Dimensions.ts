@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import { IStyle } from "../../../../ts-types/styleTypes";
 
-export const S_DimensionCard = styled.div<IStyle>`
+export const S_dimensionCard = styled.div<IStyle>`
   margin: 0 0 1rem 1rem;
   min-width: 90%;
   padding: 1rem 0.75rem 1.25rem;

@@ -1,4 +1,4 @@
-import { S_ProductItem } from "./S_ProductItem";
+import { S_productItem } from "./S_productItem";
 import ProductIcon from "../../../../assets/icons/ProductIcon";
 import { IProductItem } from "../../../../ts-types/resuableCompTypes";
 import { formatDate, getProductDimensionsDuplicates } from "../../../../utils";
@@ -8,7 +8,7 @@ import Link from "next/link";
 const ProductItem: React.FC<IProductItem> = ({ product }) => {
   return (
     <Link href={`/${product.id}`} passHref>
-      <S_ProductItem>
+      <S_productItem>
         <div>
           <ProductIcon />
           <div className="wrapper">
@@ -46,7 +46,7 @@ const ProductItem: React.FC<IProductItem> = ({ product }) => {
             </div>
           </div>
         </div>
-      </S_ProductItem>
+      </S_productItem>
     </Link>
   );
 };

@@ -1,11 +1,11 @@
-import { S_TopHeader } from "./S_TopHeader";
+import { S_topHeader } from "./S_topHeader";
 import ProjectLogo from "../../../assets/icons/ProjectLogo";
 
 const TopHeader: React.FC = () => {
   return (
-    <S_TopHeader>
+    <S_topHeader>
       <ProjectLogo />
-    </S_TopHeader>
+    </S_topHeader>
   );
 };
 
