@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { IStyle } from "../../../../ts-types/styleTypes";
 
 export const S_dimensionCard = styled.div<IStyle>`
-  margin: 0 0 1rem 1rem;
   min-width: 90%;
   padding: 1rem 0.75rem 1.25rem;
   border-radius: 10px;
@@ -29,6 +28,8 @@ export const S_dimensionCard = styled.div<IStyle>`
     span {
       position: absolute;
       left: 0;
+      top: 50%;
+      transform: translate(0, -40%);
       font-size: 0.7rem;
     }
 

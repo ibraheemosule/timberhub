@@ -16,16 +16,17 @@ const AllProducts: React.FC = () => {
     [productsToShow, setProductsToShow] = useState<ProductType[]>([]),
     numOfPages = Math.ceil(list.length / 5);
 
+  useEffect(() => setNumber(1), [JSON.stringify(list)]);
+
   useEffect(() => {
     const paginatedArray = paginateFunction({
       arr: [...list],
       pageSize: 5,
       pageNumber: number,
     });
+
     setProductsToShow([...paginatedArray]);
   }, [JSON.stringify(list), number]);
-
-  useEffect(() => setNumber(1), [JSON.stringify(list)]);
 
   const toggleModal = () => {
     document.querySelector(".create-product")?.classList.add("show");

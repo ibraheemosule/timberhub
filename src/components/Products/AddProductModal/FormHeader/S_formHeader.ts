@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-import { IFormHeaderStyle } from "../../../ts-types/styleTypes";
+import { IFormHeaderStyle } from "../../../../ts-types/styleTypes";
 
 export const S_formHeader = styled.section<IFormHeaderStyle>`
   align-items: flex-start;

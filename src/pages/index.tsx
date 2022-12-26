@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import ContextWrapper from "../components/others/ContextWrapper/ContextWrapper";
 import Products from "../components/Products/Products";
-import AddProductModal from "../components/AddProductModal/AddProductModal";
+import AddProductModal from "../components/Products/AddProductModal/AddProductModal";
 import { ProductType } from "../ts-types/dataTypes";
 import dbConnect from "../lib/connectToDB";
 import { ProductModel } from "../lib/model";

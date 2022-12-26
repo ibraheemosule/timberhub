@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-import { ICreateProductStyle } from "../../ts-types/styleTypes";
+import { ICreateProductStyle } from "../../../ts-types/styleTypes";
 export const S_addProductModal = styled.section<ICreateProductStyle>`
   ${({ modal }) =>
     modal

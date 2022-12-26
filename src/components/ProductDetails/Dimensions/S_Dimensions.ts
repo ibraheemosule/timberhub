@@ -13,25 +13,38 @@ export const S_dimensions = styled.section<IStyle>`
     .filter-wrapper {
       display: flex;
       flex-wrap: wrap;
+      gap: 1.5rem;
       justify-content: center;
-      margin: 0 0 2rem 0;
+      margin: 0;
       width: 100%;
 
       section {
         width: 150px;
-        margin: 1rem 1rem 0 0;
       }
     }
 
     h3 {
+      margin: 2rem 0 0;
       text-align: center;
       flex-basis: 100%;
     }
+
+    .cards-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem 0 0;
+    }
   }
 
-  @media (min-width: 576px) {
+  @media (min-width: 786px) {
     & > div {
       .filter-wrapper {
+        justify-content: flex-start;
+      }
+
+      .cards-wrapper {
         justify-content: flex-start;
       }
 

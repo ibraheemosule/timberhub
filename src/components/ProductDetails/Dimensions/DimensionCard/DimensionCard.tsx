@@ -2,8 +2,9 @@ import { memo, useState, Dispatch, SetStateAction } from "react";
 import { IDimension } from "../../../../ts-types/dataTypes";
 import DeleteIcon from "../../../../assets/icons/DeleteIcon";
 import LoaderIcon from "../../../../assets/icons/LoaderIcon";
-import { S_dimensionCard } from "./S_dimensions";
+import { S_dimensionCard } from "./S_dimensionCard";
 
+const dimensionObjKeys = ["thickness", "width", "length"];
 interface IDimensionCard {
   obj: IDimension;
   arrLength: number;
@@ -23,16 +24,11 @@ const DimensionCard: React.FC<IDimensionCard> = ({
 
   return (
     <S_dimensionCard>
-      <h4>
-        <small>Thickness:</small> {obj?.thickness}
-      </h4>
-      <h4>
-        <small>Width:</small> {obj?.width}
-      </h4>
-      <h4>
-        <small>Length:</small>
-        {obj?.length}
-      </h4>
+      {dimensionObjKeys.map((key, i: number) => (
+        <h4 key={i}>
+          <small>Thickness:</small> {obj[key as keyof IDimension]}
+        </h4>
+      ))}
 
       {arrLength > 1 && (
         <div>

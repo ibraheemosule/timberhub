@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, memo, SetStateAction } from "react";
 import { S_pagination } from "./S_pagination";
 
 export interface IPaginationProps {
@@ -40,4 +40,4 @@ const Pagination: React.FC<IPaginationProps> = props => {
   );
 };
 
-export default Pagination;
+export default memo(Pagination);

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import styled from "styled-components";
-import { ISelectFieldStyle } from "../../../../ts-types/styleTypes";
+import { ISelectFieldStyle } from "../../../../../ts-types/styleTypes";
 
 export const S_selectField = styled.section<ISelectFieldStyle>`
   position: relative;

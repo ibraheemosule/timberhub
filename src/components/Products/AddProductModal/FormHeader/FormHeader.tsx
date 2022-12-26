@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
-import PlusIcon from "../../../assets/icons/PlusIcon";
+import PlusIcon from "../../../../assets/icons/PlusIcon";
 import { S_formHeader } from "./S_formHeader";
 import { useContext, FC } from "react";
-import { Context } from "../../../utils/Context";
-import { IDimension, ProductType } from "../../../ts-types/dataTypes";
+import { Context } from "../../../../utils/Context";
+import { IDimension, ProductType } from "../../../../ts-types/dataTypes";
 
 const SelectField = dynamic(() => import("./SelectField/SelectField"), {
   ssr: false,

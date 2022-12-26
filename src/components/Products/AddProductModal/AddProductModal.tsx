@@ -1,19 +1,19 @@
 import { S_addProductModal } from "./S_addProductModal";
 import FormHeader from "./FormHeader/FormHeader";
-import Btn from "../others/Btn/Btn";
+import Btn from "../../others/Btn/Btn";
 import { useContext, useEffect, useRef, useState } from "react";
-import { Context } from "../../utils/Context";
-import LoaderIcon from "../../assets/icons/LoaderIcon";
+import { Context } from "../../../utils/Context";
+import LoaderIcon from "../../../assets/icons/LoaderIcon";
 import {
   formFieldDetails,
   validateData,
   checkIfProductExist,
   apiRequest,
-} from "../../utils";
+} from "../../../utils";
 
-import { newProductObj } from "../../utils";
-import { S_successMessageModal } from "../others/reusable-styles/S_successMessageModal";
-import { ProductType } from "../../ts-types/dataTypes";
+import { newProductObj } from "../../../utils";
+import { S_successMessageModal } from "../../others/reusable-styles/S_successMessageModal";
+import { ProductType } from "../../../ts-types/dataTypes";
 
 const AddProductModal: React.FC = () => {
   const {

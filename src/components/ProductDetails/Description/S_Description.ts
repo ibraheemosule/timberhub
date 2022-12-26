@@ -8,7 +8,8 @@ export const S_description = styled.section<IStyle>`
   & > div {
     display: flex;
     flex-wrap: wrap;
-    margin: 1.7rem auto 0;
+    max-width: 786px;
+    margin: 1.7rem 0;
 
     .details {
       margin: 0 1rem 1rem;

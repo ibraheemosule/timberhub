@@ -113,14 +113,16 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
             />
           </aside>
         )}
-        {dimensions.map((dimensionObj: IDimension) => (
-          <DimensionCard
-            key={dimensionObj.id}
-            obj={dimensionObj}
-            deleteFunction={deleteDimension(dimensionObj.id)}
-            arrLength={dimensions.length}
-          />
-        ))}
+        <div className="cards-wrapper">
+          {dimensions.map((dimensionObj: IDimension) => (
+            <DimensionCard
+              key={dimensionObj.id}
+              obj={dimensionObj}
+              deleteFunction={deleteDimension(dimensionObj.id)}
+              arrLength={dimensions.length}
+            />
+          ))}
+        </div>
         {!dimensions.length && <h3>No Dimensions Matched</h3>}
       </S_container>
     </S_dimensions>

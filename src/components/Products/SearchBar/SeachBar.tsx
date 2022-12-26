@@ -18,6 +18,7 @@ const SearchBar: React.FC = () => {
     });
     setList([...list]);
   };
+
   return (
     <S_container>
       <S_searchBar>

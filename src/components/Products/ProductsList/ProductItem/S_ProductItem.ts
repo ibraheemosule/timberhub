@@ -31,7 +31,7 @@ export const S_productItem = styled.a<IStyle>`
       margin-left: 0.5rem;
 
       div:nth-child(1) {
-        padding-right: 2rem;
+        flex-basis: 100%;
         text-transform: capitalize;
 
         .categories {
@@ -83,11 +83,6 @@ export const S_productItem = styled.a<IStyle>`
       }
 
       .wrapper {
-        div:nth-child(1) {
-          flex-basis: 43%;
-          padding-right: 2rem;
-        }
-
         .measurements {
           p {
             margin: 0.5rem 0.8125rem 0 0;

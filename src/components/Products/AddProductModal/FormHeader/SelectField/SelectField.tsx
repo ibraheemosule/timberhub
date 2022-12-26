@@ -1,9 +1,9 @@
 import { S_selectField } from "./S_selectField";
 import { memo, useEffect, useRef, useState, useContext, useMemo } from "react";
-import ArrowDownIcon from "../../../../assets/icons/ArrowDownIcon";
-import { ISelectField } from "../../../../ts-types/resuableCompTypes";
-import { isNumber } from "../../../../utils";
-import { Context } from "../../../../utils/Context";
+import ArrowDownIcon from "../../../../../assets/icons/ArrowDownIcon";
+import { ISelectField } from "../../../../../ts-types/resuableCompTypes";
+import { isNumber } from "../../../../../utils";
+import { Context } from "../../../../../utils/Context";
 
 const dimensionFields = ["thickness", "width", "length"];
 
@@ -22,6 +22,7 @@ const SelectField: React.FC<ISelectField> = ({
 
   useEffect(() => {
     resetFields();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal]);
 
   const filteredSelectOptions = useMemo(() => {
@@ -50,6 +51,7 @@ const SelectField: React.FC<ISelectField> = ({
     if (searchBar) searchBar.value = "";
 
     setOption("");
+    setFormError("");
 
     if (!inputField.current) return;
     inputField.current.value = "";
