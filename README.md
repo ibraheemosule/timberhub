@@ -29,5 +29,25 @@ A dimension card can be deleted from the dimensions section. But this action is 
 
 A product can be deleted using the delete product button at the bottom of the page
 
+## Project Structures
+
+- Project logic is kept in src folder
+- Components are places in the components folder
+- Page related components are kept in the page-components folder
+- reusable components are kept in the others folder
+
+# Style convention used
+
+- Styled components was the styling convention used for this project and the styled component files have a 'S\_' prepended in their names
+- CSS code arrangement was done alphabetically following the practice of this [article](https://ericwbailey.website/published/organize-your-css-declarations-alphabetically/) and a host of others.
+
+# TS-types folder
+
+- Ts-file entails the type declarations for the components, data and styled components
+
+# Utils folder
+
+- Utils folder contains the context api instatiation and the index entails extracted functionalities and logic to avoid verbose components
+
 [Link](https://timberub-task.vercel.app) to project.
 [Link](https://hub.docker.com/repository/docker/ibraheemsulay/timberhub) to pull docker image.
