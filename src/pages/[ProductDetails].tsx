@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import dbConnect from "../lib/connectToDB";
 import { ProductModel } from "../lib/model";
 import { ProductType } from "../ts-types/dataTypes";
-import ProductDetails from "../components/ProductDetails/ProductDetails";
+import ProductDetails from "../components/page-components/ProductDetails/ProductDetails";
 
 export async function getServerSideProps({ params }: Record<string, any>) {
   const id = params.ProductDetails as string;
