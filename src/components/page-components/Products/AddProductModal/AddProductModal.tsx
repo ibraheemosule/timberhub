@@ -141,7 +141,11 @@ const AddProductModal: React.FC = () => {
         </div>
       </S_addProductModal>
       {
-        <S_successMessageModal popup={successMsgPopUp} success={true}>
+        <S_successMessageModal
+          data-test="success-popup"
+          popup={successMsgPopUp}
+          success={true}
+        >
           Product Added
         </S_successMessageModal>
       }

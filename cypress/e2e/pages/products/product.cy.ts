@@ -18,50 +18,52 @@ describe("Products page", () => {
         });
       },
     });
+
+    cy.get("[data-test=products]").as("wrapper");
   });
 
   context("All Products Section", () => {
-    // it("Page should be mounted to the dom", () => {
-    //   cy.get("[data-test=products]").should("exist");
-    // });
+    it("Page should be mounted to the dom", () => {
+      cy.get("@wrapper").should("exist");
+    });
 
-    // it("Products should be rendered to the page", () => {
-    //   cy.get("[data-test=product-item]").should("have.length.greaterThan", 0);
-    // });
+    it("Products should be rendered to the page", () => {
+      cy.get("[data-test=product-item]").should("have.length.greaterThan", 0);
+    });
 
-    // context("Search bar should exist and function", () => {
-    //   it("should return elements that contain the string value", () => {
-    //     const textInput = "sa";
-    //     cy.get("[data-test=search-bar]").type(textInput);
-    //     cy.get("[data-test=categories]").each($el => {
-    //       const elementText = $el.text().toLowerCase().includes(textInput);
-    //       expect(elementText).to.be.true;
-    //     });
-    //   });
+    context("Search bar should exist and function", () => {
+      it("should return elements that contain the string value", () => {
+        const textInput = "sa";
+        cy.get("[data-test=search-bar]").type(textInput);
+        cy.get("[data-test=categories]").each($el => {
+          const elementText = $el.text().toLowerCase().includes(textInput);
+          expect(elementText).to.be.true;
+        });
+      });
 
-    //   it("should return empty list and no result found", () => {
-    //     const textInput = "Does not exist";
-    //     cy.get("[data-test=search-bar]").type(textInput);
-    //     cy.get("[data-test=empty-list]").should("be.visible");
-    //   });
-    // });
+      it("should return empty list and no result found", () => {
+        const textInput = "Does not exist";
+        cy.get("[data-test=search-bar]").type(textInput);
+        cy.get("[data-test=empty-list]").should("be.visible");
+      });
+    });
 
-    // it("Create product button click", () => {
-    //   cy.get("[data-test=page-title]").should("exist");
+    it("Create product button click", () => {
+      cy.get("[data-test=page-title]").should("exist");
 
-    //   cy.get("[data-test=page-title]").find("[data-test=btn]").should("exist");
+      cy.get("[data-test=page-title]").find("[data-test=btn]").should("exist");
 
-    //   cy.get("[data-test=add-product-modal]").should("not.be.visible");
+      cy.get("[data-test=add-product-modal]").should("not.be.visible");
 
-    //   cy.get("[data-test=page-title]").find("[data-test=btn]").click();
+      cy.get("[data-test=page-title]").find("[data-test=btn]").click();
 
-    //   cy.get("[data-test=add-product-modal]").should("be.visible");
-    // });
+      cy.get("[data-test=add-product-modal]").should("be.visible");
+    });
 
-    // it("should route to product details page", () => {
-    //   cy.get("[data-test=product-item]").first().click();
-    //   cy.location("pathname").should("equal", `/${data[0].id}`);
-    // });
+    it("should route to product details page", () => {
+      cy.get("[data-test=product-item]").first().click();
+      cy.location("pathname").should("equal", `/${data[0].id}`);
+    });
 
     context("Pagination functionality", () => {
       it("previous button should be disabled on page load", () => {

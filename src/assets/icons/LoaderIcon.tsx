@@ -5,6 +5,7 @@ const LoaderIcon: React.FC<{ size: number; color?: string }> = ({
   color,
 }) => (
   <svg
+    data-test="loader-icon"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     style={{

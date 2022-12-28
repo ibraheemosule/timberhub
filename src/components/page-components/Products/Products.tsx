@@ -4,7 +4,7 @@ import Title from "../../others/Title/Title";
 import SearchBar from "./SearchBar/SeachBar";
 import ProductList from "./ProductsList/ProductsList";
 import Pagination from "./Pagination/Pagination";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Context } from "../../../utils/Context";
 import { paginateFunction } from "../../../utils";
 import { ProductType } from "../../../ts-types/dataTypes";
@@ -14,9 +14,15 @@ const AllProducts: React.FC = () => {
   const { modal, setModal, list } = useContext(Context),
     [number, setNumber] = useState(1),
     [productsToShow, setProductsToShow] = useState<ProductType[]>([]),
+    parentElement = useRef<HTMLDivElement>(null),
     numOfPages = Math.ceil(list.length / 5);
 
   useEffect(() => setNumber(1), [JSON.stringify(list)]);
+
+  useEffect(() => {
+    if (!parentElement.current) return;
+    parentElement.current.scrollTo(0, 0);
+  }, [modal]);
 
   useEffect(() => {
     const paginatedArray = paginateFunction({
@@ -33,7 +39,7 @@ const AllProducts: React.FC = () => {
     setModal(true);
   };
   return (
-    <S_products modal={modal} data-test="products">
+    <S_products modal={modal} ref={parentElement} data-test="products">
       <TopHeader />
 
       <Title

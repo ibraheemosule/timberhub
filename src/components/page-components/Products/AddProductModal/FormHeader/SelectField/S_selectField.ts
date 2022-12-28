@@ -21,7 +21,8 @@ export const S_selectField = styled.section<ISelectFieldStyle>`
 
   fieldset {
     border: 1px solid
-      ${({ theme, inputError }) => (inputError ? "red" : theme.color.border)};
+      ${({ theme, inputError }) =>
+        inputError ? "rgb(255, 0, 0)" : theme.color.border};
     border-radius: 5px;
     margin: 0.5rem 0 0;
     position: relative;
@@ -130,7 +131,8 @@ export const S_selectField = styled.section<ISelectFieldStyle>`
   input {
     outline: 0;
     border: 1px solid
-      ${({ theme, inputError }) => (inputError ? "red" : theme.color.border)};
+      ${({ theme, inputError }) =>
+        inputError ? "rgb(255, 0, 0)" : theme.color.border};
     border-radius: 5px;
     box-shadow: 0px 3px 24px rgba(0, 0, 0, 0.05);
     margin: 0.5rem 0 0;

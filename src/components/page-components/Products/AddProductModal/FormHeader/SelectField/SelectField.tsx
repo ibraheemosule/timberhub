@@ -78,10 +78,19 @@ const SelectField: React.FC<ISelectField> = ({
 
   const selectFieldBlurred = () => {
     setDropdown(false);
-    if (!dropdownList?.includes(option as never)) {
+    const inputValueVerify = dropdownList?.every(opt => {
+      if (opt?.toLowerCase() === option.toLowerCase()) {
+        setOption(opt);
+        value(opt);
+        return false;
+      }
+      return true;
+    });
+    if (inputValueVerify) {
       setOption("");
       value("");
     }
+
     selectInputField.current?.blur();
   };
 
@@ -95,6 +104,7 @@ const SelectField: React.FC<ISelectField> = ({
 
   return (
     <S_selectField
+      data-test={type.split(" ").join("")}
       dropdown={dropdown}
       inputError={errorBorderColor}
       tabIndex={-1}
@@ -142,7 +152,7 @@ const SelectField: React.FC<ISelectField> = ({
                 ))
               ) : (
                 <li>
-                  <a> No Result</a>
+                  <a>No Result</a>
                 </li>
               )}
             </ul>
