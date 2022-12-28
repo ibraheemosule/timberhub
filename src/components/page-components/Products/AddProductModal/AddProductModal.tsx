@@ -106,7 +106,11 @@ const AddProductModal: React.FC = () => {
 
   return (
     <>
-      <S_addProductModal modal={modal} onClick={closeModal}>
+      <S_addProductModal
+        modal={modal}
+        onClick={closeModal}
+        data-test="add-product-modal"
+      >
         <div
           className="create-product"
           ref={parentElement}

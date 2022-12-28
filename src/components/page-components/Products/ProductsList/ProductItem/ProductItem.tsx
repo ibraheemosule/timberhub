@@ -11,14 +11,14 @@ import Link from "next/link";
 const ProductItem: React.FC<IProductItem> = ({ product }) => {
   return (
     <Link href={`/${product.id}`} passHref>
-      <S_productItem>
+      <S_productItem data-test="product-item">
         <div>
           <ProductIcon />
           <div className="wrapper">
             <div>
-              <p className="categories">
+              <p className="categories" data-test="categories">
                 {product.species}, {product.grade}, {product.drying_method},{" "}
-                {product.treatment}, {product.usage}
+                {product.usage}, {product.treatment}
               </p>
               <p>
                 <mark>#{product.id?.slice(0, 6) + "..."}</mark>{" "}
@@ -43,9 +43,7 @@ const ProductItem: React.FC<IProductItem> = ({ product }) => {
                 <p>
                   {getProductDimensionsDuplicates(product).length - 3} more sets
                 </p>
-              ) : (
-                ""
-              )}
+              ) : null}
             </div>
           </div>
         </div>

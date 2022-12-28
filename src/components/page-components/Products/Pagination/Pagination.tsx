@@ -19,7 +19,7 @@ const Pagination: React.FC<IPaginationProps> = props => {
   };
 
   return (
-    <S_pagination>
+    <S_pagination data-test="pagination">
       {numOfPages > 0 && (
         <>
           <button disabled={number > 1 ? false : true} onClick={decrement}>

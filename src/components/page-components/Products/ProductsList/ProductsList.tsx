@@ -13,7 +13,7 @@ const ProductList: FC<CompType> = ({ paginatedProductArray }) => {
       <S_productsList>
         <div>
           <h6>
-            Product <small>(Species, Grade, Drying, Treatment, Usage)</small>
+            Product <small>(Species, Grade, Drying, Usage, Treatment)</small>
           </h6>
           <h6>
             Dimensions <small>(ThicknessxWidth)</small>
@@ -24,7 +24,7 @@ const ProductList: FC<CompType> = ({ paginatedProductArray }) => {
             <ProductItem product={product} key={i} />
           ))
         ) : (
-          <h5>No Item Found</h5>
+          <h5 data-test="empty-list">No Item Found</h5>
         )}
       </S_productsList>
     </S_container>

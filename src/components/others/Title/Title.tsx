@@ -11,7 +11,7 @@ interface ITitle {
 
 const Title: React.FC<ITitle> = ({ title, btnText, eventHandler }) => {
   return (
-    <S_title>
+    <S_title data-test="page-title">
       <S_container>
         <h1>{title}</h1>
         {!!btnText && <Btn text={btnText} click={eventHandler} />}

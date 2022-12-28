@@ -33,7 +33,7 @@ const AllProducts: React.FC = () => {
     setModal(true);
   };
   return (
-    <S_products modal={modal}>
+    <S_products modal={modal} data-test="products">
       <TopHeader />
 
       <Title

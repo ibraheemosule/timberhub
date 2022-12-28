@@ -9,7 +9,7 @@ interface IBtn {
 
 const Btn: React.FC<IBtn> = ({ text, click, bg }) => {
   return (
-    <S_Btn onClick={click} bg={bg}>
+    <S_Btn onClick={click} bg={bg} data-test="btn">
       {text}
     </S_Btn>
   );

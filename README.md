@@ -1,4 +1,4 @@
-## Product List App
+# Product List App
 
 This is a list of dummy products that can be used for testing purposes. Each product has a unique identifier and a corresponding product page that displays information about the product. The list of products can be filtered by a search field and a product's dimensions can be filtered with a given range.
 
@@ -36,16 +36,16 @@ A product can be deleted using the delete product button at the bottom of the pa
 - Page related components are kept in the page-components folder
 - reusable components are kept in the others folder
 
-# Style convention used
+### Style convention used
 
 - Styled components was the styling convention used for this project and the styled component files have a 'S\_' prepended in their names
 - CSS code arrangement was done alphabetically following the practice of this [article](https://ericwbailey.website/published/organize-your-css-declarations-alphabetically/) and a host of others.
 
-# TS-types folder
+### TS-types folder
 
 - Ts-file entails the type declarations for the components, data and styled components
 
-# Utils folder
+### Utils folder
 
 - Utils folder contains the context api instatiation and the index entails extracted functionalities and logic to avoid verbose components
 

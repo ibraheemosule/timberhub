@@ -21,7 +21,7 @@ const SearchBar: React.FC = () => {
 
   return (
     <S_container>
-      <S_searchBar>
+      <S_searchBar data-test="search-bar">
         <input
           type="text"
           onChange={e => filterList(e)}
