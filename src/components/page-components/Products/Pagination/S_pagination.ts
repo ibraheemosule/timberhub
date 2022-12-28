@@ -29,10 +29,12 @@ export const S_pagination = styled.section`
       }
     }
 
-    span {
+    input {
       border: 2px solid rgba(0, 0, 0, 0.868);
       border-radius: 5px;
-      padding: 0.2rem 0.6rem;
+      margin-right: .5rem;
+     padding: 0.2rem;
+      width: 20px;
     }
   }
 `;
