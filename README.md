@@ -52,7 +52,7 @@ A product can be deleted using the delete product button at the bottom of the pa
 ### Tests
 
 - Cypress was used for e2e testing to affirm the quality of the user experience.
-  \_ To spin up the test, start up a local mongodb server (If you don't have mongodb locally, [pull](https://hub.docker.com/_/mongo) this docker image to quickly start up a mongodb server)
+- To spin up the test, start up a local mongodb server (If you don't have mongodb locally, [pull](https://hub.docker.com/mongo) this docker image to quickly start up a mongodb server)
 - Test files are located in the cypress folder.
 - Each page has it's seperate test file
 
