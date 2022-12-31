@@ -12,7 +12,7 @@ const ProductDetails: React.FC<{ data: ProductType }> = ({ data }) => {
   const redirectToAllProducts = () => void router.push("/");
 
   return (
-    <div>
+    <div data-test="product-details">
       <TopHeader />
       <Title
         title={"Product Details"}

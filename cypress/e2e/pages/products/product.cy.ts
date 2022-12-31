@@ -2,22 +2,7 @@ import data from "../../../fixtures/mock-data.json";
 
 describe("Products page", () => {
   beforeEach(() => {
-    cy.visit("/", {
-      onBeforeLoad: serverData => {
-        let nextData: unknown;
-
-        Object.defineProperty(serverData, "__NEXT_DATA__", {
-          set(obj) {
-            obj.props.pageProps.data = data;
-
-            nextData = obj;
-          },
-          get() {
-            return nextData;
-          },
-        });
-      },
-    });
+    cy.visit("/");
 
     cy.get("[data-test=products]").as("wrapper");
   });

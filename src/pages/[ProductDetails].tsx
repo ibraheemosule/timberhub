@@ -6,9 +6,10 @@ import ProductDetails from "../components/page-components/ProductDetails/Product
 
 export async function getServerSideProps({ params }: Record<string, any>) {
   const id = params.ProductDetails as string;
-
   await dbConnect();
-  const res = await ProductModel.findById(id).lean({ virtuals: true }).exec();
+  const res = (await ProductModel.findById(id)
+    .lean({ virtuals: true })
+    .exec()) as unknown as ProductType;
 
   return {
     props: {

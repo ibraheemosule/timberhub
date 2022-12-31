@@ -9,7 +9,7 @@ interface ExtendNextApiRequest extends NextApiRequest {
 }
 
 const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
-  const { method, body } = req;
+  const { method, body, query: q } = req;
 
   await dbConnect();
 
@@ -24,6 +24,12 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
 
     case "POST":
       try {
+        if (q.test && process.env.NODE_ENV === "development") {
+          await ProductModel.deleteMany({});
+          await ProductModel.insertMany(body);
+          return res.status(200).json(body);
+        }
+
         const isBodyValid =
           JSON.stringify(Object.keys(newProductObj)) ===
           JSON.stringify(Object.keys(body));
@@ -42,6 +48,7 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
     case "PUT":
       try {
         const { id, ...rest } = body;
+
         const data = await ProductModel.findByIdAndUpdate({ _id: id }, rest, {
           new: true,
         });
@@ -55,7 +62,6 @@ const handler = async (req: ExtendNextApiRequest, res: NextApiResponse) => {
       try {
         const { id } = body;
         const data = await ProductModel.findByIdAndRemove({ _id: id });
-
         return res.status(200).json({ data });
       } catch (e) {
         return res.status(400).json(e);

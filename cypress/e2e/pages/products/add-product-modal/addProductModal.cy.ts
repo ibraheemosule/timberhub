@@ -2,22 +2,7 @@ import data from "../../../../fixtures/mock-data.json";
 
 describe("Products page", () => {
   beforeEach(() => {
-    cy.visit("/", {
-      onBeforeLoad: serverData => {
-        let nextData: unknown;
-
-        Object.defineProperty(serverData, "__NEXT_DATA__", {
-          set(obj) {
-            obj.props.pageProps.data = data;
-
-            nextData = obj;
-          },
-          get() {
-            return nextData;
-          },
-        });
-      },
-    });
+    cy.visit("/");
 
     cy.get("[data-test=btn]").first().click();
 
@@ -179,6 +164,12 @@ describe("Products page", () => {
       });
 
       it("should create a new product when all input fields are validated", () => {
+        cy.intercept("POST", "/api", {
+          data: data[0],
+        });
+        cy.intercept("PUT", "/api", {
+          data: data[0],
+        });
         cy.get("@wrapper")
           .get("fieldset")
           .each($el => {
@@ -193,7 +184,6 @@ describe("Products page", () => {
         cy.get("@widthInput").type("20");
         cy.get("@lengthInput").type("80");
         cy.get("@submitBtn").click();
-        cy.get("@wrapper").find("[data-test=loader-icon]").should("exist");
         cy.get("[data-test=success-popup]").should("have.css", "top", "0px");
       });
     });

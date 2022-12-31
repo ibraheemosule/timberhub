@@ -41,6 +41,7 @@ const SelectField: React.FC<IFilterField> = ({
       dropdown={dropdown}
       tabIndex={-1}
       onBlur={() => setDropdown(false)}
+      data-test={title.split(" ").join("")}
     >
       <h6>{title} *</h6>
       {type === "select" ? (

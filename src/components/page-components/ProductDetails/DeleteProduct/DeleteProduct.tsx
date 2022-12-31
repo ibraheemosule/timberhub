@@ -58,7 +58,7 @@ const DeleteProduct: React.FC<{ id: string }> = ({ id }) => {
   };
   return (
     <>
-      <S_deleteProduct>
+      <S_deleteProduct data-test="delete-product-wrapper">
         <S_container>
           <p className="api-call-info">
             {(!!error && !loading && error) ||

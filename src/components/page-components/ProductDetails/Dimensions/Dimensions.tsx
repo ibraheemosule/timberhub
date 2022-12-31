@@ -90,7 +90,7 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
   };
 
   return (
-    <S_dimensions>
+    <S_dimensions data-test="dimensions-wrapper">
       <S_container>
         {rootDimension.current.length > 5 && (
           <aside className="filter-wrapper">
