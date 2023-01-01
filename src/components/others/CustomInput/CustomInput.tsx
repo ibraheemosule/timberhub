@@ -106,15 +106,21 @@ const CustomInput: FC<ICustomInput> = props => {
       ) : (
         <fieldset className="filter-box">
           <button onFocus={() => setDropdown(true)} onBlur={CustomInputBlurred}>
-            <input
-              value={option}
-              disabled={!allowSearch}
-              onChange={e => {
-                !dropdown && setDropdown(true);
-                setOption(e.target.value);
-              }}
-              ref={selectInputField}
-            />
+            {allowSearch ? (
+              <input
+                value={option}
+                disabled={!allowSearch}
+                onChange={e => {
+                  !dropdown && setDropdown(true);
+                  setOption(e.target.value);
+                }}
+                ref={selectInputField}
+              />
+            ) : (
+              <span onClick={() => !dropdown && setDropdown(true)}>
+                {option}
+              </span>
+            )}
             <ArrowDownIcon />
 
             <ul className="dropdown">

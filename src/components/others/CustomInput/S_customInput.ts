@@ -32,6 +32,7 @@ export const S_customInput = styled.section<ISelectFieldStyle>`
 
       input {
         all: unset;
+        color: ${({ theme }) => theme.color.gray_dark};
         padding: 0 1rem;
         position: absolute;
         inset: 0;
@@ -44,6 +45,16 @@ export const S_customInput = styled.section<ISelectFieldStyle>`
           border: 0;
           outline: 0;
         }
+      }
+
+      span {
+        color: ${({ theme }) => theme.color.gray_dark};
+        padding: 1rem;
+        position: absolute;
+        inset: 0;
+        text-transform: capitalize;
+        text-align: left;
+        width: 100%;
       }
     }
 

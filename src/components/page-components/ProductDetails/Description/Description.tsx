@@ -15,8 +15,8 @@ const keys = [
 
 const Description: React.FC<{ data: ProductType }> = ({ data }) => {
   return (
-    <S_description>
-      <S_container>
+    <S_container>
+      <S_description>
         {keys.map(key => {
           if (!data[key as keyof ProductType]) return null;
           return (
@@ -30,8 +30,8 @@ const Description: React.FC<{ data: ProductType }> = ({ data }) => {
             </div>
           );
         })}
-      </S_container>
-    </S_description>
+      </S_description>
+    </S_container>
   );
 };
 

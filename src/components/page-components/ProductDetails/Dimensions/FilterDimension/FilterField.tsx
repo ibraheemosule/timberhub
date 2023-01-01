@@ -22,11 +22,7 @@ const SelectField: React.FC<IFilterField> = ({
       data-test={title.split(" ").join("")}
     >
       <h6>{title} *</h6>
-      <CustomInput
-        value={value}
-        dropdownList={dropdownList}
-        allowSearch={false}
-      />
+      <CustomInput value={value} dropdownList={dropdownList} />
     </S_filterField>
   );
 };
