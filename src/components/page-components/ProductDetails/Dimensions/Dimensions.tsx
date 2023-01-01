@@ -5,6 +5,7 @@ import {
   SetStateAction,
   useMemo,
   useRef,
+  useEffect,
 } from "react";
 import { S_dimensions } from "./S_dimensions";
 import { S_container } from "../../../others/reusable-styles/S_container";
@@ -23,6 +24,7 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
     [range, setRange] = useState(""),
     [filterValue, setFilterValue] = useState("");
 
+  useEffect(() => console.log(filterBy, range, filterValue, "rher"));
   useMemo(() => {
     setDimensions(() => [...rootDimension.current]);
 

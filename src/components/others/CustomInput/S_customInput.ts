@@ -36,6 +36,7 @@ export const S_customInput = styled.section<ISelectFieldStyle>`
         position: absolute;
         inset: 0;
         text-align: left;
+        text-transform: capitalize;
         z-index: 1;
 
         &:focus,
@@ -49,6 +50,7 @@ export const S_customInput = styled.section<ISelectFieldStyle>`
     svg {
       width: 0.7212rem;
       height: auto;
+      margin-right: 10px;
       transition: all 0.2s ease-in;
     }
 
@@ -78,6 +80,7 @@ export const S_customInput = styled.section<ISelectFieldStyle>`
         border-bottom: 1px solid ${({ theme }) => theme.color.border};
         transition: all 0.2s ease-out;
         text-align: center;
+        text-transform: capitalize;
 
         a {
           background: #fff;

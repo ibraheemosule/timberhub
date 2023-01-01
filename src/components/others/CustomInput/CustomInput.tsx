@@ -29,6 +29,8 @@ const CustomInput: FC<ICustomInput> = props => {
 
   const filteredSelectOptions = useMemo(() => {
     if (!dropdownList) return;
+    if (!allowSearch) return dropdownList;
+
     return Array.from(dropdownList).filter(val =>
       val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
     );

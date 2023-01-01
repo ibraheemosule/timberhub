@@ -1,6 +1,10 @@
 import { filterDimension, filterData } from "../../../support/command";
-
+import data from "../../../fixtures/mock-data.json";
 describe("Products page", () => {
+  before(() => {
+    cy.request("POST", "/api?test=y", data);
+  });
+
   beforeEach(() => {
     cy.visit("/");
 
@@ -35,16 +39,18 @@ describe("Products page", () => {
     });
 
     context("Filter component functionalities", () => {
-      it("Render filter components if dimensions are less than 5", () => {
+      it("Render filter components if dimensions are greater than 5", () => {
         const testProduct = filterData({ condition: "gt", num: 5 });
         cy.visit(`/${testProduct[0].id}`);
         cy.get(".filter-wrapper").should("exist");
       });
-      it("DONT rendered filter component if dimensions are less than 5", () => {
+
+      it("DONT render filter component if dimensions are less than 5", () => {
         const testProduct = filterData({ condition: "lt", num: 5 });
         cy.visit(`/${testProduct[0].id}`);
         cy.get(".filter-wrapper").should("not.exist");
       });
+
       it("Render all dimensions if none option is selected in range", () => {
         const productsWithDimensionsGt5 = filterData({
           condition: "gt",
@@ -61,6 +67,7 @@ describe("Products page", () => {
           productsWithDimensionsGt5[0].dimensions.length
         );
       });
+
       it("Render all dimensions if no number is inputed in the value field", () => {
         const productsWithDimensionsGt5 = filterData({
           condition: "gt",
@@ -76,6 +83,7 @@ describe("Products page", () => {
           productsWithDimensionsGt5[0].dimensions.length
         );
       });
+
       context("Width", () => {
         it("Render dimensions with width greater than 50", () => {
           const productsWithDimensionsGt5 = filterData({
@@ -99,6 +107,7 @@ describe("Products page", () => {
             productDimensionsWithWidthGt50.length
           );
         });
+
         it("Render dimensions with width less than 50", () => {
           const productsWithDimensionsGt5 = filterData({
             condition: "gt",
@@ -134,7 +143,6 @@ describe("Products page", () => {
             condition: "gt",
             num: 50,
           });
-          console.log(productDimensionsWithLengthGt50, "here");
           cy.visit(`/${productsWithDimensionsGt5[0].id}`);
           cy.get("@filterBy").click();
           cy.get("@filterBy").contains("length").click();
@@ -146,6 +154,7 @@ describe("Products page", () => {
             productDimensionsWithLengthGt50.length
           );
         });
+
         it("Render dimensions with length less than 50", () => {
           const productsWithDimensionsGt5 = filterData({
             condition: "gt",
@@ -192,6 +201,7 @@ describe("Products page", () => {
             productDimensionsWiththicknessGt50.length
           );
         });
+
         it("Render dimensions with thickness less than 50", () => {
           const productsWithDimensionsGt5 = filterData({
             condition: "gt",
@@ -223,11 +233,13 @@ describe("Products page", () => {
         cy.visit(`/${testProduct[0].id}`);
         cy.get("@card").find("[data-test=delete-icon]").should("exist");
       });
+
       it("should NOT display the delete icon if there only one card", () => {
         const testProduct = filterData({ condition: "lt", num: 2 });
         cy.visit(`/${testProduct[0].id}`);
         cy.get("@card").find("[data-test=delete-icon]").should("not.exist");
       });
+
       it("should delete dimension card", () => {
         const testProduct = filterData({ condition: "gt", num: 20 });
         cy.visit(`/${testProduct[0].id}`);
@@ -239,6 +251,7 @@ describe("Products page", () => {
             cy.wrap($el).should("not.exist");
           });
       });
+
       it("should NOT delete dimension card if there is error in deleting process", () => {
         const testProduct = filterData({ condition: "gt", num: 5 });
         cy.intercept("PUT", "/api", {

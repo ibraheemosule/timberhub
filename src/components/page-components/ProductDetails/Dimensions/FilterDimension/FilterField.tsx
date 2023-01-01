@@ -1,8 +1,7 @@
 import { S_filterField } from "./S_filterField";
-import { memo, useEffect, useRef, useState } from "react";
-import ArrowDownIcon from "../../../../../assets/icons/ArrowDownIcon";
+import { memo, useState } from "react";
 import { ISelectField } from "../../../../../ts-types/resuableCompTypes";
-import { isNumber } from "../../../../../utils";
+import CustomInput from "../../../../others/CustomInput/CustomInput";
 
 interface IFilterField extends ISelectField {
   type?: "select";
@@ -13,26 +12,7 @@ const SelectField: React.FC<IFilterField> = ({
   dropdownList,
   value,
 }) => {
-  const inputField = useRef<HTMLInputElement | null>(null),
-    optionField = useRef<HTMLSpanElement | null>(null),
-    [dropdown, setDropdown] = useState(false),
-    [option, setOption] = useState("");
-
-  useEffect(() => {
-    if (dropdown === false) return;
-    setDropdown(val => !val);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [option]);
-
-  const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOption(e.target.value);
-    value(e.target.value);
-  };
-
-  const updateValue = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    setOption(e.currentTarget.innerText);
-    value(e.currentTarget.innerText);
-  };
+  const [dropdown, setDropdown] = useState(false);
 
   return (
     <S_filterField
@@ -42,38 +22,11 @@ const SelectField: React.FC<IFilterField> = ({
       data-test={title.split(" ").join("")}
     >
       <h6>{title} *</h6>
-      {dropdownList !== undefined ? (
-        <fieldset className="filter_box">
-          <button onClick={() => setDropdown(val => !val)}>
-            <div className="wrapper">
-              {option ? (
-                <span ref={optionField} className="option">
-                  {option}
-                </span>
-              ) : (
-                <span className="placeholder">Select</span>
-              )}
-              <ArrowDownIcon />
-            </div>
-
-            <ul className="dropdown">
-              {dropdownList &&
-                dropdownList.map((val, i) => (
-                  <li key={i}>
-                    <a onClick={e => updateValue(e)}>{val}</a>
-                  </li>
-                ))}
-            </ul>
-          </button>
-        </fieldset>
-      ) : (
-        <input
-          ref={inputField}
-          type="text"
-          onKeyDown={e => isNumber(e)}
-          onChange={e => getValue(e)}
-        />
-      )}
+      <CustomInput
+        value={value}
+        dropdownList={dropdownList}
+        allowSearch={false}
+      />
     </S_filterField>
   );
 };

@@ -26,7 +26,7 @@ const DimensionCard: React.FC<IDimensionCard> = ({
     <S_dimensionCard data-test="dimension-card">
       {dimensionObjKeys.map((key, i: number) => (
         <h4 key={i}>
-          <small>Thickness:</small> {obj[key as keyof IDimension]}
+          <small>{key}:</small> {obj[key as keyof IDimension]}
         </h4>
       ))}
 

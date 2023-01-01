@@ -1,6 +1,10 @@
 import data from "../../../fixtures/mock-data.json";
 
 describe("Products page", () => {
+  before(() => {
+    cy.request("POST", "/api?test=y", data);
+  });
+
   beforeEach(() => {
     cy.visit("/");
 

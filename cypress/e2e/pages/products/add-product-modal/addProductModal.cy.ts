@@ -1,6 +1,10 @@
 import data from "../../../../fixtures/mock-data.json";
 
 describe("Products page", () => {
+  before(() => {
+    cy.request("POST", "/api?test=y", data);
+  });
+
   beforeEach(() => {
     cy.visit("/");
 
@@ -106,7 +110,10 @@ describe("Products page", () => {
             const text = $li.text();
             cy.wrap($li).click();
             expect($li).to.not.be.true;
-            cy.get("@speciesInput").should("have.value", text);
+            cy.get("@speciesInput").should(
+              "have.value",
+              text[0].toUpperCase() + text.substring(1)
+            );
           });
       });
     });
