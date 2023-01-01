@@ -7,7 +7,7 @@ export const S_searchBar = styled.form<IStyle>`
   padding: 0 0.9375rem;
   position: relative;
 
-  input {
+  .search-bar {
     outline: 0;
     border: 1px solid ${({ theme }) => theme.color.border};
     border-radius: 5px;
@@ -16,7 +16,7 @@ export const S_searchBar = styled.form<IStyle>`
     width: 100%;
   }
 
-  input:focus {
+  .search-bar:focus {
     outline: 0;
     border-color: ${({ theme }) => theme.color.sec2};
   }

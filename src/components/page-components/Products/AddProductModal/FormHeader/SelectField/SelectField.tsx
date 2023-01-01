@@ -1,9 +1,18 @@
 import { S_selectField } from "./S_selectField";
-import { memo, useEffect, useRef, useState, useContext, useMemo } from "react";
+import {
+  memo,
+  useEffect,
+  useRef,
+  useState,
+  useContext,
+  useMemo,
+  createRef,
+} from "react";
 import ArrowDownIcon from "../../../../../../assets/icons/ArrowDownIcon";
 import { ISelectField } from "../../../../../../ts-types/resuableCompTypes";
 import { isNumber } from "../../../../../../utils";
 import { Context } from "../../../../../../utils/Context";
+import CustomInput from "../../../../../others/CustomInput/CustomInput";
 
 const dimensionFields = ["thickness", "width", "length"];
 
@@ -13,7 +22,7 @@ const SelectField: React.FC<ISelectField> = ({
   value,
 }) => {
   const inputField = useRef<HTMLInputElement | null>(null),
-    selectInputField = useRef<HTMLInputElement | null>(null),
+    selectInputField = createRef<HTMLInputElement>(),
     [dropdown, setDropdown] = useState(false),
     [errorInput, setErrorInput] = useState(false),
     [option, setOption] = useState(""),
@@ -25,13 +34,13 @@ const SelectField: React.FC<ISelectField> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal]);
 
-  const filteredSelectOptions = useMemo(() => {
-    if (!dropdownList) return;
-    return Array.from(dropdownList).filter(val =>
-      val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [option, dropdownList]);
+  // const filteredSelectOptions = useMemo(() => {
+  //   if (!dropdownList) return;
+  //   return Array.from(dropdownList).filter(val =>
+  //     val?.toLocaleLowerCase().startsWith(option.toLocaleLowerCase())
+  //   );
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [option, dropdownList]);
 
   useEffect(() => {
     switch (title) {
@@ -57,42 +66,42 @@ const SelectField: React.FC<ISelectField> = ({
     inputField.current.value = "";
   };
 
-  const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOption(e.target.value);
-    value(e.target.value);
-  };
+  // const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setOption(e.target.value);
+  //   value(e.target.value);
+  // };
 
-  const updateValue = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
-    setOption(e.currentTarget.innerText);
-    value(e.currentTarget.innerText);
-    setDropdown(false);
-  };
+  // const updateValue = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  //   e.preventDefault();
+  //   setOption(e.currentTarget.innerText);
+  //   value(e.currentTarget.innerText);
+  //   setDropdown(false);
+  // };
 
-  const validateKeyInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    setErrorInput(false);
-    if (isNumber(e)) return;
-    e.preventDefault();
-    setErrorInput(true);
-  };
+  // const validateKeyInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   setErrorInput(false);
+  //   if (isNumber(e)) return;
+  //   e.preventDefault();
+  //   setErrorInput(true);
+  // };
 
-  const selectFieldBlurred = () => {
-    setDropdown(false);
-    const inputValueVerify = dropdownList?.every(opt => {
-      if (opt?.toLowerCase() === option.toLowerCase()) {
-        setOption(opt);
-        value(opt);
-        return false;
-      }
-      return true;
-    });
-    if (inputValueVerify) {
-      setOption("");
-      value("");
-    }
+  // const selectFieldBlurred = () => {
+  //   setDropdown(false);
+  //   const inputValueVerify = dropdownList?.every(opt => {
+  //     if (opt?.toLowerCase() === option.toLowerCase()) {
+  //       setOption(opt);
+  //       value(opt);
+  //       return false;
+  //     }
+  //     return true;
+  //   });
+  //   if (inputValueVerify) {
+  //     setOption("");
+  //     value("");
+  //   }
 
-    selectInputField.current?.blur();
-  };
+  //   selectInputField.current?.blur();
+  // };
 
   const errorBorderColor = useMemo(() => {
     if (dimensionFields.includes(type)) {
@@ -103,14 +112,17 @@ const SelectField: React.FC<ISelectField> = ({
   }, [formError, option, type]);
 
   return (
-    <S_selectField
-      data-test={type.split(" ").join("")}
-      dropdown={dropdown}
-      inputError={errorBorderColor}
-      tabIndex={-1}
-    >
+    <S_selectField data-test={type.split(" ").join("")}>
       <h6>{type} *</h6>
-      {dimensionFields.includes(type) ? (
+      <CustomInput
+        dropdownList={dropdownList}
+        value={value}
+        numeric={true}
+        error={!!formError}
+        allowSearch={true}
+        reset={!modal}
+      />
+      {/* {dimensionFields.includes(type) ? (
         <>
           <input
             ref={inputField}
@@ -131,7 +143,7 @@ const SelectField: React.FC<ISelectField> = ({
               value={option}
               onChange={e => {
                 !dropdown && setDropdown(true);
-                setFormError("");
+                //setFormError("");
                 setOption(e.target.value);
               }}
               ref={selectInputField}
@@ -158,7 +170,7 @@ const SelectField: React.FC<ISelectField> = ({
             </ul>
           </button>
         </fieldset>
-      )}
+      )} */}
     </S_selectField>
   );
 };

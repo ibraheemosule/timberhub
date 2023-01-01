@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic";
 import PlusIcon from "../../../../../assets/icons/PlusIcon";
 import { S_formHeader } from "./S_formHeader";
-import { useContext, FC } from "react";
+import { useContext, FC, useEffect } from "react";
 import { Context } from "../../../../../utils/Context";
 import { IDimension, ProductType } from "../../../../../ts-types/dataTypes";
+import { validateData } from "../../../../../utils";
 
 const SelectField = dynamic(() => import("./SelectField/SelectField"), {
   ssr: false,
@@ -21,9 +22,14 @@ interface IFormHeader {
 }
 
 const FormHeader: React.FC<IFormHeader> = ({ formField }) => {
-  const { newProduct, setNewProduct } = useContext(Context);
+  const { newProduct, setNewProduct, setFormError } = useContext(Context);
 
   const Icon = formField[1].Icon;
+
+  useEffect(() => {
+    validateData(newProduct) && setFormError("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setFormError, JSON.stringify(newProduct)]);
 
   const addDimensionField = () => {
     const newProductClone = { ...newProduct };

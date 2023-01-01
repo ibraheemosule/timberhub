@@ -12,7 +12,6 @@ const SelectField: React.FC<IFilterField> = ({
   title,
   dropdownList,
   value,
-  type,
 }) => {
   const inputField = useRef<HTMLInputElement | null>(null),
     optionField = useRef<HTMLSpanElement | null>(null),
@@ -27,7 +26,6 @@ const SelectField: React.FC<IFilterField> = ({
 
   const getValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOption(e.target.value);
-
     value(e.target.value);
   };
 
@@ -44,7 +42,7 @@ const SelectField: React.FC<IFilterField> = ({
       data-test={title.split(" ").join("")}
     >
       <h6>{title} *</h6>
-      {type === "select" ? (
+      {dropdownList !== undefined ? (
         <fieldset className="filter_box">
           <button onClick={() => setDropdown(val => !val)}>
             <div className="wrapper">

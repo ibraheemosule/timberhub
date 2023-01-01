@@ -106,11 +106,7 @@ const Dimensions: React.FC<{ data: ProductType }> = ({ data }) => {
               dropdownList={filterOptions}
               value={getFilterValue("range")}
             />
-            <FilterField
-              title="Value"
-              dropdownList={dimensionObjKeys}
-              value={getFilterValue("filterValue")}
-            />
+            <FilterField title="Value" value={getFilterValue("filterValue")} />
           </aside>
         )}
         <div className="cards-wrapper">

@@ -25,7 +25,7 @@ const SearchBar: React.FC = () => {
         <input
           type="text"
           onChange={e => filterList(e)}
-          className="searchfield"
+          className="search-bar"
           placeholder="Search"
         />
         <button type="submit">
