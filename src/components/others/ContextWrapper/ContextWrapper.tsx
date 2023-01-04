@@ -17,7 +17,8 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
     [list, setList] = useState<ProductType[]>([...fetchedData]),
     [rows, setRows] = useState<ProductType[]>([...fetchedData]),
     [newProduct, setNewProduct] = useState({} as ProductType),
-    [formError, setFormError] = useState("");
+    [formError, setFormError] = useState(""),
+    [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     setNewProduct({
@@ -39,6 +40,8 @@ const ContextWrapper: React.FC<IContextWrapper> = ({
         setNewProduct,
         formError,
         setFormError,
+        searchValue,
+        setSearchValue,
       }}
     >
       {children}

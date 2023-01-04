@@ -32,7 +32,6 @@ export const S_productItem = styled.a<IStyle>`
 
       div:nth-child(1) {
         flex-basis: 100%;
-        text-transform: capitalize;
 
         .categories {
           font-size: 0.75rem;

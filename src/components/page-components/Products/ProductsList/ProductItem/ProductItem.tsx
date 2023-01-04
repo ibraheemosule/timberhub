@@ -5,10 +5,47 @@ import {
   formatDate,
   getProductDimensionsDuplicates,
 } from "../../../../../utils";
-import { memo } from "react";
+import { memo, useContext, useEffect, useRef } from "react";
+import { Context } from "../../../../../utils/Context";
 import Link from "next/link";
 
 const ProductItem: React.FC<IProductItem> = ({ product }) => {
+  const { searchValue } = useContext(Context),
+    titleElement = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const titles = `${product.species} ${product.grade} ${
+      product.drying_method
+    } ${product.usage} ${product.treatment || ""}`;
+
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const pTag = titleElement.current!;
+
+    if (!searchValue) {
+      pTag.style.textTransform = "capitalize";
+      pTag.innerHTML = titles;
+      return;
+    }
+
+    pTag.style.textTransform = "unset";
+
+    const highlightedText = titles
+      .toLowerCase()
+      .replaceAll(
+        searchValue.toLowerCase(),
+        `<mark>${searchValue.toLowerCase()}</mark>`
+      )
+      .split(" ")
+      .map(text => {
+        return text && text[0].toUpperCase() + text.substring(1);
+      })
+      .join(" ");
+
+    pTag.innerHTML = highlightedText;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue]);
+
   return (
     <Link href={`/${product.id}`} passHref>
       <S_productItem data-test="product-item">
@@ -16,9 +53,13 @@ const ProductItem: React.FC<IProductItem> = ({ product }) => {
           <ProductIcon />
           <div className="wrapper">
             <div>
-              <p className="categories" data-test="categories">
-                {product.species}, {product.grade}, {product.drying_method},{" "}
-                {product.usage}, {product.treatment}
+              <p
+                ref={titleElement}
+                className="categories"
+                data-test="categories"
+              >
+                {/* {product.species}, {product.grade}, {product.drying_method},{" "}
+                {product.usage}, {product.treatment} */}
               </p>
               <p>
                 <mark>#{product.id?.slice(0, 6) + "..."}</mark>{" "}

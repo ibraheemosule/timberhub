@@ -4,7 +4,7 @@ import Title from "../../others/Title/Title";
 import SearchBar from "./SearchBar/SeachBar";
 import ProductList from "./ProductsList/ProductsList";
 import Pagination from "./Pagination/Pagination";
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect, useRef, useMemo } from "react";
 import { Context } from "../../../utils/Context";
 import { paginateFunction } from "../../../utils";
 import { ProductType } from "../../../ts-types/dataTypes";
@@ -17,14 +17,14 @@ const AllProducts: React.FC = () => {
     parentElement = useRef<HTMLDivElement>(null),
     numOfPages = Math.ceil(list.length / 5);
 
-  useEffect(() => setNumber(1), [JSON.stringify(list)]);
+  useMemo(() => setNumber(1), [JSON.stringify(list)]);
 
   useEffect(() => {
     if (!parentElement.current) return;
     parentElement.current.scrollTo(0, 0);
   }, [modal]);
 
-  useEffect(() => {
+  useMemo(() => {
     const paginatedArray = paginateFunction({
       arr: [...list],
       pageSize: 5,

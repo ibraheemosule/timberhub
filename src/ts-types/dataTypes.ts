@@ -11,6 +11,8 @@ export interface IContext {
   setNewProduct: Dispatch<SetStateAction<ProductType>>;
   formError: string;
   setFormError: Dispatch<SetStateAction<string>>;
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
 }
 export type ProductType = {
   readonly id: string;
